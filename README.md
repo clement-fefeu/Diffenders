@@ -5,11 +5,12 @@ Projet de fin d'etudes L2 Informatique 2023-2024
 
 (Titre du Projet) oui
 
-description projet avec lien vers doc decrivant le projet (1 page)
+Description projet avec lien vers doc decrivant le projet (1 page):
+Le projet que nous faisons est un jeux de type tower defense. 
 
-date de creation projet : 23/01/2024
+Date de creation projet : 23/01/2024
 
-date de fin projet (Semaine 17)
+Date de fin projet (Semaine 17)
 
 Temps de travail
 
