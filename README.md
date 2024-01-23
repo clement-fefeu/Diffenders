@@ -3,7 +3,7 @@ Nom : Dubois Fefeu Renou
  
 Projet de fin d'etudes L2 Informatique 2023-2024
 
-(Titre du Projet) 
+(Titre du Projet) oui
 
 description projet avec lien vers doc decrivant le projet (1 page)
 
