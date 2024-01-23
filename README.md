@@ -14,7 +14,5 @@ Date de fin projet (Semaine 17)
 
 Temps de travail
 
-Lien Gantt
-
-https://docs.google.com/spreadsheets/d/1P315gEExxtVSHogtvFTKoi5TXBG6yozVc3Qjj2j6yM0/edit#gid=1274677741
+Lien Gantt : https://docs.google.com/spreadsheets/d/1P315gEExxtVSHogtvFTKoi5TXBG6yozVc3Qjj2j6yM0/edit#gid=1274677741
 
