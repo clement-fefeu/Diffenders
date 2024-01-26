@@ -4,7 +4,7 @@ Dubois Gabriel
 Fefeu Clément
 Renou Alexis
  
-# Projet de fin d'etudes L2 Informatique 2023-2024
+**Projet de fin d'etudes L2 Informatique 2023-2024**
 
 # Titre du Projet : 
 Diffenders
