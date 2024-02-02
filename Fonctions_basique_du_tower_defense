@@ -1,0 +1,36 @@
+Tower Defense , Fonctions jeux (basique)
+
+Tour de défense = héro/Personnage
+Enemie = Alien/Monstre
+Point à défendre = Ville
+Système Monaitaire = Tuer des enemies attribut un certain montant de point(argent)
+Chemin aléatoire = Création de point de départ et de chemins aléatoirement a la premiere vague
+Enemie = Inflige leurs point de vie en dégats a la ville à défendre.
+La ville gagne des pv a chaque fin de manche
+Inventaire (case) pour sélectionner les héro.
+
+
+l'inventaire pourrait etre composer de 5 ou 6 héros choisis au préalable dans un menu de selections
+système de succès permettant de debloquer de nouveau pannel de Héro
+système de vente des héro pour vendre en cas de pose accidentel
+première vente de héro de la partie rembourser a 100% sinon rembourser à 50%
+
+Plusieur type d'énemie : Rapide , Basique , Tank , Générateur (qui invoque des minions) , Distance , Boss
+
+plusieur type de héro : Support , AOE , Dégats sur la durée , Dégats directe (avec pour tous des prix variant)
+
+Possibilité de passé la vague en cours après plusieur dizaine de seconde
+
+à chaque vague un montant fixe d'argent est donnée
+
+Chaque héro pourrait être améliorer pour un certain montant d'argent (monté de niveau et de stats) et évolué après un certain nombre d'ennemie tué (augmentation flagrente voir total modification des stats , changement de modèle et de paterne)
+
+Possible capacité spécial avec un long cooldown (exemple) : Vitesse d'attaque augmenter , ennemie paralysé , détruire tout les enemie en échange d'un pourcentage de leurs pv totaux en point de vie de la ville)
+
+Augmentation de point de vie au fur et à mesure des vagues
+
+Interface sur les enemie et les héros pour avoir leurs caractéristique (et les améliorer/évolué)
+
+affichage du nombre d'énemie restant et du nombre de vague
+
+possibilité de subir des blessure provenant des héros posé selon leurs zone d'effet
