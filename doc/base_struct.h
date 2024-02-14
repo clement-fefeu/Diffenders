@@ -1,6 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define N 6
+#define TailleMap 30
+
 typedef struct enemie_s enemie_t;
 typedef struct hero_s hero_t;
 typedef struct typeEnemie_s typeEnemie_t;
@@ -67,20 +70,29 @@ struct joueur_t{
 };
 
 
-enemie_t * initialise_enemie();
+enemie_t * initialise_enemie();         //Fonction pour la structure enemie_t
 int detruireEnem(enemie_t **  enemie);
 listEnemie_t * vagueEnemie(int vague);
 
-hero_t * initialise_hero();
+hero_t * initialise_hero();             //Fonctions pour la structure hero_t
 void afficheHero(hero_t * hero);
 int detruireHero(hero_t **  hero);
 
-listEnemie_t * vagueEnemie(int vague);
+listEnemie_t * vagueEnemie(int vague);              //Fonction pour gérer la liste d'enemie (le nb par vague)
 void afficherListeEnem(listEnemie_t * liste,int vague);
 int detruireListe(listEnemie_t ** liste,int vague);
 
-totalHero_t * equipeHero(int nbHero);
-void afficherAllHero(totalHero_t * allHero , int nbHero);
+totalHero_t * equipeHero(int nbHero);               //Fonction pour le total de héro sur le plateau
+void afficherAllHero(totalHero_t * allHero , int nbHero);   
 int detruireAllHero(totalHero_t ** allHero,int nbHero);
+
+int genereMapBeta(int tab[TailleMap][TailleMap]);       //Fonction génération de la map
+int genereMapVisuBeta(int tab[TailleMap][TailleMap],char tabVisu[TailleMap][TailleMap]);
+void afficherMap(char tab[TailleMap][TailleMap]);
+
+base_t * genererBase(int tab[TailleMap][TailleMap]);       //Generation de la base
+int detruireBase(base_t ** base);
+int degatBase(base_t * base);
+int actualiseBase(base_t * base);
 
 int jeu();

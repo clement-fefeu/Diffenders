@@ -3,9 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include <unistd.h>
-#include "base_struct.h"
-
-#define N 6
+#include "doc/base_struct.h"
 
 enemie_t * initialise_enemie(){     //fonction qui créér un enemie.
     enemie_t * enemieTemp = malloc(sizeof(enemie_t));
@@ -140,7 +138,7 @@ totalHero_t * equipeHero(int nbHero){
 }
 
 void afficherAllHero(totalHero_t * allHero , int nbHero){
-    for(int i = 0 ; i<nbHero ; i++){
+    for(int i = 0 ; i<nbHero ; i++){ //oui
         afficheHero(allHero->hero[i]);
     }
 }
@@ -150,13 +148,95 @@ int detruireAllHero(totalHero_t ** allHero,int nbHero){
         detruireHero(&(*allHero)->hero[i]);
         (*allHero)->hero[i] = NULL;
     }
-    free((*allHero)->hero);
+    free((*allHero)->hero); 
     (*allHero)->hero = NULL;
     free(*allHero);
     (*allHero)=NULL;
 }
 
 
+int genereMapBeta(int tab[TailleMap][TailleMap]){
+    int i;
+    int j;
+    for(i = 0 ; i< TailleMap ; i++){
+        for(j = 0 ; j < TailleMap ; j++){
+            tab[i][j] = 0;
+        }
+    }
+    return 1;
+}
+
+int genereMapVisuBeta(int tab[TailleMap][TailleMap],char tabVisu[TailleMap][TailleMap]){
+    int i = 0;
+    for(i ; i<TailleMap ; i++){
+        for(int j = 0 ; j  < TailleMap; j++){
+            if(tab[i][j] == 1){
+                tabVisu[i][j] = 'B';
+            }
+            else{
+                tabVisu[i][j] = '_';
+            }
+    }
+}
+return 1;
+}
+
+
+void afficherMap(char tab[TailleMap][TailleMap]){
+    for(int i = 0; i < TailleMap ; i++){ 
+        for(int j = 0 ; j < TailleMap ; j++){
+            printf("%c | ",tab[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+base_t * genererBase(int tab[TailleMap][TailleMap]){
+    int x;
+    int y;
+
+    base_t * baseTemp = malloc(sizeof(base_t));
+
+    do{
+    x = rand() % 30;
+    printf("Le X = %d \n",x);
+    if(x >= 20){
+        y = rand() % 31;
+    }
+    }while(x<20);
+    tab[y][x] = 1;
+    baseTemp->pv = 1000;
+    baseTemp->coordX = x;
+    baseTemp->coordY = y;
+
+    return baseTemp;
+}
+
+int detruireBase(base_t ** base){
+    free(*base);
+    (*base)=NULL;
+}
+
+int degatBase(base_t * base){
+    int degat;
+    printf("Indiquez les dégat que vous voullez infligé à la base :");
+    scanf("%d",&degat);
+
+    base->pv -= degat;
+
+    return 1;
+}
+
+int actualiseBase(base_t * base){
+    if(base->pv <= 0){
+        printf("Vous avez perdu ! \n");
+        return 0;
+    }
+    else{
+        printf("Il vous reste %d pv \n",base->pv);
+    }
+    return 1;   
+}
 
 int jeu(){
     int vague = 4;
@@ -164,6 +244,9 @@ int jeu(){
     listEnemie_t * vagueEnem = NULL;
     totalHero_t * teamHero = NULL;
     hero_t * hero = NULL;
+    base_t * base = NULL;
+    int tab[TailleMap][TailleMap];
+    char tabVisuelle[TailleMap][TailleMap];
     vagueEnem = vagueEnemie(vague);
 
     afficherListeEnem(vagueEnem,vague);
@@ -176,8 +259,26 @@ int jeu(){
 
     detruireAllHero(&teamHero,nbHero);
 
+    genereMapBeta(tab);
 
+    base = genererBase(tab);
 
+    genereMapVisuBeta(tab,tabVisuelle);
+
+    printf("\n");
+
+    afficherMap(tabVisuelle);
+
+    for(int i = 0 ; i < 4 ; i++){
+
+        degatBase(base);
+
+    if(actualiseBase(base) == 0){
+        detruireBase(&base);
+        return 0;
+    }
+    }
+    return 1;
 }
 
 int main(){     //Programme principal
