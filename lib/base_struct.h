@@ -82,7 +82,7 @@ listEnemie_t * vagueEnemie(int vague);              //Fonction pour gérer la li
 void afficherListeEnem(listEnemie_t * liste,int vague);
 int detruireListe(listEnemie_t ** liste,int vague);
 
-totalHero_t * equipeHero(int nbHero);               //Fonction pour le total de héro sur le plateau
+totalHero_t * equipeHero(int nbHero, int nb);               //Fonction pour le total de héro sur le plateau
 void afficherAllHero(totalHero_t * allHero , int nbHero);   
 int detruireAllHero(totalHero_t ** allHero,int nbHero);
 

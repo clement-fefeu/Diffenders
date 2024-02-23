@@ -11,15 +11,15 @@ PROG=sdl_text
 
 all: sdl_text
 
-sdl_text: testSDL.c
-	${CC} -o ${PROG} testSDL.c ${LIBS} ${INCLUDES}
+sdl_text: testSDL.o base_struct.o
+	${CC} testSDL.o base_struct.o -o ${PROG} ${LIBS} ${INCLUDES}
 
 prog: base_struct.o
 		gcc base_struct.o -o prog
 base_struct.o:	base_struct.c
-				gcc -c base_struct.c base_struct.h
+				gcc -c base_struct.c ../lib/base_struct.h
 testSDL.o:	testSDL.c
-			gcc -c testSDL.c
+			gcc -c testSDL.c ../lib/base_struct.h
 
 
 
