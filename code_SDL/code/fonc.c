@@ -147,25 +147,11 @@ void init_icon(SDL_Window *window){
     SDL_FreeSurface(surface);
 }
 
-void aff_img(SDL_Renderer *renderer,SDL_Texture *texture){
-    SDL_Rect src={ 0, 0, 100, 100 };
-    SDL_Rect dst={ 0, 0, 400, 400 };
 
-    SDL_RenderClear(renderer);
-
-    SDL_SetRenderTarget(renderer, NULL);
-
-    SDL_RenderCopy(renderer, texture, &src,&dst ); // j'affiche la texture, a partir des coordonné (0, 0) jusqu'a la hauteur et largeur totale soit (100, 100) et je fait pareil sur le rectangle destination, j'affiche sur tel dimension en (0, 0) et de largeur (100, 100)
-
-    SDL_RenderPresent(renderer);
-}
-
-
-void aff_mots(SDL_Renderer *renderer,SDL_Color couleur,char *police,char *mots){   
+SDL_Texture *texture;
+void cree_mots(SDL_Renderer *renderer,SDL_Color couleur,char *police,char *mots){   
     SDL_bool isOpen = SDL_TRUE;
-    SDL_Texture *texture;
     SDL_Event event;
-    SDL_Rect position;
 
     TTF_Init() < 0;
 
@@ -181,30 +167,22 @@ void aff_mots(SDL_Renderer *renderer,SDL_Color couleur,char *police,char *mots){
     SDL_FreeSurface(text);
     TTF_CloseFont(font);
 
-    SDL_QueryTexture(texture, NULL, NULL, &position.w, &position.h); // Récupere la dimension de la texture
+    SDL_QueryTexture(texture, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
 
     position.x = 1024 / 2 - position.w / 2;
     position.y = 768 / 2 - position.h / 2;
 
-    while (isOpen)
-    {
-         while (SDL_PollEvent(&event))
-        {
-            switch (event.type)
-            {
-            case SDL_QUIT:
-                isOpen = SDL_FALSE;
-                break;
-            }
-        }
+    
 
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
-        SDL_RenderClear(renderer);  
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
+    SDL_RenderClear(renderer);  
 
-        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-        SDL_RenderCopy(renderer, texture, NULL, &position);
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 
-        SDL_RenderPresent(renderer);  
-    }
+}
 
+void afficher(SDL_Renderer *renderer,SDL_Texture *image){
+    SDL_RenderCopy(renderer, image, NULL, NULL );
+    SDL_RenderCopy(renderer, texture, NULL, &position);
+    SDL_RenderPresent(renderer);
 }

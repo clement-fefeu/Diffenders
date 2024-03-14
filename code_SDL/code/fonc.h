@@ -15,6 +15,7 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
 #define SDL_BUTTON_X2       5
 #define TTF_GetError    SDL_GetError
 
+
 struct carre {
    SDL_Rect rect;
    Uint32 couleur;
@@ -29,6 +30,8 @@ struct Input
     SDL_bool mouse[6];
 };
 
+SDL_Rect position;
+
 SDL_bool test(SDL_Point point, SDL_Rect rect);
 int setWindowColor(SDL_Renderer *renderer, SDL_Color color);
 int init(SDL_Window **window, SDL_Renderer **renderer, int w, int h);
@@ -38,5 +41,5 @@ void setPixel(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b, Uint8 a, size_t x
 SDL_Surface *createSurfaceFromTexture(SDL_Texture *texture);
 void updateEvent(struct Input *input);
 void init_icon(SDL_Window *window);
-void aff_img(SDL_Renderer *renderer,SDL_Texture *texture);
-void aff_mots(SDL_Renderer *renderer,SDL_Color couleur,char *police,char *mots);
+void cree_mots(SDL_Renderer *renderer,SDL_Color couleur,char *police,char *mots);
+void afficher(SDL_Renderer *renderer,SDL_Texture *);

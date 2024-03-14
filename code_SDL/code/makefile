@@ -10,6 +10,7 @@ INCLUDES=-I${SDLINC_DIR}
 
 PROG1=fonc.o
 PROG2=main.o
+EXECUTABLE=test
 
 all: test
 
@@ -25,4 +26,5 @@ main.o: main.c
 clean: 
 	rm -f ${PROG1}
 	rm -f ${PROG2}
+	rm -f ${EXECUTABLE}
 	rm -f *.o
