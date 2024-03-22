@@ -7,11 +7,11 @@ SDLINC_DIR= /usr/include/SDL2
 LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
 INCLUDES=-I${SDLINC_DIR} 
 
-PROG=sdl_text
+PROG=sdl_test
 
-all: sdl_text
+all: sdl_test
 
-sdl_text: testSDL.o base_struct.o
+sdl_test: testSDL.o base_struct.o
 	${CC} testSDL.o base_struct.o -o ${PROG} ${LIBS} ${INCLUDES}
 
 prog: base_struct.o

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define MAXHERO 30
 #define N 6
 #define TailleMap 30
 
@@ -13,6 +14,8 @@ typedef struct typeHero_s typeHero_t;
 typedef struct totalHero_s totalHero_t;
 typedef struct base_s base_t;
 typedef struct joueur_s joueur_t;
+typedef struct caseHero_s caseHero_t;
+typedef struct tabCase_s tabCase_t;
 
 
 struct typeEnemie_s{
@@ -69,12 +72,22 @@ struct joueur_t{
 
 };
 
+struct caseHero_s{
+    int coordX;
+    int coordY;
+    hero_t * Hero;
+};
+
+struct tabCase_s{
+    caseHero_t * tab[MAXHERO];
+};
+
 
 enemie_t * initialise_enemie();         //Fonction pour la structure enemie_t
 int detruireEnem(enemie_t **  enemie);
 listEnemie_t * vagueEnemie(int vague);
 
-hero_t * initialise_hero();             //Fonctions pour la structure hero_t
+hero_t * initialise_hero(int nb);             //Fonctions pour la structure hero_t
 void afficheHero(hero_t * hero);
 int detruireHero(hero_t **  hero);
 
