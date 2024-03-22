@@ -108,4 +108,3 @@ int detruireBase(base_t ** base);
 int degatBase(base_t * base);
 int actualiseBase(base_t * base);
 
-int jeu();
