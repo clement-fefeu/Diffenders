@@ -41,5 +41,3 @@ void setPixel(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b, Uint8 a, size_t x
 SDL_Surface *createSurfaceFromTexture(SDL_Texture *texture);
 void updateEvent(struct Input *input);
 void init_icon(SDL_Window *window);
-void cree_mots(SDL_Renderer *renderer,SDL_Color couleur,char *police,char *mots);
-void afficher(SDL_Renderer *renderer,SDL_Texture *);

@@ -3,7 +3,12 @@
 #include <time.h>
 #include <string.h>
 #include <unistd.h>
-#include "doc/base_struct.h"
+#include "../lib/base_struct.h"
+
+char * nomHero[8] = {"Skarn","Pof","Roy","Erjar","Ranov","Xoras","Avban","Vzura"};
+int degatHero[8] = {100,0,50,35,250,120,75,5};
+int typeHero[8] = {3,1,2,4,3,4,2,1};
+char * nomTypeHero[8] = {"Direct Hit","Support","AOE","DOT","Direct Hit","DOT","AOE","Support"};
 
 enemie_t * initialise_enemie(){     //fonction qui créér un enemie.
     enemie_t * enemieTemp = malloc(sizeof(enemie_t));
@@ -43,36 +48,16 @@ int detruireEnem(enemie_t **  enemie){ //Fonctions de destruction des enemie cr�
     return 1;
 }
 
-hero_t * initialise_hero(){
+hero_t * initialise_hero(int nb){
     hero_t * heroTemp = malloc(sizeof(hero_t));
-
-    heroTemp->typehero.idenType = rand() % 4+1;
     int degat;
 
-    if(heroTemp->typehero.idenType == 1){
-    degat = 0;
-    heroTemp->nom = "Hero Support";
-    heroTemp->degat = degat;
-    heroTemp->typehero.nom = "Support";
-    }
-    else if(heroTemp->typehero.idenType == 2){
-    degat = rand() % 100+20;
-    heroTemp->nom = "Hero de Zone";
-    heroTemp->degat = degat;
-    heroTemp->typehero.nom = "AOE (Area Of Effect)";
-    }
-    else if(heroTemp->typehero.idenType == 3){
-    degat  = rand() % 200+60;
-    heroTemp->nom = "Hero attaquant direct";
-    heroTemp->degat = degat;
-    heroTemp->typehero.nom = "DH (Direct Hit)";
-    }
-    else if(heroTemp->typehero.idenType == 4){
-    degat  = rand() % 140+40;
-    heroTemp->nom = "Hero attaquant sur la durée";
-    heroTemp->degat = degat;
-    heroTemp->typehero.nom = "DOT (Damage Over Time)";
-    }
+    heroTemp->nom = nomHero[nb];
+    heroTemp->degat = degatHero[nb];
+    heroTemp->typehero.idenType = typeHero[nb];
+    heroTemp->typehero.nom = nomTypeHero[nb];
+    
+    return heroTemp;
 }
 
 void afficheHero(hero_t * hero){
@@ -125,13 +110,13 @@ int detruireListe(listEnemie_t ** liste,int vague){
     return 1;
 }
 
-totalHero_t * equipeHero(int nbHero){
+totalHero_t * equipeHero(int nbHero, int nb){
     hero_t * temp = NULL;
     totalHero_t * equipeTemp = malloc(sizeof(totalHero_t));
     equipeTemp->hero = malloc(sizeof(hero_t)*nbHero);
 
     for(int i = 0; i < nbHero ; i++){
-        temp = initialise_hero();
+        temp = initialise_hero(nb);
         equipeTemp->hero[i] = temp;
     }
     return equipeTemp;
@@ -238,7 +223,7 @@ int actualiseBase(base_t * base){
     return 1;   
 }
 
-int jeu(){
+/*int jeu(){
     int vague = 4;
     int nbHero = 8;
     listEnemie_t * vagueEnem = NULL;
@@ -287,3 +272,4 @@ int main(){     //Programme principal
     jeu();
 
 }
+*/

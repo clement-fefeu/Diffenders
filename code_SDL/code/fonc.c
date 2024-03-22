@@ -148,41 +148,5 @@ void init_icon(SDL_Window *window){
 }
 
 
-SDL_Texture *texture;
-void cree_mots(SDL_Renderer *renderer,SDL_Color couleur,char *police,char *mots){   
-    SDL_bool isOpen = SDL_TRUE;
-    SDL_Event event;
-
-    TTF_Init() < 0;
-
-    TTF_Font* font = TTF_OpenFont(police, 18);
-
-    SDL_Surface* text = TTF_RenderText_Blended(font, mots, couleur);
-
-    texture = SDL_CreateTextureFromSurface(renderer, text);
-
-    // Libération des resource de la police et de la surface qui contient le texte
 
 
-    SDL_FreeSurface(text);
-    TTF_CloseFont(font);
-
-    SDL_QueryTexture(texture, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-
-    position.x = 1024 / 2 - position.w / 2;
-    position.y = 768 / 2 - position.h / 2;
-
-    
-
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
-    SDL_RenderClear(renderer);  
-
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-
-}
-
-void afficher(SDL_Renderer *renderer,SDL_Texture *image){
-    SDL_RenderCopy(renderer, image, NULL, NULL );
-    SDL_RenderCopy(renderer, texture, NULL, &position);
-    SDL_RenderPresent(renderer);
-}

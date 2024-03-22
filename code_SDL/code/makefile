@@ -9,19 +9,19 @@ LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
 INCLUDES=-I${SDLINC_DIR} 
 
 PROG1=fonc.o
-PROG2=main.o
+PROG2=menu.o
 EXECUTABLE=test
 
 all: test
 
-test: fonc.o main.o
+test: fonc.o menu.o
 	${CC}  ${PROG1} ${PROG2} -o test ${LIBS} ${INCLUDES}
 
 fonc.o: fonc.c
 	${CC} -c fonc.c fonc.h
 
-main.o: main.c 
-	${CC} -c main.c fonc.h
+menu.o: menu.c 
+	${CC} -c menu.c fonc.h
 
 clean: 
 	rm -f ${PROG1}
