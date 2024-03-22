@@ -1,6 +1,15 @@
 #include "../lib/fonc.h"
 #include "../lib/base_struct.h"
 
+
+#define WIDTHSCREEN 1600 
+
+#define HEIGHTSCREEN 900 
+
+#define TOTAL_POINTS 5000 
+
+
+/* modifier zone à cliquer et positionner les bouton */
 int menu()
 {
     SDL_Window *window = NULL;
@@ -18,7 +27,7 @@ int menu()
     SDL_Rect position;
     int statut = EXIT_FAILURE;
     /* Initialisation simple */
-    init(&window,&renderer,1024,768);
+    init(&window,&renderer,WIDTHSCREEN,HEIGHTSCREEN);
     init_icon(window);
 
     background=loadImage("../img/tower_def.jpg",renderer);
@@ -30,13 +39,13 @@ int menu()
     SDL_RenderCopy(renderer, background, NULL, NULL );
 
     SDL_QueryTexture(play, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-    position.x = 1024 / 2- position.w /2;
-    position.y = 600 / 2 - position.h /2;
+    position.x = WIDTHSCREEN / 2- position.w /2;
+    position.y = HEIGHTSCREEN / 2 - position.h /2;
     SDL_RenderCopy(renderer, play, NULL, &position);
 
     SDL_QueryTexture(quit, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-    position.x = 1024 /2 - position.w /2;
-    position.y = 768 /2 - position.h /2;
+    position.x = WIDTHSCREEN /2 - position.w /2;
+    position.y = HEIGHTSCREEN /2 - position.h /2;
     SDL_RenderCopy(renderer, quit, NULL, &position);
 
     SDL_RenderPresent(renderer);
@@ -59,17 +68,17 @@ int menu()
                         SDL_RenderClear(renderer);
                         SDL_RenderPresent(renderer);
                         jeu(renderer);
-                        
+
                         SDL_RenderCopy(renderer, background, NULL, NULL );
 
                         SDL_QueryTexture(play, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 / 2- position.w /2;
-                        position.y = 600 / 2 - position.h /2;
+                        position.x = WIDTHSCREEN / 2- position.w /2;
+                        position.y = HEIGHTSCREEN / 2 - position.h /2;
                         SDL_RenderCopy(renderer, play, NULL, &position);
 
                         SDL_QueryTexture(quit, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 /2 - position.w /2;
-                        position.y = 768 /2 - position.h /2;
+                        position.x = WIDTHSCREEN /2 - position.w /2;
+                        position.y = HEIGHTSCREEN /2 - position.h /2;
                         SDL_RenderCopy(renderer, quit, NULL, &position);
 
                         SDL_RenderPresent(renderer);
@@ -79,13 +88,13 @@ int menu()
                     if((event.button.x>=470 && event.button.x<=570) && (event.button.y>=370 && event.button.y<=410)){
                         SDL_RenderCopy(renderer, background, NULL, NULL );
                         SDL_QueryTexture(play, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 / 2- position.w /2;
-                        position.y = 600 / 2 - position.h /2;
+                        position.x = WIDTHSCREEN / 2- position.w /2;
+                        position.y = HEIGHTSCREEN / 2 - position.h /2;
                         SDL_RenderCopy(renderer, play, NULL, &position);
 
                         SDL_QueryTexture(quit_des, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 /2 - position.w /2;
-                        position.y = 768 /2 - position.h /2;
+                        position.x = WIDTHSCREEN /2 - position.w /2;
+                        position.y = HEIGHTSCREEN /2 - position.h /2;
                         SDL_RenderCopy(renderer, quit_des, NULL, &position);
                         
                         SDL_RenderPresent(renderer);
@@ -93,13 +102,13 @@ int menu()
                     else if((event.button.x>=470 && event.button.x<=570) && (event.button.y>=285 && event.button.y<=315)){
                         SDL_RenderCopy(renderer, background, NULL, NULL );
                         SDL_QueryTexture(play_des, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 / 2- position.w /2;
-                        position.y = 600 / 2 - position.h /2;
+                        position.x = WIDTHSCREEN / 2- position.w /2;
+                        position.y = HEIGHTSCREEN / 2 - position.h /2;
                         SDL_RenderCopy(renderer, play_des, NULL, &position);
 
                         SDL_QueryTexture(quit, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 /2 - position.w /2;
-                        position.y = 768 /2 - position.h /2;
+                        position.x = WIDTHSCREEN /2 - position.w /2;
+                        position.y = HEIGHTSCREEN /2 - position.h /2;
                         SDL_RenderCopy(renderer, quit, NULL, &position);
                         
                         SDL_RenderPresent(renderer);
@@ -108,13 +117,13 @@ int menu()
                         SDL_RenderCopy(renderer, background, NULL, NULL );
 
                         SDL_QueryTexture(play, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 / 2- position.w /2;
-                        position.y = 600 / 2 - position.h /2;
+                        position.x = WIDTHSCREEN / 2- position.w /2;
+                        position.y = HEIGHTSCREEN / 2 - position.h /2;
                         SDL_RenderCopy(renderer, play, NULL, &position);
 
                         SDL_QueryTexture(quit, NULL, NULL, &(position.w), &(position.h)); // Récupere la dimension de la texture
-                        position.x = 1024 /2 - position.w /2;
-                        position.y = 768 /2 - position.h /2;
+                        position.x = WIDTHSCREEN /2 - position.w /2;
+                        position.y = HEIGHTSCREEN /2 - position.h /2;
                         SDL_RenderCopy(renderer, quit, NULL, &position);
 
                         SDL_RenderPresent(renderer);

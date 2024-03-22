@@ -35,7 +35,6 @@ int jeu(SDL_Renderer *renderer)
 	hero2 = initialise_hero(1);
 	hero3 = initialise_hero(2);
 
-
 	// load sample.png into image (FOND)
 	SDL_RWops *rwop=SDL_RWFromFile("../img/echiquier.png", "rb");
 	fond=IMG_LoadPNG_RW(rwop);
