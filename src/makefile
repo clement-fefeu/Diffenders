@@ -12,12 +12,12 @@ PROG1=fonc.o
 PROG2=menu.o
 MAIN=main.o
 BDD=base_struct.o
-TEST=testSDL.o
+TEST=jeu.o
 EXECUTABLE=test
 
 all: test
 
-test: fonc.o menu.o main.o base_struct.o testSDL.o
+test: fonc.o menu.o main.o base_struct.o jeu.o
 	${CC}  ${PROG1} ${PROG2} ${MAIN} ${BDD} ${TEST} -o test ${LIBS} ${INCLUDES}
 
 fonc.o: fonc.c
@@ -32,8 +32,8 @@ main.o: main.c
 base_struct.o:	base_struct.c
 	${CC} -c base_struct.c ../lib/base_struct.h
 
-testSDL.o:	testSDL.c
-	${CC} -c testSDL.c ../lib/base_struct.h
+jeu.o:	jeu.c
+	${CC} -c jeu.c ../lib/base_struct.h
 
 
 clean: 

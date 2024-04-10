@@ -2,11 +2,6 @@
 #include "../lib/base_struct.h"
 
 
-#define WIDTHSCREEN 1600 
-
-#define HEIGHTSCREEN 900 
-
-#define TOTAL_POINTS 5000 
 
 void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *play ,SDL_Texture*background,SDL_Texture*quit_des,SDL_Texture*play_des,SDL_Texture*parametre,SDL_Texture*parametre_des){
     SDL_Rect position;
