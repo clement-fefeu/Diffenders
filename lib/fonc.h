@@ -14,7 +14,9 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
 #define SDL_BUTTON_X1       4
 #define SDL_BUTTON_X2       5
 #define TTF_GetError    SDL_GetError
-
+#define WIDTHSCREEN 1600 
+#define HEIGHTSCREEN 900 
+#define TOTAL_POINTS 5000 
 
 struct carre {
    SDL_Rect rect;
