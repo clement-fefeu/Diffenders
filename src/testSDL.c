@@ -1,16 +1,12 @@
-#include <stdio.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_image.h>
 #include "../lib/base_struct.h"
+#include "../lib/fonc.h"
 
 int jeu(SDL_Renderer *renderer)
 {
     //Le pointeur vers la fenetre
 	//Le pointeur vers la surface incluse dans la fenetre
-    SDL_Surface *texte=NULL, *fond=NULL , *hud=NULL,*case1=NULL,*case2=NULL,*case3=NULL;
 	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3;
-
+	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL;;
 	// Le pointeur vers notre police
 	TTF_Font *police = NULL;
 	// Une variable de couleur noire
@@ -34,74 +30,20 @@ int jeu(SDL_Renderer *renderer)
 	hero1 = initialise_hero(0);
 	hero2 = initialise_hero(1);
 	hero3 = initialise_hero(2);
-
 	// load sample.png into image (FOND)
-	SDL_RWops *rwop=SDL_RWFromFile("../img/echiquier.png", "rb");
-	fond=IMG_LoadPNG_RW(rwop);
-	if(!fond) {
-	     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
-	}
-	SDL_Texture *image_tex = SDL_CreateTextureFromSurface(renderer, fond); 
-	if(!image_tex){
-		fprintf(stderr, "Erreur à la création du rendu de l'image : %s\n", SDL_GetError());
-		exit(EXIT_FAILURE);
-	}
-	SDL_FreeSurface(fond); /* on a la texture, plus besoin de l'image */
+	background=loadImage("../img/map_v1.png",renderer);
 
-	
-	// load sample.png into image (HUD)
-		SDL_RWops *rwop2=SDL_RWFromFile("../img/HUD.png", "rb");
-		hud=IMG_LoadPNG_RW(rwop2);
-		if(!hud) {
-		     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
-		}
-		SDL_Texture *image_tex2 = SDL_CreateTextureFromSurface(renderer, hud); 
-		if(!image_tex2){
-			fprintf(stderr, "Erreur à la création du rendu de l'image : %s\n", SDL_GetError());
-			exit(EXIT_FAILURE);
-		}
-		SDL_FreeSurface(hud); /* on a la texture, plus besoin de l'image */
+	hud=loadImage("../img/HUD.png",renderer);
+
+
+	case1=loadImage("../img/1.png",renderer);
+
+// load sample.png into image (CASE 1)
+	case2=loadImage("../img/2.png",renderer);
 
 
 // load sample.png into image (CASE 1)
-		SDL_RWops *rwop3=SDL_RWFromFile("../img/1.png", "rb");
-		case1=IMG_LoadPNG_RW(rwop3);
-		if(!case1) {
-		     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
-		}
-		SDL_Texture *image_texCase1 = SDL_CreateTextureFromSurface(renderer, case1); 
-		if(!image_texCase1){
-			fprintf(stderr, "Erreur à la création du rendu de l'image : %s\n", SDL_GetError());
-			exit(EXIT_FAILURE);
-		}
-		SDL_FreeSurface(case1); /* on a la texture, plus besoin de l'image */
-
-// load sample.png into image (CASE 1)
-		SDL_RWops *rwop4=SDL_RWFromFile("../img/2.png", "rb");
-		case2=IMG_LoadPNG_RW(rwop4);
-		if(!case2) {
-		     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
-		}
-		SDL_Texture *image_texCase2 = SDL_CreateTextureFromSurface(renderer, case2); 
-		if(!image_texCase2){
-			fprintf(stderr, "Erreur à la création du rendu de l'image : %s\n", SDL_GetError());
-			exit(EXIT_FAILURE);
-		}
-		SDL_FreeSurface(case2); /* on a la texture, plus besoin de l'image  */
-
-
-// load sample.png into image (CASE 1)
-		SDL_RWops *rwop5=SDL_RWFromFile("../img/3.png", "rb");
-		case3=IMG_LoadPNG_RW(rwop5);
-		if(!case3) {
-		     printf("IMG_LoadPNG_RW: %s\n", IMG_GetError());
-		}
-		SDL_Texture *image_texCase3 = SDL_CreateTextureFromSurface(renderer, case3); 
-		if(!image_texCase3){
-			fprintf(stderr, "Erreur à la création du rendu de l'image : %s\n", SDL_GetError());
-			exit(EXIT_FAILURE);
-		}
-		SDL_FreeSurface(case3); /* on a la texture, plus besoin de l'image */
+	case3=loadImage("../img/3.png",renderer);
 
 
 	
@@ -115,28 +57,28 @@ int jeu(SDL_Renderer *renderer)
 		//image de fond
 		imgDestRect.x = 0;
 		imgDestRect.y = 0;
-		SDL_QueryTexture(image_tex, NULL, NULL,&(imgDestRect.w),&(imgDestRect.h));
-		SDL_RenderCopy(renderer, image_tex, NULL, NULL);
+		SDL_QueryTexture(background, NULL, NULL,&(imgDestRect.w),&(imgDestRect.h));
+		SDL_RenderCopy(renderer, background, NULL, NULL);
 		//HUD tout moche
 		imgDestRect2.x = 0;
 		imgDestRect2.y = 600;
-		SDL_QueryTexture(image_tex2, NULL, NULL,&(imgDestRect2.w),&(imgDestRect2.h));
-		SDL_RenderCopy(renderer, image_tex2,NULL, &imgDestRect2);
+		SDL_QueryTexture(hud, NULL, NULL,&(imgDestRect2.w),&(imgDestRect2.h));
+		SDL_RenderCopy(renderer, hud,NULL, &imgDestRect2);
 		//Case1
 		imgDestRectCase1.x = 50;
 		imgDestRectCase1.y = 600;
-		SDL_QueryTexture(image_texCase1,NULL, NULL,&(imgDestRectCase1.w),&(imgDestRectCase1.h));
-		SDL_RenderCopy(renderer, image_texCase1,NULL, &imgDestRectCase1);
+		SDL_QueryTexture(case1,NULL, NULL,&(imgDestRectCase1.w),&(imgDestRectCase1.h));
+		SDL_RenderCopy(renderer, case1,NULL, &imgDestRectCase1);
 		//Case2
 		imgDestRectCase2.x = 300;
 		imgDestRectCase2.y = 600;
-		SDL_QueryTexture(image_texCase2,NULL, NULL,&(imgDestRectCase2.w),&(imgDestRectCase2.h));
-		SDL_RenderCopy(renderer, image_texCase2,NULL, &imgDestRectCase2);
+		SDL_QueryTexture(case2,NULL, NULL,&(imgDestRectCase2.w),&(imgDestRectCase2.h));
+		SDL_RenderCopy(renderer, case2,NULL, &imgDestRectCase2);
 		//Case3
 		imgDestRectCase3.x = 550;
 		imgDestRectCase3.y = 600;
-		SDL_QueryTexture(image_texCase3,NULL, NULL,&(imgDestRectCase3.w),&(imgDestRectCase3.h));
-		SDL_RenderCopy(renderer, image_texCase3,NULL, &imgDestRectCase3);
+		SDL_QueryTexture(case3,NULL, NULL,&(imgDestRectCase3.w),&(imgDestRectCase3.h));
+		SDL_RenderCopy(renderer, case3,NULL, &imgDestRectCase3);
 		SDL_RenderPresent(renderer); //Taille fenetre 1847 / 1015
 		while(SDL_PollEvent(&e)) { 
 			switch(e.type) { 
