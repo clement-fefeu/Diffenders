@@ -3,6 +3,8 @@
         "stdio.h": "c",
         "string.h": "c",
         "base_struct.h": "c",
-        "sdl_ttf.h": "c"
+        "sdl_ttf.h": "c",
+        "fonc.h": "c",
+        "stdlib.h": "c"
     }
 }
