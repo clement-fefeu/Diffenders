@@ -1,8 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
-#include <unistd.h>
 #include "../lib/base_struct.h"
 
 char * nomHero[8] = {"Skarn","Pof","Roy","Erjar","Ranov","Xoras","Avban","Vzura"};
@@ -56,6 +51,7 @@ hero_t * initialise_hero(int nb){
     heroTemp->degat = degatHero[nb];
     heroTemp->typehero.idenType = typeHero[nb];
     heroTemp->typehero.nom = nomTypeHero[nb];
+    heroTemp->prix= 250;
     
     return heroTemp;
 }
@@ -221,6 +217,18 @@ int actualiseBase(base_t * base){
         printf("Il vous reste %d pv \n",base->pv);
     }
     return 1;   
+}
+
+player_t * initialise_joueur(){
+    player_t * joueur = malloc(sizeof(player_t));
+
+    int tab[TailleMap][TailleMap];
+
+    joueur->argent = 1000;
+    
+    joueur->base = malloc(sizeof(base_t));
+
+    joueur->base = genererBase(tab);
 }
 
 /*int jeu(){
