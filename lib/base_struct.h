@@ -1,7 +1,10 @@
-#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#define MAXHERO 30
+#define MAXHERO 10
 #define N 6
 #define TailleMap 30
 
@@ -13,9 +16,9 @@ typedef struct listEnemie_s listEnemie_t;
 typedef struct typeHero_s typeHero_t;
 typedef struct totalHero_s totalHero_t;
 typedef struct base_s base_t;
-typedef struct joueur_s joueur_t;
 typedef struct caseHero_s caseHero_t;
 typedef struct tabCase_s tabCase_t;
+typedef struct player_s player_t;
 
 
 struct typeEnemie_s{
@@ -38,6 +41,7 @@ struct enemie_s{
 struct hero_s{
     char * nom;
     int degat;
+    int prix;
     typeHero_t typehero;
 
 
@@ -63,15 +67,6 @@ struct base_s{
     int coordY;
 };
 
-struct joueur_t{
-    int pointVie;
-    int argent;
-    //inventaire
-    //capacité Ultime
-    base_t * base;
-
-};
-
 struct caseHero_s{
     int coordX;
     int coordY;
@@ -82,6 +77,10 @@ struct tabCase_s{
     caseHero_t * tab[MAXHERO];
 };
 
+struct player_s{
+    int argent;
+    base_t * base;
+};
 
 enemie_t * initialise_enemie();         //Fonction pour la structure enemie_t
 int detruireEnem(enemie_t **  enemie);
@@ -108,3 +107,4 @@ int detruireBase(base_t ** base);
 int degatBase(base_t * base);
 int actualiseBase(base_t * base);
 
+player_t * initialise_joueur();

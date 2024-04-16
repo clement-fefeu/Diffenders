@@ -139,10 +139,7 @@ void updateEvent(struct Input *input)
 }
 
 void init_icon(SDL_Window *window){
-    SDL_Surface *surface = NULL;
-    SDL_Rect dst={ 0, 0, 32, 32 };
-    surface = SDL_CreateRGBSurface(0, 32, 32, 32, 0, 0, 0, 0);
-    SDL_FillRect(surface, &dst, SDL_MapRGBA(surface->format, 0, 0, 255, 255));
+    SDL_Surface *surface = IMG_Load("../img/tower_def.jpg");
     SDL_SetWindowIcon(window, surface);
     SDL_FreeSurface(surface);
 }

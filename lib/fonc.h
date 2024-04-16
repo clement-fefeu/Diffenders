@@ -3,6 +3,9 @@
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
+
 
 extern DECLSPEC int SDLCALL TTF_Init(void);
 
@@ -17,6 +20,11 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
 #define WIDTHSCREEN 1600 
 #define HEIGHTSCREEN 900 
 #define TOTAL_POINTS 5000 
+
+#define ABS 30
+#define ORD 15
+#define NB_ENTREE 2
+
 
 struct carre {
    SDL_Rect rect;
@@ -44,4 +52,7 @@ SDL_Surface *createSurfaceFromTexture(SDL_Texture *texture);
 void updateEvent(struct Input *input);
 void init_icon(SDL_Window *window);
 int menu();
-int jeu(SDL_Renderer *renderer);
+int param(SDL_Renderer *renderer,SDL_Window *window,int largeur, int hauteur,SDL_Texture *background);
+void creation_map(SDL_Renderer *renderer,int tab[ABS][ORD]);
+void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window);
+int jeu(SDL_Renderer *renderer,SDL_Window *window);

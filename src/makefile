@@ -10,6 +10,7 @@ INCLUDES=-I${SDLINC_DIR}
 
 PROG1=fonc.o
 PROG2=menu.o
+PROG3=map.o
 MAIN=main.o
 BDD=base_struct.o
 TEST=jeu.o
@@ -17,11 +18,14 @@ EXECUTABLE=test
 
 all: test
 
-test: fonc.o menu.o main.o base_struct.o jeu.o
-	${CC}  ${PROG1} ${PROG2} ${MAIN} ${BDD} ${TEST} -o test ${LIBS} ${INCLUDES}
+test: fonc.o menu.o main.o base_struct.o jeu.o map.o
+	${CC}  ${PROG1} ${PROG2} ${PROG3} ${MAIN} ${BDD} ${TEST} -o test ${LIBS} ${INCLUDES}
 
 fonc.o: fonc.c
 	${CC} -c fonc.c ../lib/fonc.h
+
+map.o: map.c
+	${CC} -c map.c ../lib/fonc.h
 
 menu.o: menu.c 
 	${CC} -c menu.c ../lib/fonc.h
@@ -39,6 +43,7 @@ jeu.o:	jeu.c
 clean: 
 	rm -f ${PROG1}
 	rm -f ${PROG2}
+	rm -f ${PROG3}
 	rm -f ${MAIN}
 	rm -f ${BDD}
 	rm -f ${TEST}
