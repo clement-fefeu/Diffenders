@@ -23,7 +23,7 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
 
 #define ABS 30
 #define ORD 15
-#define NB_ENTREE 2
+#define NB_ENTREE 1
 
 
 struct carre {

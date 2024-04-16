@@ -73,40 +73,28 @@ void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) 
             position.w=larg/ABS;
             SDL_RenderCopy(renderer,texture2,NULL,&position);
             SDL_QueryTexture(texture2,NULL,NULL,&(position.w),&(position.h));
-            //SDL_RenderPresent(renderer);
             break;;
           case 2:
             position.h=(haut-200)/ORD;
             position.w=larg/ABS;
             SDL_RenderCopy(renderer,texture3,NULL,&position);
             SDL_QueryTexture(texture3,NULL,NULL,&(position.w),&(position.h));
-            //SDL_RenderPresent(renderer);
             break;;
           case 3:
             position.h=(haut-200)/ORD;
             position.w=larg/ABS;
             SDL_RenderCopy(renderer,texture4,NULL,&position);
             SDL_QueryTexture(texture4,NULL,NULL,&(position.w),&(position.h));
-            //SDL_RenderPresent(renderer);
             break;;
         
         }
         position.x=position.x+larg/ABS;
       }
       //affichage ligne par ligne 
-      //SDL_RenderPresent(renderer);
       position.y=position.y+(haut-200)/ORD;
       position.x=0;
-      //sleep(1);
     }
   }
-  /*affichage direct
-  permanent=renderer;
-  SDL_RenderPresent(permanent);*/
-/*
-  SDL_AddTimer(1000,shoot,renderer);
-  SDL_AddTimer(500,call,entr);
-  */
   SDL_DestroyTexture(texture2);
   SDL_DestroyTexture(texture3);
   SDL_DestroyTexture(texture4);
