@@ -2,14 +2,53 @@
 #include "../lib/fonc.h"
 
 
-typedef struct heroText_s heroText_t;
-struct heroText_s{
-	SDL_Texture * texture;
-	SDL_Rect rectHero;
-};
+/**
+ * @struct heroText_s
+ * @brief Structure représentant la texture et la position d'un héros.
+ */
+typedef struct heroText_s {
+	SDL_Texture *texture; /**< La texture du héros. */
+	SDL_Rect rectHero;    /**< La position et la taille du héros. */
+} heroText_t;
+
+/**
+ * @brief Affiche le montant d'argent et une texture donnée à l'écran.
+ * 
+ * @param renderer Le renderer SDL.
+ * @param hauteur La hauteur de l'écran.
+ * @param largeur La largeur de l'écran.
+ * @param texte La texture à afficher.
+ */
+void affiche_argent(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *texte){
+	SDL_Texture *argent;
+	SDL_Rect position;
+	argent=loadImage("../img/euro.png",renderer);
+
+	position.x = largeur-20;
+	position.y = 10;
+	SDL_QueryTexture(argent, NULL, NULL,&(position.w),&(position.h));
+	position.w/=25;
+	position.h/=25;
+	SDL_RenderCopy(renderer, argent,NULL, &position);
+
+
+	SDL_QueryTexture(texte, NULL, NULL,&(position.w),&(position.h));
+	position.x = position.x-position.w;
+	position.y = 0;
+	SDL_RenderCopy(renderer, texte,NULL, &position);
 
 
 
+	SDL_DestroyTexture(argent);
+}
+
+/**
+ * @brief La boucle principale du jeu.
+ * 
+ * @param renderer Le renderer SDL.
+ * @param window La fenêtre SDL.
+ * @return int Retourne 0 en cas de réussite.
+ */
 int jeu(SDL_Renderer *renderer,SDL_Window *window)
 {
     //Le pointeur vers la fenetre
@@ -17,11 +56,11 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause;
 	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL;
 	// Le pointeur vers notre police
-	TTF_Font *police = NULL;
   	int tab[ABS][ORD];
 	int largeur,hauteur;
 	// Une variable de couleur noire
 	int map=0;
+	char nb_argent[20];
 	if(map==0){
 		creation_map(renderer,tab);
 		map=1;
@@ -78,6 +117,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 // load lehero.png inti impage (HERO3)
 	textHero3=loadImage("../img/lehero.png",renderer);
 	
+	
 	int running = 1; 
 	while(running) { 
 		SDL_Event e;
@@ -87,6 +127,8 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		imgDestRect.h=hauteur-200;
 		imgDestRect.w=largeur;
 		SDL_RenderCopy(renderer, background,NULL, &imgDestRect);
+
+		affiche_map_2(tab,renderer,window);
 		//HUD tout moche
 		imgDestRect2.x = 0;
 		imgDestRect2.y = hauteur-200;
@@ -158,7 +200,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 				
 		}
 
-		affiche_map_2(tab,renderer,window);
+		SDL_itoa(joueur->argent,nb_argent,10);
+		texte=load_text(renderer,nb_argent,30);
+		affiche_argent(renderer,hauteur,largeur,texte);
 		SDL_RenderPresent(renderer); //Taille fenetre 1847 / 1015
 		while(SDL_PollEvent(&e)) { 
 			switch(e.type) { 
@@ -350,7 +394,15 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		} 
 	}
 	
-
+	SDL_DestroyTexture(case1);
+	SDL_DestroyTexture(case2);
+	SDL_DestroyTexture(case2);
+	SDL_DestroyTexture(background);
+	SDL_DestroyTexture(hud);
+	SDL_DestroyTexture(pause);
+	SDL_DestroyTexture(textHero1);
+	SDL_DestroyTexture(textHero2);
+	SDL_DestroyTexture(textHero3);
 
 	detruireHero(&hero1);
 	detruireHero(&hero2);

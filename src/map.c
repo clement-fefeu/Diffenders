@@ -41,22 +41,16 @@ void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) 
   SDL_Rect position;
   
 
-  SDL_Surface * loutre =NULL;
+  SDL_Surface * base =NULL;
   SDL_Texture * texture2= NULL;
-  loutre = IMG_Load("../img/loutre.png");
-
-  SDL_Surface * cheese =NULL;
-  SDL_Texture * texture3= NULL;
-  cheese = IMG_Load("../img/cheese.png");
-
+  base = IMG_Load("../img/base.png");
 
   SDL_Surface * blanc =NULL;
-  SDL_Texture * texture4= NULL;
+  SDL_Texture * texture3= NULL;
   blanc = IMG_Load("../img/chemin.png");
 
-  texture2=SDL_CreateTextureFromSurface(renderer,loutre);
-  texture3=SDL_CreateTextureFromSurface(renderer,cheese);
-  texture4=SDL_CreateTextureFromSurface(renderer,blanc);
+  texture2=SDL_CreateTextureFromSurface(renderer,base);
+  texture3=SDL_CreateTextureFromSurface(renderer,blanc);
 
   int larg,haut;
   SDL_GetWindowSize(window,&larg,&haut);
@@ -69,37 +63,35 @@ void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) 
       for(int i=0;i<ABS;i++){
         switch(tab[i][j]){
           case 1:
-            position.h=(haut-200)/ORD;
-            position.w=larg/ABS;
+            position.h=((haut-190)/ORD);
+            position.w=(larg/ABS);
             SDL_RenderCopy(renderer,texture2,NULL,&position);
             SDL_QueryTexture(texture2,NULL,NULL,&(position.w),&(position.h));
             break;;
           case 2:
-            position.h=(haut-200)/ORD;
+            position.h=(haut-190)/ORD;
             position.w=larg/ABS;
             SDL_RenderCopy(renderer,texture3,NULL,&position);
             SDL_QueryTexture(texture3,NULL,NULL,&(position.w),&(position.h));
             break;;
           case 3:
-            position.h=(haut-200)/ORD;
+            position.h=(haut-190)/ORD;
             position.w=larg/ABS;
-            SDL_RenderCopy(renderer,texture4,NULL,&position);
-            SDL_QueryTexture(texture4,NULL,NULL,&(position.w),&(position.h));
+            SDL_RenderCopy(renderer,texture3,NULL,&position);
+            SDL_QueryTexture(texture3,NULL,NULL,&(position.w),&(position.h));
             break;;
         
         }
         position.x=position.x+larg/ABS;
       }
       //affichage ligne par ligne 
-      position.y=position.y+(haut-200)/ORD;
+      position.y=position.y+(haut-190)/ORD;
       position.x=0;
     }
   }
   SDL_DestroyTexture(texture2);
   SDL_DestroyTexture(texture3);
-  SDL_DestroyTexture(texture4);
-  SDL_FreeSurface(loutre);
-  SDL_FreeSurface(cheese);
+  SDL_FreeSurface(base);
   SDL_FreeSurface(blanc);
 }
 

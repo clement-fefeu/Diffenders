@@ -45,6 +45,7 @@ clean:
 	rm -f ${PROG2}
 	rm -f ${PROG3}
 	rm -f ${MAIN}
+	rm -f ../lib/*.gch
 	rm -f ${BDD}
 	rm -f ${TEST}
 	rm -f ${EXECUTABLE}
