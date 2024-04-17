@@ -1,45 +1,30 @@
 #include "../lib/base_struct.h"
+#include "../lib/fonc.h"
 
 char * nomHero[8] = {"Skarn","Pof","Roy","Erjar","Ranov","Xoras","Avban","Vzura"};
-int degatHero[8] = {100,0,50,35,250,120,75,5};
-int typeHero[8] = {3,1,2,4,3,4,2,1};
-char * nomTypeHero[8] = {"Direct Hit","Support","AOE","DOT","Direct Hit","DOT","AOE","Support"};
+int degatHero[8] = {100,100,150,300,250,400,800,50};
+int typeHero[8] = {3,3,3,3,3,3,3,3};
+char * nomTypeHero[8] = {"Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit"};
 
-enemie_t * initialise_enemie(){     //fonction qui créér un enemie.
-    enemie_t * enemieTemp = malloc(sizeof(enemie_t));
+ennemie_t * initialise_enemie(){     //fonction qui créér un ennemie.
+    ennemie_t * enemieTemp = malloc(sizeof(ennemie_t));
 
-    enemieTemp->typeenemie.idenType = rand() % 3 + 1;
     int pv;
 
-    if(enemieTemp->typeenemie.idenType == 1){
-    pv = 50;
-    enemieTemp->nom = "Alien Scout";
-    enemieTemp->pv = pv;
-    enemieTemp->typeenemie.nom = "Rapide";
-    }
-    else if(enemieTemp->typeenemie.idenType == 2){
     pv = 100;
     enemieTemp->nom = "Alien Soldier";
     enemieTemp->pv = pv;
-    enemieTemp->typeenemie.nom = "Soldat";
-    }
-    else if(enemieTemp->typeenemie.idenType == 3){
-    pv = 200;
-    enemieTemp->nom = "Alien Tank";
-    enemieTemp->pv = pv;
-    enemieTemp->typeenemie.nom = "Tank";
-    }
 
     return enemieTemp;
 }
 
-void afficheEnem(enemie_t * enemie){
-    printf(" Nom -> %s | Point de vie -> %d | Type -> %s \n",enemie->nom,enemie->pv,enemie->typeenemie.nom);
+void afficheEnem(ennemie_t * ennemie){
+    printf(" Nom -> %s | Point de vie -> %d \n",ennemie->nom,ennemie->pv);
 }
 
-int detruireEnem(enemie_t **  enemie){ //Fonctions de destruction des enemie créer.
-    free((*enemie));
-    (*enemie) = NULL;
+int detruireEnem(ennemie_t **  ennemie){ //Fonctions de destruction des ennemie créer.
+    free((*ennemie));
+    (*ennemie) = NULL;
     return 1;
 }
 
@@ -60,7 +45,7 @@ void afficheHero(hero_t * hero){
     printf("Nom -> %s | Dégat -> %d | Type -> %s \n",hero->nom,hero->degat,hero->typehero.nom);
 }
 
-int detruireHero(hero_t **  hero){ //Fonctions de destruction des enemie créer.
+int detruireHero(hero_t **  hero){ //Fonctions de destruction des ennemie créer.
     free((*hero));
     (*hero) = NULL;
     return 1;
@@ -70,8 +55,8 @@ listEnemie_t * vagueEnemie(int vague){
     int enemieVague = N;
     int totalEnemie = enemieVague * vague;
     listEnemie_t * vagueTemp = malloc(sizeof(listEnemie_t));
-    vagueTemp->enemies = malloc(sizeof(enemie_t)*(totalEnemie));
-    enemie_t * temp = NULL;
+    vagueTemp->enemies = malloc(sizeof(ennemie_t)*(totalEnemie));
+    ennemie_t * temp = NULL;
     
     
     vagueTemp->nbVague = vague;
@@ -79,6 +64,7 @@ listEnemie_t * vagueEnemie(int vague){
     for(int i = 0; i < totalEnemie ; i++){
     temp = initialise_enemie();
     vagueTemp->enemies[i] = temp;
+    vagueTemp->enemies[i]->pv += (((vagueTemp->enemies[i]->pv)/2)*vague); 
     }
 
 
@@ -227,6 +213,4 @@ player_t * initialise_joueur(){
     joueur->argent = 1000;
     
     joueur->base = malloc(sizeof(base_t));
-
-    joueur->base = genererBase(tab);
 }

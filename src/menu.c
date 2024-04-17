@@ -1,7 +1,34 @@
 #include "../lib/fonc.h"
 #include "../lib/base_struct.h"
 
+//
+//  menu.c
+//
+//  Created by Gabriel Dubois.
+/**
+ *  \file menu.c
+ * \brief Programme principal
+ * \details Programme qui utilise les fonctions qui permettent l'affichage des menus.
+ * \author Gabriel Dubois
+*/
 
+ /**
+ * @brief Affiche l'écran d'accueil avec les différents boutons.
+ *
+ * Affiche les boutons de jeu, de paramètres et de quitter sur l'écran d'accueil.
+ *
+ * @param[in] renderer Le renderer SDL pour afficher les textures.
+ * @param[in] gris L'état des boutons : 0 pour normal, 1 pour grisés, 2 pour jouer en surbrillance, 3 pour paramètres en surbrillance.
+ * @param[in] quit La texture du bouton quitter.
+ * @param[in] play La texture du bouton jouer.
+ * @param[in] background La texture de l'arrière-plan.
+ * @param[in] quit_des La texture du bouton quitter en surbrillance.
+ * @param[in] play_des La texture du bouton jouer en surbrillance.
+ * @param[in] parametre La texture du bouton paramètres.
+ * @param[in] parametre_des La texture du bouton paramètres en surbrillance.
+ * @param[in] largeur La largeur de la fenêtre.
+ * @param[in] hauteur La hauteur de la fenêtre.
+ */
 
 void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *play ,SDL_Texture*background,SDL_Texture*quit_des,SDL_Texture*play_des,SDL_Texture*parametre,SDL_Texture*parametre_des,int largeur, int hauteur){
     SDL_Rect pos_quit,pos_play,pos_param;;
@@ -17,7 +44,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play, NULL, &pos_play);
 
             SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -36,7 +63,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play, NULL, &pos_play);
 
             SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -55,7 +82,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play_des, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play_des, NULL, &pos_play);
 
             SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -74,7 +101,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play, NULL, &pos_play);
 
             SDL_QueryTexture(parametre_des, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -89,12 +116,24 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
         
 }
 
+
+/**
+ * @brief Affiche le menu des paramètres.
+ *
+ * Affiche les options de paramètres comme le plein écran, la fenêtre et le retour.
+ *
+ * @param[in] renderer Le renderer SDL pour afficher les textures.
+ * @param[in] window La fenêtre SDL pour les modifications de fenêtre.
+ * @param[in] largeur La largeur de la fenêtre.
+ * @param[in] hauteur La hauteur de la fenêtre.
+ * @param[in] background La texture de l'arrière-plan.
+ * @return 1 pour fenêtré, 2 pour plein écran, 0 pour quitter.
+ */
 int param(SDL_Renderer *renderer,SDL_Window *window,int largeur, int hauteur,SDL_Texture *background){
 	SDL_Event event;
 	SDL_bool isOpen=SDL_TRUE;
 	SDL_Texture *menu=NULL,*full = NULL,*retour = NULL,*quitter=NULL,*fenetrer=NULL;
 	SDL_Rect RectParam,position;
-	int position_Y,position_X,position_Y_Play,position_Y_param1,position_Y_param2;
     SDL_bool fullscreen=SDL_FALSE;
     int grand=1;
 // load sample.png into image (fenetre de pause)
@@ -200,27 +239,32 @@ int param(SDL_Renderer *renderer,SDL_Window *window,int largeur, int hauteur,SDL
         }
 		
 	}
+    SDL_DestroyTexture(full);
+    SDL_DestroyTexture(fenetrer);
+    SDL_DestroyTexture(quitter);
+    SDL_DestroyTexture(retour);
+    SDL_DestroyTexture(menu);
 	return grand;
 }
 
-/* modifier zone à cliquer et positionner les bouton */
+/**
+ * @brief Affiche le menu principal.
+ *
+ * Affiche le menu principal avec les boutons jouer, paramètres et quitter.
+ *
+ * @return Le statut de sortie.
+ */
 int menu()
 {
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
-    SDL_Surface *surface = NULL;
     SDL_Texture *quit = NULL,*play = NULL,*background = NULL,*quit_des = NULL,*play_des = NULL,*parametre=NULL,*parametre_des=NULL;
-    SDL_PixelFormat *format;
     SDL_Event event;
     SDL_bool isOpen = SDL_TRUE;
-    SDL_Color blanc = {255, 255, 255, 255};
-    SDL_Color gris = {255, 255, 255, 150};
     struct Input in;
-    Uint8 *clavier;
     Uint32 boutons;
     SDL_Rect pos_quit,pos_play,pos_param;
     int statut = EXIT_FAILURE;
-    int position_X,position_Y,position_Y_Play,position_Y_param;
     /* Initialisation simple */
     init(&window,&renderer,WIDTHSCREEN,HEIGHTSCREEN);
     init_icon(window);
@@ -239,7 +283,7 @@ int menu()
     pos_quit.y = hauteur /2 - pos_quit.h /2;
     SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
     pos_play.x = largeur /2 - pos_play.w /2;
-    pos_play.y = pos_quit.y-150;
+    pos_play.y = pos_quit.y-140;
     SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
     pos_param.x = largeur /2 - pos_param.w /2;
     pos_param.y = pos_quit.y-70;
@@ -271,7 +315,7 @@ int menu()
                         pos_quit.y = hauteur /2 - pos_quit.h /2;
                         SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
                         pos_play.x = largeur /2 - pos_play.w /2;
-                        pos_play.y = pos_quit.y-150;
+                        pos_play.y = pos_quit.y-140;
                         SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
                         pos_param.x = largeur /2 - pos_param.w /2;
                         pos_param.y = pos_quit.y-70;
@@ -292,7 +336,7 @@ int menu()
                         pos_quit.y = hauteur /2 - pos_quit.h /2;
                         SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
                         pos_play.x = largeur /2 - pos_play.w /2;
-                        pos_play.y = pos_quit.y-150;
+                        pos_play.y = pos_quit.y-140;
                         SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
                         pos_param.x = largeur /2 - pos_param.w /2;
                         pos_param.y = pos_quit.y-70;
@@ -331,12 +375,10 @@ Quit:
     SDL_DestroyTexture(quit_des);
     SDL_DestroyTexture(parametre);
     SDL_DestroyTexture(parametre_des);
-    if(NULL != background)
-        SDL_DestroyTexture(background);
-    if(NULL != renderer)
-        SDL_DestroyRenderer(renderer);
-    if(NULL != window)
-        SDL_DestroyWindow(window);
+    SDL_DestroyTexture(background);
+
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
     TTF_Quit();
     SDL_Quit();
     return statut;

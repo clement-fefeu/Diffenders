@@ -40,8 +40,11 @@ struct typeHero_s{
 struct ennemie_s{
     char * nom;
     int pv;
+<<<<<<< HEAD
     int sensX;
     int sensY;
+=======
+>>>>>>> bb4533840c98cd13ecf720c373290069aab3b84f
     SDL_Rect imgDestRectEnnemie;
     SDL_Texture *texture;
 
