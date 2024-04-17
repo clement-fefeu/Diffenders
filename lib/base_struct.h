@@ -4,11 +4,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_image.h>
+
 #define MAXHERO 10
 #define N 6
 #define TailleMap 30
 
-typedef struct enemie_s enemie_t;
+#define MAXENNEMIE 30
+
+typedef struct ennemie_s ennemie_t;
 typedef struct hero_s hero_t;
 typedef struct typeEnemie_s typeEnemie_t;
 typedef struct vague_s vague_t;
@@ -31,10 +37,12 @@ struct typeHero_s{
     int idenType;
 };
 
-struct enemie_s{
+struct ennemie_s{
     char * nom;
     int pv;
-    typeEnemie_t typeenemie;
+    SDL_Rect imgDestRectEnnemie;
+    SDL_Texture *texture;
+
 
 };
 
@@ -49,7 +57,7 @@ struct hero_s{
 
 struct listEnemie_s{
     int nbVague;
-    enemie_t ** enemies;
+    ennemie_t ** enemies;
 };
 
 struct totalHero_s{
@@ -82,15 +90,15 @@ struct player_s{
     base_t * base;
 };
 
-enemie_t * initialise_enemie();         //Fonction pour la structure enemie_t
-int detruireEnem(enemie_t **  enemie);
+ennemie_t * initialise_enemie();         //Fonction pour la structure enemie_t
+int detruireEnem(ennemie_t **  ennemie);
 listEnemie_t * vagueEnemie(int vague);
 
 hero_t * initialise_hero(int nb);             //Fonctions pour la structure hero_t
 void afficheHero(hero_t * hero);
 int detruireHero(hero_t **  hero);
 
-listEnemie_t * vagueEnemie(int vague);              //Fonction pour gérer la liste d'enemie (le nb par vague)
+listEnemie_t * vagueEnemie(int vague);              //Fonction pour gérer la liste d'ennemie (le nb par vague)
 void afficherListeEnem(listEnemie_t * liste,int vague);
 int detruireListe(listEnemie_t ** liste,int vague);
 

@@ -45,6 +45,25 @@ struct Input {
     SDL_bool mouse[6]; /**< Les boutons de la souris. */
 };
 
+/*structure de coordonnée pour obtenir un point précis dans le tableau*/
+typedef struct coord_s{
+  int x;
+  int y;
+} coord_t;
+
+/* structure de tableau de coordonné retournant un chemin que peuvent suivrent les ennemis*/
+typedef struct chemin_s{
+  coord_t chemin[(ABS)+(ORD)];
+} chemin_t;
+
+/*structure de definition des projectile*/
+typedef struct proj_s{
+  int damage;
+  int sensY;
+  SDL_Rect coor;
+  SDL_Texture * text;
+}proj_t;
+
 /**
  * @brief Charge un texte dans une texture SDL.
  * 
@@ -161,7 +180,7 @@ int param(SDL_Renderer *renderer, SDL_Window *window, int largeur, int hauteur, 
  * @param renderer Le renderer SDL.
  * @param tab Tableau représentant la carte.
  */
-void creation_map(SDL_Renderer *renderer, int tab[ABS][ORD]);
+chemin_t creation_map(SDL_Renderer *renderer, int tab[ABS][ORD]);
 
 /**
  * @brief Affiche la carte du jeu.

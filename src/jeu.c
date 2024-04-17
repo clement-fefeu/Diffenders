@@ -42,6 +42,62 @@ void affiche_argent(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *
 	SDL_DestroyTexture(argent);
 }
 
+
+ennemie_t * avancerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
+		if(indice == 0){
+			
+			if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) < ennemie[indice]->imgDestRectEnnemie.x){
+				ennemie[indice]->imgDestRectEnnemie.x -= 1;
+			}
+			else if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) > ennemie[indice]->imgDestRectEnnemie.x){
+				ennemie[indice]->imgDestRectEnnemie.x += 1;
+			}
+		else if(indice > 0){
+			ennemie[indice]->imgDestRectEnnemie.x = ennemie[indice-1]->imgDestRectEnnemie.x - ennemie[indice]->imgDestRectEnnemie.w;
+		}
+	return ennemie[indice];
+}
+}
+
+ennemie_t * avancerVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
+		if(indice == 0){
+			if(((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4 < ennemie[indice]->imgDestRectEnnemie.y){
+				ennemie[indice]->imgDestRectEnnemie.y -= 1;
+			}
+			else if(((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4 > ennemie[indice]->imgDestRectEnnemie.y){
+				ennemie[indice]->imgDestRectEnnemie.y += 1;
+			}
+		else if(indice > 0){
+			ennemie[indice]->imgDestRectEnnemie.y = ennemie[indice-1]->imgDestRectEnnemie.y - ennemie[indice]->imgDestRectEnnemie.h;
+		}
+	return ennemie[indice];
+}
+}
+
+int detruireLesHeros(ennemie_t ** ennemie , int indice , int nbMax){
+		ennemie_t * temp;
+
+		temp = ennemie[indice];
+
+		
+		ennemie[nbMax-1] = temp;
+
+		for(int i = 0 ; i < nbMax-1 ; i++){
+			ennemie[i] = ennemie[i+1];
+		}
+		detruireEnem(&ennemie[nbMax-1]);
+		ennemie[nbMax-1] = NULL;
+
+		return nbMax;
+}
+
+
+int appelTextEnnemie(SDL_Renderer * renderer, SDL_Texture *texture , SDL_Rect * drect , int *w,int * h){
+	SDL_QueryTexture(texture,NULL, NULL,w,h);
+	SDL_RenderCopy(renderer, texture,NULL, drect);
+}
+
+
 /**
  * @brief La boucle principale du jeu.
  * 
@@ -54,15 +110,16 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
     //Le pointeur vers la fenetre
 	//Le pointeur vers la surface incluse dans la fenetre
 	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause;
-	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL;
+	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL,*textEnnemie=NULL;
 	// Le pointeur vers notre police
   	int tab[ABS][ORD];
 	int largeur,hauteur;
 	// Une variable de couleur noire
 	int map=0;
+  	chemin_t suite;
 	char nb_argent[20];
 	if(map==0){
-		creation_map(renderer,tab);
+		suite=creation_map(renderer,tab);
 		map=1;
 	}
 	SDL_Color couleurNoire = {0, 0, 0};
@@ -78,7 +135,10 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	
 	int nbCaseUse = 0;
 
-	int * tailleCaseX = 0;
+	int indice = 0;
+
+	int delay = 10;
+
 	int * tailleCaseY = 0;
 	int caseHero = 0;
 	
@@ -95,6 +155,8 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	hero1 = initialise_hero(0);
 	hero2 = initialise_hero(1);
 	hero3 = initialise_hero(2);
+
+	int indiceChemin = 0;
 
 	background=loadImage("../img/map_pixel_v2.png",renderer);
 	hud=loadImage("../img/HUD.png",renderer);
@@ -117,6 +179,23 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 // load lehero.png inti impage (HERO3)
 	textHero3=loadImage("../img/lehero.png",renderer);
 	
+	textEnnemie = loadImage("../img/sprite/ennemie.png",renderer);
+	int nbEnnemie = 1;
+
+	ennemie_t * temp;
+
+	ennemie_t * tabEnnemie[nbEnnemie];
+
+	tabEnnemie[0] = malloc(sizeof(ennemie_t));
+	tabEnnemie[0]->texture = textEnnemie;
+	tabEnnemie[0]->imgDestRectEnnemie.x = (WIDTHSCREEN/ABS)*suite.chemin[0].x + (WIDTHSCREEN/ABS)/4;
+	tabEnnemie[0]->imgDestRectEnnemie.y = ((HEIGHTSCREEN-200)/ORD)*suite.chemin[0].y + ((HEIGHTSCREEN-200)/ORD)/4;
+	
+	for(int i = nbEnnemie - (nbEnnemie -1); i < nbEnnemie ; i++){
+		tabEnnemie[i] = NULL;
+	}
+
+	int palierX = 0;
 	
 	int running = 1; 
 	while(running) { 
@@ -203,6 +282,59 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		SDL_itoa(joueur->argent,nb_argent,10);
 		texte=load_text(renderer,nb_argent,30);
 		affiche_argent(renderer,hauteur,largeur,texte);
+		SDL_Log("ICI 1 ");
+				
+				for(indice = 0; indice < nbEnnemie ; indice++){
+					SDL_Log(" %d ",indiceChemin);
+					if(tabEnnemie[indice] != NULL){	
+						if(suite.chemin[indiceChemin].x != suite.chemin[indiceChemin+1].x){
+							if(tabEnnemie[indice]->imgDestRectEnnemie.x < WIDTHSCREEN-tabEnnemie[indice]->imgDestRectEnnemie.w){
+								tabEnnemie[indice] = avancerHorizontal(tabEnnemie,nbEnnemie,indice,indiceChemin,suite.chemin);
+							}
+						}
+						else if(suite.chemin[indiceChemin].y != suite.chemin[indiceChemin+1].y){
+							if(tabEnnemie[indice]->imgDestRectEnnemie.y < WIDTHSCREEN-tabEnnemie[indice]->imgDestRectEnnemie.h){
+								tabEnnemie[indice] = avancerVertical(tabEnnemie,nbEnnemie,indice,indiceChemin,suite.chemin);
+							}
+						}
+
+						if((tabEnnemie[indice]->imgDestRectEnnemie.x == (WIDTHSCREEN/ABS)*suite.chemin[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) && (tabEnnemie[indice]->imgDestRectEnnemie.y == (((HEIGHTSCREEN-200)/ORD))*suite.chemin[indiceChemin+1].y + (((HEIGHTSCREEN-200)/ORD)/4))){
+							indiceChemin++;
+							if(tabEnnemie[indice]->imgDestRectEnnemie.x == (suite.chemin[indiceChemin+1].x != -1)  && tabEnnemie[indice]->imgDestRectEnnemie.y == (suite.chemin[indiceChemin+1].y != -1)){
+								SDL_Log(" Ca devrait etre detruit la ");
+							}			
+						}
+					}
+
+					if(tabEnnemie[indice]->imgDestRectEnnemie.x > tabEnnemie[indice]->imgDestRectEnnemie.w || tabEnnemie[indice]->imgDestRectEnnemie.y > tabEnnemie[indice]->imgDestRectEnnemie.h){
+						if(tabEnnemie[indice+1]== NULL && indice < nbEnnemie-1){
+							tabEnnemie[indice+1] = malloc(sizeof(ennemie_t)); 
+							tabEnnemie[indice+1]->texture = textEnnemie;
+							tabEnnemie[indice+1]->imgDestRectEnnemie.x = (WIDTHSCREEN/ABS)*suite.chemin[0].x + (WIDTHSCREEN/ABS)/4;
+							tabEnnemie[indice+1]->imgDestRectEnnemie.y = ((HEIGHTSCREEN-200)/ORD)*suite.chemin[0].y + (((HEIGHTSCREEN-200)/ORD)/4);
+						}
+					}
+					
+					
+					SDL_Log("Le max en X et Y est : %d | %d ",suite.chemin[indiceChemin+1].x,suite.chemin[indiceChemin+1].y);
+					if(suite.chemin[indiceChemin+1].x == -1 && suite.chemin[indiceChemin+1].y == -1){
+						if(tabEnnemie[indice]!=NULL){					
+						
+							for(int j = 0 ; j < nbEnnemie-1 ; j++){
+								tabEnnemie[j] = tabEnnemie[j+1];
+							}
+							nbEnnemie--;
+							tabEnnemie[nbEnnemie]=NULL;
+						}
+					}
+					SDL_Delay(5);
+					if(tabEnnemie[indice] != NULL){
+					appelTextEnnemie(renderer,tabEnnemie[indice]->texture,&tabEnnemie[indice]->imgDestRectEnnemie,&tabEnnemie[indice]->imgDestRectEnnemie.w,&tabEnnemie[indice]->imgDestRectEnnemie.h);
+					}
+			
+				}
+
+				SDL_Log("ICI 2 ");
 		SDL_RenderPresent(renderer); //Taille fenetre 1847 / 1015
 		while(SDL_PollEvent(&e)) { 
 			switch(e.type) { 
