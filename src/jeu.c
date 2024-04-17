@@ -403,6 +403,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_DestroyTexture(textHero1);
 	SDL_DestroyTexture(textHero2);
 	SDL_DestroyTexture(textHero3);
+	SDL_DestroyTexture(texte);
 
 	detruireHero(&hero1);
 	detruireHero(&hero2);

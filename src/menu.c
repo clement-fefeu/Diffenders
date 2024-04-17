@@ -44,7 +44,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play, NULL, &pos_play);
 
             SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -63,7 +63,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play, NULL, &pos_play);
 
             SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -82,7 +82,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play_des, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play_des, NULL, &pos_play);
 
             SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -101,7 +101,7 @@ void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *pla
 
             SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
             pos_play.x = largeur /2 - pos_play.w /2;
-            pos_play.y = pos_quit.y-150;
+            pos_play.y = pos_quit.y-140;
             SDL_RenderCopy(renderer, play, NULL, &pos_play);
 
             SDL_QueryTexture(parametre_des, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
@@ -134,7 +134,6 @@ int param(SDL_Renderer *renderer,SDL_Window *window,int largeur, int hauteur,SDL
 	SDL_bool isOpen=SDL_TRUE;
 	SDL_Texture *menu=NULL,*full = NULL,*retour = NULL,*quitter=NULL,*fenetrer=NULL;
 	SDL_Rect RectParam,position;
-	int position_Y,position_X,position_Y_Play,position_Y_param1,position_Y_param2;
     SDL_bool fullscreen=SDL_FALSE;
     int grand=1;
 // load sample.png into image (fenetre de pause)
@@ -240,6 +239,11 @@ int param(SDL_Renderer *renderer,SDL_Window *window,int largeur, int hauteur,SDL
         }
 		
 	}
+    SDL_DestroyTexture(full);
+    SDL_DestroyTexture(fenetrer);
+    SDL_DestroyTexture(quitter);
+    SDL_DestroyTexture(retour);
+    SDL_DestroyTexture(menu);
 	return grand;
 }
 
@@ -254,19 +258,13 @@ int menu()
 {
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
-    SDL_Surface *surface = NULL;
     SDL_Texture *quit = NULL,*play = NULL,*background = NULL,*quit_des = NULL,*play_des = NULL,*parametre=NULL,*parametre_des=NULL;
-    SDL_PixelFormat *format;
     SDL_Event event;
     SDL_bool isOpen = SDL_TRUE;
-    SDL_Color blanc = {255, 255, 255, 255};
-    SDL_Color gris = {255, 255, 255, 150};
     struct Input in;
-    Uint8 *clavier;
     Uint32 boutons;
     SDL_Rect pos_quit,pos_play,pos_param;
     int statut = EXIT_FAILURE;
-    int position_X,position_Y,position_Y_Play,position_Y_param;
     /* Initialisation simple */
     init(&window,&renderer,WIDTHSCREEN,HEIGHTSCREEN);
     init_icon(window);
@@ -285,7 +283,7 @@ int menu()
     pos_quit.y = hauteur /2 - pos_quit.h /2;
     SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
     pos_play.x = largeur /2 - pos_play.w /2;
-    pos_play.y = pos_quit.y-150;
+    pos_play.y = pos_quit.y-140;
     SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
     pos_param.x = largeur /2 - pos_param.w /2;
     pos_param.y = pos_quit.y-70;
@@ -317,7 +315,7 @@ int menu()
                         pos_quit.y = hauteur /2 - pos_quit.h /2;
                         SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
                         pos_play.x = largeur /2 - pos_play.w /2;
-                        pos_play.y = pos_quit.y-150;
+                        pos_play.y = pos_quit.y-140;
                         SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
                         pos_param.x = largeur /2 - pos_param.w /2;
                         pos_param.y = pos_quit.y-70;
@@ -338,7 +336,7 @@ int menu()
                         pos_quit.y = hauteur /2 - pos_quit.h /2;
                         SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
                         pos_play.x = largeur /2 - pos_play.w /2;
-                        pos_play.y = pos_quit.y-150;
+                        pos_play.y = pos_quit.y-140;
                         SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
                         pos_param.x = largeur /2 - pos_param.w /2;
                         pos_param.y = pos_quit.y-70;
@@ -377,12 +375,10 @@ Quit:
     SDL_DestroyTexture(quit_des);
     SDL_DestroyTexture(parametre);
     SDL_DestroyTexture(parametre_des);
-    if(NULL != background)
-        SDL_DestroyTexture(background);
-    if(NULL != renderer)
-        SDL_DestroyRenderer(renderer);
-    if(NULL != window)
-        SDL_DestroyWindow(window);
+    SDL_DestroyTexture(background);
+
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
     TTF_Quit();
     SDL_Quit();
     return statut;
