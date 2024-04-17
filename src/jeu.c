@@ -178,7 +178,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	textHero2=loadImage("../img/sprite/Hero2.png",renderer);
 // load lehero.png inti impage (HERO3)
 	textHero3=loadImage("../img/lehero.png",renderer);
-	
+	 
 	textEnnemie = loadImage("../img/sprite/ennemie.png",renderer);
 	int nbEnnemie = 1;
 
