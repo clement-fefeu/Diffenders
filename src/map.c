@@ -116,6 +116,12 @@ void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) 
             SDL_RenderCopy(renderer,texture2,NULL,&position);
             SDL_QueryTexture(texture2,NULL,NULL,&(position.w),&(position.h));
             break;;
+          case 2:
+            position.h=(haut-200)/ORD;
+            position.w=larg/ABS;
+            SDL_RenderCopy(renderer,texture3,NULL,&position);
+            SDL_QueryTexture(texture3,NULL,NULL,&(position.w),&(position.h));
+            break;;
           case 3:
             position.h=(haut-200)/ORD;
             position.w=larg/ABS;
