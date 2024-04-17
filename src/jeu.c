@@ -22,8 +22,7 @@ typedef struct heroText_s {
 void affiche_argent(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *texte){
 	SDL_Texture *argent;
 	SDL_Rect position;
-	argent=loadImage("../img/euro.png",renderer);
-
+	loadImage("../img/euro.png",renderer,&argent);
 	position.x = largeur-20;
 	position.y = 10;
 	SDL_QueryTexture(argent, NULL, NULL,&(position.w),&(position.h));
@@ -42,36 +41,42 @@ void affiche_argent(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *
 	SDL_DestroyTexture(argent);
 }
 
+Uint32 attendre(Uint32 interval,void* parametre){
+	*(int*)parametre=1;
+	return interval;
+}
 
 ennemie_t * avancerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
-		if(indice == 0){
-			
-			if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) < ennemie[indice]->imgDestRectEnnemie.x){
-				ennemie[indice]->imgDestRectEnnemie.x -= 1;
-			}
-			else if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) > ennemie[indice]->imgDestRectEnnemie.x){
-				ennemie[indice]->imgDestRectEnnemie.x += 1;
-			}
-		else if(indice > 0){
-			ennemie[indice]->imgDestRectEnnemie.x = ennemie[indice-1]->imgDestRectEnnemie.x - ennemie[indice]->imgDestRectEnnemie.w;
+	if(indice == 0){
+		
+		if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) < ennemie[indice]->imgDestRectEnnemie.x){
+			ennemie[indice]->imgDestRectEnnemie.x -= 1;
 		}
+		else if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) > ennemie[indice]->imgDestRectEnnemie.x){
+			ennemie[indice]->imgDestRectEnnemie.x += 1;
+		}
+	}
+	else if(indice > 0){
+		ennemie[indice]->imgDestRectEnnemie.x = ennemie[indice-1]->imgDestRectEnnemie.x - ennemie[indice]->imgDestRectEnnemie.w;
+	}
 	return ennemie[indice];
-}
+
 }
 
 ennemie_t * avancerVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
-		if(indice == 0){
-			if(((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4 < ennemie[indice]->imgDestRectEnnemie.y){
-				ennemie[indice]->imgDestRectEnnemie.y -= 1;
-			}
-			else if(((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4 > ennemie[indice]->imgDestRectEnnemie.y){
-				ennemie[indice]->imgDestRectEnnemie.y += 1;
-			}
-		else if(indice > 0){
-			ennemie[indice]->imgDestRectEnnemie.y = ennemie[indice-1]->imgDestRectEnnemie.y - ennemie[indice]->imgDestRectEnnemie.h;
+	if(indice == 0){
+		if(((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4 < ennemie[indice]->imgDestRectEnnemie.y){
+			ennemie[indice]->imgDestRectEnnemie.y -= 1;
 		}
+		else if(((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4 > ennemie[indice]->imgDestRectEnnemie.y){
+			ennemie[indice]->imgDestRectEnnemie.y += 1;
+		}
+	}
+	else if(indice > 0){
+		ennemie[indice]->imgDestRectEnnemie.y = ennemie[indice-1]->imgDestRectEnnemie.y - ennemie[indice]->imgDestRectEnnemie.h;
+	}
 	return ennemie[indice];
-}
+
 }
 
 int detruireLesHeros(ennemie_t ** ennemie , int indice , int nbMax){
@@ -97,7 +102,6 @@ int appelTextEnnemie(SDL_Renderer * renderer, SDL_Texture *texture , SDL_Rect * 
 	SDL_RenderCopy(renderer, texture,NULL, drect);
 }
 
-
 /**
  * @brief La boucle principale du jeu.
  * 
@@ -109,8 +113,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 {
     //Le pointeur vers la fenetre
 	//Le pointeur vers la surface incluse dans la fenetre
-	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause;
+	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause,position;
 	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL,*textEnnemie=NULL;
+	SDL_Texture *boule=NULL;
 	// Le pointeur vers notre police
   	int tab[ABS][ORD];
 	int largeur,hauteur;
@@ -118,6 +123,8 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	int map=0;
   	chemin_t suite;
 	char nb_argent[20];
+	int nb_timer=0;
+	SDL_TimerID timer[MAXHERO];
 	if(map==0){
 		suite=creation_map(renderer,tab);
 		map=1;
@@ -147,7 +154,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	hero_t * hero3 = malloc(sizeof(hero_t));
 
 	int etat = 1;
-
+	int ent=0;
 	player_t * joueur = malloc(sizeof(player_t));
 
 	joueur = initialise_joueur();
@@ -158,28 +165,31 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 
 	int indiceChemin = 0;
 
-	background=loadImage("../img/map_pixel_v2.png",renderer);
-	hud=loadImage("../img/HUD.png",renderer);
+	loadImage("../img/map_pixel_v2.png",renderer,&background);
+	loadImage("../img/HUD.png",renderer,&hud);
 
 // load sample.png into image (CASE 1)
-	case1=loadImage("../img/1.png",renderer);
+	loadImage("../img/1.png",renderer,&case1);
 
 // load sample.png into image (CASE 2)
-	case2=loadImage("../img/2.png",renderer);
+	loadImage("../img/2.png",renderer,&case2);
 
 // load sample.png into image (CASE 3)
-	case3=loadImage("../img/3.png",renderer);
+	loadImage("../img/3.png",renderer,&case3);
 
 // load sample.png into image (pause)
-	pause=loadImage("../img/pause.png",renderer);
+	loadImage("../img/pause.png",renderer,&pause);
 // load lehero.png inti impage (HERO1)
-	textHero1=loadImage("../img/sprite/Hero1.png",renderer);
+	loadImage("../img/sprite/Hero1.png",renderer,&textHero1);
 // load lehero.png inti impage (HERO2)
-	textHero2=loadImage("../img/sprite/Hero2.png",renderer);
+	loadImage("../img/sprite/Hero2.png",renderer,&textHero2);
 // load lehero.png inti impage (HERO3)
-	textHero3=loadImage("../img/lehero.png",renderer);
+	loadImage("../img/lehero.png",renderer,&textHero3);
 	 
-	textEnnemie = loadImage("../img/sprite/ennemie.png",renderer);
+	loadImage("../img/sprite/ennemie.png",renderer,&textEnnemie);
+
+// load boule.png into image (boule de feu)
+	loadImage("../img/boule.png",renderer,&boule);
 	int nbEnnemie = 1;
 
 	ennemie_t * temp;
@@ -187,6 +197,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	ennemie_t * tabEnnemie[nbEnnemie];
 
 	tabEnnemie[0] = malloc(sizeof(ennemie_t));
+	tabEnnemie[0]->pv = 100;
 	tabEnnemie[0]->texture = textEnnemie;
 	tabEnnemie[0]->imgDestRectEnnemie.x = (WIDTHSCREEN/ABS)*suite.chemin[0].x + (WIDTHSCREEN/ABS)/4;
 	tabEnnemie[0]->imgDestRectEnnemie.y = ((HEIGHTSCREEN-200)/ORD)*suite.chemin[0].y + ((HEIGHTSCREEN-200)/ORD)/4;
@@ -282,59 +293,84 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		SDL_itoa(joueur->argent,nb_argent,10);
 		texte=load_text(renderer,nb_argent,30);
 		affiche_argent(renderer,hauteur,largeur,texte);
-		SDL_Log("ICI 1 ");
+		/*SDL_Log("ICI 1 ");*/
 				
-				for(indice = 0; indice < nbEnnemie ; indice++){
-					SDL_Log(" %d ",indiceChemin);
-					if(tabEnnemie[indice] != NULL){	
-						if(suite.chemin[indiceChemin].x != suite.chemin[indiceChemin+1].x){
-							if(tabEnnemie[indice]->imgDestRectEnnemie.x < WIDTHSCREEN-tabEnnemie[indice]->imgDestRectEnnemie.w){
-								tabEnnemie[indice] = avancerHorizontal(tabEnnemie,nbEnnemie,indice,indiceChemin,suite.chemin);
-							}
-						}
-						else if(suite.chemin[indiceChemin].y != suite.chemin[indiceChemin+1].y){
-							if(tabEnnemie[indice]->imgDestRectEnnemie.y < WIDTHSCREEN-tabEnnemie[indice]->imgDestRectEnnemie.h){
-								tabEnnemie[indice] = avancerVertical(tabEnnemie,nbEnnemie,indice,indiceChemin,suite.chemin);
-							}
-						}
+		for(indice = 0; indice < nbEnnemie ; indice++){
 
-						if((tabEnnemie[indice]->imgDestRectEnnemie.x == (WIDTHSCREEN/ABS)*suite.chemin[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) && (tabEnnemie[indice]->imgDestRectEnnemie.y == (((HEIGHTSCREEN-200)/ORD))*suite.chemin[indiceChemin+1].y + (((HEIGHTSCREEN-200)/ORD)/4))){
-							indiceChemin++;
-							if(tabEnnemie[indice]->imgDestRectEnnemie.x == (suite.chemin[indiceChemin+1].x != -1)  && tabEnnemie[indice]->imgDestRectEnnemie.y == (suite.chemin[indiceChemin+1].y != -1)){
-								SDL_Log(" Ca devrait etre detruit la ");
-							}			
-						}
-					}
-
-					if(tabEnnemie[indice]->imgDestRectEnnemie.x > tabEnnemie[indice]->imgDestRectEnnemie.w || tabEnnemie[indice]->imgDestRectEnnemie.y > tabEnnemie[indice]->imgDestRectEnnemie.h){
-						if(tabEnnemie[indice+1]== NULL && indice < nbEnnemie-1){
-							tabEnnemie[indice+1] = malloc(sizeof(ennemie_t)); 
-							tabEnnemie[indice+1]->texture = textEnnemie;
-							tabEnnemie[indice+1]->imgDestRectEnnemie.x = (WIDTHSCREEN/ABS)*suite.chemin[0].x + (WIDTHSCREEN/ABS)/4;
-							tabEnnemie[indice+1]->imgDestRectEnnemie.y = ((HEIGHTSCREEN-200)/ORD)*suite.chemin[0].y + (((HEIGHTSCREEN-200)/ORD)/4);
-						}
-					}
-					
-					
-					SDL_Log("Le max en X et Y est : %d | %d ",suite.chemin[indiceChemin+1].x,suite.chemin[indiceChemin+1].y);
-					if(suite.chemin[indiceChemin+1].x == -1 && suite.chemin[indiceChemin+1].y == -1){
-						if(tabEnnemie[indice]!=NULL){					
-						
-							for(int j = 0 ; j < nbEnnemie-1 ; j++){
-								tabEnnemie[j] = tabEnnemie[j+1];
-							}
-							nbEnnemie--;
-							tabEnnemie[nbEnnemie]=NULL;
-						}
-					}
-					SDL_Delay(5);
-					if(tabEnnemie[indice] != NULL){
-					appelTextEnnemie(renderer,tabEnnemie[indice]->texture,&tabEnnemie[indice]->imgDestRectEnnemie,&tabEnnemie[indice]->imgDestRectEnnemie.w,&tabEnnemie[indice]->imgDestRectEnnemie.h);
-					}
 			
+			if(tabEnnemie[indice+1]== NULL && indice < nbEnnemie-1){
+				tabEnnemie[indice+1] = malloc(sizeof(ennemie_t)); 
+				tabEnnemie[indice+1]->texture = textEnnemie;
+				tabEnnemie[indice+1]->pv = 100;
+				tabEnnemie[indice+1]->imgDestRectEnnemie.x = (WIDTHSCREEN/ABS)*suite.chemin[0].x + (WIDTHSCREEN/ABS)/4;
+				tabEnnemie[indice+1]->imgDestRectEnnemie.y = ((HEIGHTSCREEN-200)/ORD)*suite.chemin[0].y + (((HEIGHTSCREEN-200)/ORD)/4);
+			}
+			/*SDL_Log(" %d ",indiceChemin);*/
+			if(tabEnnemie[indice] != NULL){	
+				if(suite.chemin[indiceChemin].x != suite.chemin[indiceChemin+1].x){
+					if(tabEnnemie[indice]->imgDestRectEnnemie.x < WIDTHSCREEN-tabEnnemie[indice]->imgDestRectEnnemie.w){
+						tabEnnemie[indice] = avancerHorizontal(tabEnnemie,nbEnnemie,indice,indiceChemin,suite.chemin);
+					}
 				}
+				else if(suite.chemin[indiceChemin].y != suite.chemin[indiceChemin+1].y){
+					if(tabEnnemie[indice]->imgDestRectEnnemie.y < WIDTHSCREEN-tabEnnemie[indice]->imgDestRectEnnemie.h){
+						tabEnnemie[indice] = avancerVertical(tabEnnemie,nbEnnemie,indice,indiceChemin,suite.chemin);
+					}
+				}
+				if((tabEnnemie[indice]->imgDestRectEnnemie.x == (WIDTHSCREEN/ABS)*suite.chemin[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) && (tabEnnemie[indice]->imgDestRectEnnemie.y == (((HEIGHTSCREEN-200)/ORD))*suite.chemin[indiceChemin+1].y + (((HEIGHTSCREEN-200)/ORD)/4))){
+					indiceChemin++;
+					if(tabEnnemie[indice]->imgDestRectEnnemie.x == (suite.chemin[indiceChemin+1].x != -1)  && tabEnnemie[indice]->imgDestRectEnnemie.y == (suite.chemin[indiceChemin+1].y != -1)){
+						SDL_Log(" Ca devrait etre detruit la ");
+					}			
+				}
+			}
+			
+			
+			/*SDL_Log("Le max en X et Y est : %d | %d ",suite.chemin[indiceChemin+1].x,suite.chemin[indiceChemin+1].y);*/
+			if(suite.chemin[indiceChemin+1].x == -1 && suite.chemin[indiceChemin+1].y == -1){
+				if(tabEnnemie[indice]!=NULL){					
+				
+					for(int j = 0 ; j < nbEnnemie-1 ; j++){
+						tabEnnemie[j] = tabEnnemie[j+1];
+					}
+					nbEnnemie--;
+					free(tabEnnemie[nbEnnemie]);
+					tabEnnemie[nbEnnemie]=NULL;
+				}
+			}
+			SDL_Delay(5);
+			if(tabEnnemie[indice] != NULL){
+				appelTextEnnemie(renderer,tabEnnemie[indice]->texture,&tabEnnemie[indice]->imgDestRectEnnemie,&tabEnnemie[indice]->imgDestRectEnnemie.w,&tabEnnemie[indice]->imgDestRectEnnemie.h);
+			}
+			if(nbCaseUse>=1){
+				if(ent==1){
+					tabEnnemie[indice]->pv-=10;
+					ent=0;
 
-				SDL_Log("ICI 2 ");
+					imgDestRect2.x = tabEnnemie[indice]->imgDestRectEnnemie.x;
+					imgDestRect2.y = tabEnnemie[indice]->imgDestRectEnnemie.y;
+					imgDestRect2.w = tabEnnemie[indice]->imgDestRectEnnemie.w;
+					imgDestRect2.h= tabEnnemie[indice]->imgDestRectEnnemie.h;
+					SDL_RenderCopy(renderer, boule,NULL, &imgDestRect2);
+					if(tabEnnemie[indice]->pv<=0){
+						for(int j = 0 ; j < nbEnnemie-1 ; j++){
+							tabEnnemie[j] = tabEnnemie[j+1];
+						}
+						nbEnnemie--;
+						free(tabEnnemie[nbEnnemie]);
+						tabEnnemie[nbEnnemie]=NULL;
+
+						SDL_Log("mort");
+					}
+					else{
+						SDL_Log("coucou");
+					}
+				}
+			}
+			
+	
+		}
+		/*SDL_Log("ICI 2 ");*/
 		SDL_RenderPresent(renderer); //Taille fenetre 1847 / 1015
 		while(SDL_PollEvent(&e)) { 
 			switch(e.type) { 
@@ -381,6 +417,8 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 								}
 								if(nbCaseUse < MAXHERO && etat == 1){
 									if(joueur->argent >= hero1->prix){		
+										timer[nb_timer]=SDL_AddTimer(1000,attendre,&ent);
+										nb_timer++;
 										tabHero->tab[nbCaseUse]->coordX = e.button.x;
 										tabHero->tab[nbCaseUse]->coordY = e.button.y;
 										tabHero->tab[nbCaseUse]->Hero = hero1;
@@ -418,6 +456,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 									}
 								if(nbCaseUse < MAXHERO && etat == 1){
 									if(joueur->argent >= hero2->prix){		
+										timer[nb_timer]=SDL_AddTimer(1000,attendre,&ent);
 										tabHero->tab[nbCaseUse]->coordX = e.button.x;
 										tabHero->tab[nbCaseUse]->coordY = e.button.y;
 										tabHero->tab[nbCaseUse]->Hero = hero2;
@@ -428,9 +467,6 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 
 										lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
 										lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-
-
-
 
 
 										nbCaseUse++;
@@ -455,6 +491,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 									}
 								if(nbCaseUse < MAXHERO && etat == 1){
 									if(joueur->argent >= hero3->prix){		
+										timer[nb_timer]=SDL_AddTimer(1000,attendre,&ent);
 										tabHero->tab[nbCaseUse]->coordX = e.button.x;
 										tabHero->tab[nbCaseUse]->coordY = e.button.y;
 										tabHero->tab[nbCaseUse]->Hero = hero3;
@@ -526,6 +563,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		} 
 	}
 	
+	for(int i=0;i<nb_timer;i++){
+		SDL_RemoveTimer(timer[i]);
+	}
 	SDL_DestroyTexture(case1);
 	SDL_DestroyTexture(case2);
 	SDL_DestroyTexture(case2);
@@ -536,15 +576,20 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_DestroyTexture(textHero2);
 	SDL_DestroyTexture(textHero3);
 	SDL_DestroyTexture(texte);
+	SDL_DestroyTexture(boule);
 
 	detruireHero(&hero1);
 	detruireHero(&hero2);
 	detruireHero(&hero3);
 
-	/*for(int j = 0 ; j < MAXHERO ; j++){
-		detruireHero(&tabHero->tab[j]->Hero);
-	}*/
-	free(&tabHero->tab);
+	detruire_joueur(joueur);
+
+	int i=0;
+	for(i=0;i<MAXHERO;i++){
+		free(lesHeros[i]);
+		free(tabHero->tab[i]);
+	}
+	
 
     return 0;
 }

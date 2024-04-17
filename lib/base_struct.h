@@ -118,3 +118,4 @@ int degatBase(base_t * base);
 int actualiseBase(base_t * base);
 
 player_t * initialise_joueur();
+void detruire_joueur(player_t *joueur);

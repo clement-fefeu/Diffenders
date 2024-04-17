@@ -208,9 +208,17 @@ int actualiseBase(base_t * base){
 player_t * initialise_joueur(){
     player_t * joueur = malloc(sizeof(player_t));
 
-    int tab[TailleMap][TailleMap];
-
     joueur->argent = 1000;
     
     joueur->base = malloc(sizeof(base_t));
+    return joueur;
+}
+
+void detruire_joueur(player_t *joueur){
+    
+    free(joueur->base);
+    joueur->base=NULL;
+    free(joueur);
+    joueur=NULL;
+
 }

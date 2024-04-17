@@ -137,15 +137,15 @@ int param(SDL_Renderer *renderer,SDL_Window *window,int largeur, int hauteur,SDL
     SDL_bool fullscreen=SDL_FALSE;
     int grand=1;
 // load sample.png into image (fenetre de pause)
-	menu=loadImage("../img/menu.png",renderer);
+	loadImage("../img/menu.png",renderer,&menu);
 // load sample.png into image (quitter)
-	retour=loadImage("../img/retour_b.png",renderer);
+	loadImage("../img/retour_b.png",renderer,&retour);
 // load sample.png into image (retour)
-	quitter=loadImage("../img/quitter_b.png",renderer);
+	loadImage("../img/quitter_b.png",renderer,&quitter);
 // load sample.png into image (plein ecran)
-	full=loadImage("../img/plein_ecran_b.png",renderer);
+	loadImage("../img/plein_ecran_b.png",renderer,&full);
 // load sample.png into image (fenetrer)
-	fenetrer=loadImage("../img/fenetrer_b.png",renderer);
+	loadImage("../img/fenetrer_b.png",renderer,&fenetrer);
 
 
     SDL_RenderClear(renderer);
@@ -270,13 +270,13 @@ int menu()
     init_icon(window);
     int largeur=WIDTHSCREEN,hauteur=HEIGHTSCREEN;
 
-    background=loadImage("../img/tower_def.jpg",renderer);
-    play=loadImage("../img/jouer_m.png",renderer);
-    quit=loadImage("../img/quitter_m.png",renderer);
-    play_des=loadImage("../img/jouer_g.png",renderer);
-    quit_des=loadImage("../img/quitter_g.png",renderer);
-    parametre=loadImage("../img/parametre.png",renderer);
-    parametre_des=loadImage("../img/parametre_g.png",renderer);
+    loadImage("../img/tower_def.jpg",renderer,&background);
+    loadImage("../img/jouer_m.png",renderer,&play);
+    loadImage("../img/quitter_m.png",renderer,&quit);
+    loadImage("../img/jouer_g.png",renderer,&play_des);
+    loadImage("../img/quitter_g.png",renderer,&quit_des);
+    loadImage("../img/parametre.png",renderer,&parametre);
+    loadImage("../img/parametre_g.png",renderer,&parametre_des);
 
     SDL_QueryTexture(quit, NULL, NULL, &(pos_quit.w), &(pos_quit.h)); // Récupere la dimension de la texture
     pos_quit.x = largeur /2 - pos_quit.w /2;
@@ -379,7 +379,7 @@ Quit:
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    TTF_Quit();
+    
     SDL_Quit();
     return statut;
 }

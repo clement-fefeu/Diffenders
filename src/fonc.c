@@ -62,24 +62,20 @@ int init(SDL_Window **window, SDL_Renderer **renderer, int w, int h)
  * @param renderer Le renderer SDL.
  * @return SDL_Texture* La texture de l'image chargée.
  */
-SDL_Texture *loadImage(const char path[], SDL_Renderer *renderer)
+void loadImage(const char path[], SDL_Renderer *renderer,SDL_Texture **texture)
 {
     SDL_Surface *tmp = NULL;
-    SDL_Texture *texture = NULL;
     tmp = IMG_Load(path);
     if(!tmp)
     {
         printf("Erreur de chargement de l'image : %s",SDL_GetError());
-        return NULL;
     }
-    texture = SDL_CreateTextureFromSurface(renderer, tmp);
+    *texture = SDL_CreateTextureFromSurface(renderer, tmp);
     SDL_FreeSurface(tmp);
-    if(NULL == texture)
+    if(NULL == *texture)
     {
         fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s", SDL_GetError());
-        return NULL;
     }
-    return texture;
 }
 
 /**

@@ -111,19 +111,19 @@ void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) 
       for(int i=0;i<ABS;i++){
         switch(tab[i][j]){
           case 1:
-            position.h=(haut-200)/ORD;
+            position.h=(haut-190)/ORD;
             position.w=larg/ABS;
             SDL_RenderCopy(renderer,texture2,NULL,&position);
             SDL_QueryTexture(texture2,NULL,NULL,&(position.w),&(position.h));
             break;;
           case 2:
-            position.h=(haut-200)/ORD;
+            position.h=(haut-190)/ORD;
             position.w=larg/ABS;
             SDL_RenderCopy(renderer,texture3,NULL,&position);
             SDL_QueryTexture(texture3,NULL,NULL,&(position.w),&(position.h));
             break;;
           case 3:
-            position.h=(haut-200)/ORD;
+            position.h=(haut-190)/ORD;
             position.w=larg/ABS;
             SDL_RenderCopy(renderer,texture3,NULL,&position);
             SDL_QueryTexture(texture3,NULL,NULL,&(position.w),&(position.h));
@@ -133,7 +133,7 @@ void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) 
         position.x=position.x+larg/ABS;
       }
       //affichage ligne par ligne 
-      position.y=position.y+(haut-200)/ORD;
+      position.y=position.y+(haut-190)/ORD;
       position.x=0;
     }
   }
