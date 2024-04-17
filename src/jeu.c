@@ -548,4 +548,3 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 
     return 0;
 }
-
