@@ -41,48 +41,6 @@ int contact(coord_t proj,coord_t target){
   return ((proj.x==target.x)&&(proj.y==target.y));
 }
 
-/*fonction appellé pour que la tour tir toute les intervals micro secondes*/
-Uint32 call(Uint32 interval,void * param){
-  if((*(int*)param)==0){
-    *(int*)param=1;
-  }
-  return interval;
-}
-
-/*fonction de test pour creer une tour si il y en a moins de 10toute les intervals micro secondes*/
-Uint32 call2(Uint32 interval,void * param){
-  if((*(int*)param)<10){
-    (*(int*)param)++;
-  }
-  return interval;
-}
-
-/*affichage de la map dans le terminal
-void affiche_map(int tab[ABS][ORD]) {
-  for (int i = 0; i < ORD; i++) {
-    for (int j = 0; j < ABS; j++) {
-      switch (tab[j][i]) {
-      case 0:
-        printf(" H ");
-        break;
-      case 1:
-        printf("BAS");
-        break;
-      case 2:
-        printf("ENT");
-        break;
-      case 3:
-        printf("ROU");
-        break;
-      default:
-        printf("111");
-        break;
-      }
-    }
-    printf("\n");
-  }
-}*/
-
 /*affichage de la map grace a la sdl et calcul de projectiles*/
 void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) {
   SDL_Rect position;
@@ -169,16 +127,6 @@ void init_chemin2(chemin_t * pathfind){
     pathfind->chemin[j].y=-1;
   }
 }
-
-/*affichage dans le terminal des coordonnées des chemins vers la base
-void affiche_chemin(chemin_t pathfind[NB_ENTREE+1]){
-  for(int i=0;i<(NB_ENTREE+1);i++){
-    for(int j=0;pathfind[i].chemin[j].x!=-1;j++){
-      printf("|%d : %d",pathfind[i].chemin[j].x,pathfind[i].chemin[j].y);
-    }
-    printf("\n");
-  }
-}*/
 
 void affiche_chemin2(chemin_t pathfind){
   for(int j=0;pathfind.chemin[j].x!=-1;j++){
@@ -487,54 +435,90 @@ void chemin_base(int x,int y,int tab[ABS][ORD],int a,int b,chemin_t * pathfind){
   int min_x,min_y;
   if(a<(ABS/2)){
     if(b<(ORD/2)){
-      min_x=(rand()%((x)-(a)+1));
-      min_y=rand()%((y-b)+1);
-      if(!min_x){
+      if(((x-a)+1)>0){
+        min_x=(rand()%((x-a)+1));
+        if(min_x==0){
+          x_rand=x;
+        }else{
+          x_rand=x-min_x;
+        }
+      }else{
         x_rand=x;
+      }
+      if(((y-b)+1)>0){
+        min_y=rand()%((y-b)+1);
+        if(min_y==0){
+          y_rand=y;
+        }else{
+          y_rand=y-min_y;
+        }
       }else{
-        x_rand=x-min_x;
-      }if(!min_y){
         y_rand=y;
-      }else{
-        y_rand=y-min_y;
       }
     }else{
-      min_x=(rand()%((x)-(a)+1));
-      min_y=rand()%((b-y)+1);
-      if(!min_x){
+      if(((x-a)+1)>0){
+        min_x=(rand()%((x-a)+1));
+        if(min_x==0){
+          x_rand=x;
+        }else{
+          x_rand=x-min_x;
+        }
+      }else{
         x_rand=x;
+      }
+      if(((b-y)+1)>0){
+        min_y=rand()%((b-y)+1);
+        if(min_y==0){
+          y_rand=y;
+        }else{
+          y_rand=y+min_y;
+        }
       }else{
-        x_rand=x-min_x;
-      }if(!min_y){
         y_rand=y;
-      }else{
-        y_rand=y+min_y;
       }
     }
   }else{
     if(b<(ORD/2)){
-      min_x=(rand()%((a)-(x)+1));
-      min_y=rand()%((y-b)+1);
-      if(!min_x){
+      if(((a-x)+1)>0){
+        min_x=(rand()%((a-x)+1));
+        if(min_x==0){
+          x_rand=x;
+        }else{
+          x_rand=x+min_x;
+        }
+      }else{
         x_rand=x;
-      }else{
-        x_rand=x+min_x;
-      }if(!min_y){
+      }
+      if(((y-b)+1)>0){
+        min_y=rand()%((y-b)+1);
+        if(min_y==0){
+          y_rand=y;
+        }else{
+          y_rand=y-min_y;
+        }
+        }else{
         y_rand=y;
-      }else{
-        y_rand=y-min_y;
       }
     }else{
-      min_x=(rand()%((a)-(x)+1));
-      min_y=rand()%((b-y)+1);
-      if(!min_x){
+      if(((a-x)+1)>0){
+        min_x=(rand()%((a-x)+1));
+        if(min_x==0){
+          x_rand=x;
+        }else{
+          x_rand=x+min_x;
+        }
+        }else{
         x_rand=x;
+      }
+      if(((b-y)+1)>0){
+        min_y=rand()%((b-y)+1);
+        if(min_y==0){
+          y_rand=y;
+        }else{
+          y_rand=y+min_y;
+        }
       }else{
-        x_rand=x+min_x;
-      }if(!min_y){
         y_rand=y;
-      }else{
-        y_rand=y+min_y;
       }
     }
   }
@@ -550,42 +534,28 @@ void chemin_base(int x,int y,int tab[ABS][ORD],int a,int b,chemin_t * pathfind){
 /*fonction de creation */
 void croisee(int a, int b, int mat[NB_ENTREE][2], int tab[ABS][ORD],chemin_t pathfind[NB_ENTREE+1]) {
   int i = 0;
-  int x, y;
-  if (a < ((ABS - 1) / 2)) {
-    x = ABS - 3;
-    for (i = 0; i < NB_ENTREE; i++) {
-      if (mat[i][0] < x) {
-        x = mat[i][0];
-      }
-    }
-  } else {
-    x = 2;
-    for (i = 0; i < NB_ENTREE; i++) {
-      if (mat[i][0] > x) {
-        x = mat[i][0];
-      }
+  int x=0, y=0;
+  if(mat[i][0]==0){
+    x=1;
+  }else{
+    if(mat[i][0]==(int)(ABS-1)){
+      x=ABS-2;
+    }else{
+      x=mat[i][0];
     }
   }
-  if (b < ((ORD - 1) / 2)) {
-    y = ORD - 3;
-    for (i = 0; i < NB_ENTREE; i++) {
-      if (mat[i][1] < y) {
-        y = mat[i][1];
-      }
-    }
-  } else {
-    y = 2;
-    for (i = 0; i < NB_ENTREE; i++) {
-      if (mat[i][1] > y) {
-        y = mat[i][1];
-      }
+  if(mat[i][1]==0){
+    y=1;
+  }else{
+    if(mat[i][1]==(int)(ORD-1)){
+      y=(ORD-2);
+    }else{
+      y=mat[i][1];
     }
   }
-  for (i = 0; i < NB_ENTREE; i++) {
-    chemin(mat[i][0], mat[i][1], tab, x, y);
-    pathfinding(mat[i][0], mat[i][1], &pathfind[i], x, y);
-  }
-  chemin_base(x,y,tab,a,b,&pathfind[i]);
+  chemin(mat[i][0], mat[i][1], tab, x, y);
+  pathfinding(mat[i][0], mat[i][1], &pathfind[i], x, y);
+  chemin_base(x,y,tab,a,b,&pathfind[NB_ENTREE]);
 }
 /*calcul des point important de chemin*/
 void repathing(chemin_t path[NB_ENTREE+1],chemin_t repath[NB_ENTREE+1]){
