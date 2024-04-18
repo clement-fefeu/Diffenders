@@ -233,3 +233,4 @@ SDL_Texture *load_text(SDL_Renderer *renderer,char *text,int taille_text){
     TTF_CloseFont(police);
     return texture;
 }
+

@@ -2,9 +2,10 @@
 #include "../lib/fonc.h"
 
 char * nomHero[3] = {"Skarn","Pof","Roy"};
-int degatHero[3] = {50,70,100};
+int degatHero[3] = {80,50,150};
 int typeHero[3] = {3,3,3};
 int prix[3] = {250,500,1000};
+int cooldown[3] = {1,0.5,1.5};
 char * nomTypeHero[3] = {"Direct Hit","Direct Hit","Direct Hit"};
 
 ennemie_t * initialise_enemie(){     //fonction qui créér un ennemie.

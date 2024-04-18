@@ -148,9 +148,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 {
     //Le pointeur vers la fenetre
 	//Le pointeur vers la surface incluse dans la fenetre
-	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause,position;
+	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause,position,imgDestRectCase4;
 	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL,*textEnnemie=NULL;
-	SDL_Texture *boule=NULL,*PV=NULL;
+	SDL_Texture *boule=NULL,*PV=NULL,*case4=NULL;
   	int tab[ABS][ORD];
 	int largeur=WIDTHSCREEN,hauteur=HEIGHTSCREEN;
 	int vague=0;
@@ -183,9 +183,17 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	int * tailleCaseY = 0;
 	int caseHero = 0;
 	
+	int traverser =0;
+
+	int indiceDestru = 0 ;
+
+	int supprimer = 0;
+
 	hero_t * hero1 = malloc(sizeof(hero_t));
 	hero_t * hero2 = malloc(sizeof(hero_t));
 	hero_t * hero3 = malloc(sizeof(hero_t));
+
+	int vente = 0;
 
 	int etat = 1;
 	player_t * joueur = malloc(sizeof(player_t));
@@ -209,6 +217,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 
 // load sample.png into image (CASE 3)
 	loadImage("../img/3.png",renderer,&case3);
+
+// load sample.png into image (CASE 4)
+	loadImage("../img/poubelle.png",renderer,&case4);
 
 // load sample.png into image (pause)
 	loadImage("../img/pause.png",renderer,&pause);
@@ -270,16 +281,24 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 			imgDestRectCase1.y = hauteur-155;
 			SDL_QueryTexture(case1,NULL, NULL,&(imgDestRectCase1.w),&(imgDestRectCase1.h));
 			SDL_RenderCopy(renderer, case1,NULL, &imgDestRectCase1);
+
 			//Case2
-			imgDestRectCase2.x = 300;
+			imgDestRectCase2.x = imgDestRectCase1.x + 150;
 			imgDestRectCase2.y = hauteur-155;
 			SDL_QueryTexture(case2,NULL, NULL,&(imgDestRectCase2.w),&(imgDestRectCase2.h));
 			SDL_RenderCopy(renderer, case2,NULL, &imgDestRectCase2);
+
 			//Case3
-			imgDestRectCase3.x = 550;
+			imgDestRectCase3.x = imgDestRectCase2.x + 150;
 			imgDestRectCase3.y = hauteur-155;
 			SDL_QueryTexture(case3,NULL, NULL,&(imgDestRectCase3.w),&(imgDestRectCase3.h));
 			SDL_RenderCopy(renderer, case3,NULL, &imgDestRectCase3);
+
+			//Case 4
+			imgDestRectCase4.x = imgDestRectCase3.x + 150;
+			imgDestRectCase4.y = hauteur-155;
+			SDL_QueryTexture(case4,NULL, NULL,&(imgDestRectCase4.w),&(imgDestRectCase4.h));
+			SDL_RenderCopy(renderer, case4,NULL, &imgDestRectCase4);
 			//bouton pause
 			imgDestRectpause.x = 5;
 			imgDestRectpause.y = 5;
@@ -287,43 +306,45 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 			imgDestRectpause.h = 30;
 			SDL_RenderCopy(renderer, pause,NULL, &imgDestRectpause);
 			if(nbCaseUse-1  >= 0){
-				SDL_QueryTexture(lesHeros[nbCaseUse-1]->texture,NULL, NULL,&(lesHeros[nbCaseUse-1]->rectHero.w),&(lesHeros[nbCaseUse-1]->rectHero.h));
+				if(lesHeros[nbCaseUse-1] != NULL){
+					SDL_QueryTexture(lesHeros[nbCaseUse-1]->texture,NULL, NULL,&(lesHeros[nbCaseUse-1]->rectHero.w),&(lesHeros[nbCaseUse-1]->rectHero.h));
+				}
 				int parcoursTab = 0;
 				SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 				parcoursTab++;
-				if(nbCaseUse >= 2){
+				if(nbCaseUse >= 2 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 3){
+				if(nbCaseUse >= 3 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 4){
+				if(nbCaseUse >= 4 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 5){
+				if(nbCaseUse >= 5 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 6){
+				if(nbCaseUse >= 6 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 7){
+				if(nbCaseUse >= 7 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 8){
+				if(nbCaseUse >= 8 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 9){
+				if(nbCaseUse >= 9 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
-				if(nbCaseUse >= 10){
+				if(nbCaseUse >= 10 && lesHeros[parcoursTab]!= NULL){
 					SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
 					parcoursTab++;
 				}
@@ -343,7 +364,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 					tabEnnemie[indice+1] = malloc(sizeof(ennemie_t)); 
 					tabEnnemie[indice+1]->texture = textEnnemie;
 					tabEnnemie[indice+1]->nom = "Soldat";
-					tabEnnemie[indice+1]->pv = 100;
+					tabEnnemie[indice+1]->pv = 100+50*vague;
 					tabEnnemie[indice+1]->palier = 0;
 					tabEnnemie[indice+1]->imgDestRectEnnemie.x = (largeur/ABS)*suite.chemin[0].x + (largeur/ABS)/4;
 					tabEnnemie[indice+1]->imgDestRectEnnemie.y = ((hauteur-200)/ORD)*suite.chemin[0].y + (((hauteur-200)/ORD)/4);
@@ -400,7 +421,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 					}
 				}
 
-				SDL_Delay(0.5);
+				SDL_Delay(1);
 				if(tabEnnemie[indice] != NULL){
 					appelTextEnnemie(renderer,tabEnnemie[indice]->texture,&tabEnnemie[indice]->imgDestRectEnnemie,&tabEnnemie[indice]->imgDestRectEnnemie.w,&tabEnnemie[indice]->imgDestRectEnnemie.h);
 				}
@@ -424,10 +445,6 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 								SDL_Log("mort");
 							}
 
-							if(nbEnnemie==0 && vague==MAX_Vague){
-								running = 0; 
-								SDL_Log("Victoire");
-							}
 						}
 						if(hero2->cooldown==1 && tabHero->tab[i]->Hero==hero2){
 							tabEnnemie[0]->pv-=hero2->degat;
@@ -449,10 +466,6 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 
 							
 						}
-						if(nbEnnemie==0){
-								running = 0; 
-								SDL_Log("Victoire");
-							}
 						if(hero3->cooldown==1 && tabHero->tab[i]->Hero==hero3){
 							tabEnnemie[0]->pv-=hero3->degat;
 							hero3->cooldown=0;
@@ -471,10 +484,15 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 								SDL_Log("mort");
 							}
 
-							if(nbEnnemie==0){
-								running = 0; 
-								SDL_Log("Victoire");
-							}
+							
+						}
+
+						if(nbEnnemie==0 && vague==MAX_Vague){
+							running = 0; 
+							vague=MAX_Vague;
+							SDL_Log("Victoire");
+						}else if(nbEnnemie==0){
+							running = 0; 
 						}
 
 					}
@@ -525,101 +543,182 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 						if(e.button.y < imgDestRect2.y || e.button.y > imgDestRect2.y + imgDestRect2.h){
 							etat =1;;
 							switch(caseHero){
-								case 1:
-									lesHeros[nbCaseUse]->texture = textHero1;
-									for(int indice = 0 ; indice < nbCaseUse ; indice++){
+				case 1:
+				if(lesHeros[nbCaseUse] != NULL){
+				lesHeros[nbCaseUse]->texture = textHero1;
+				for(int indice = 0 ; indice < nbCaseUse ; indice++){
+						if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
+							etat = 0;
+						}
+					}
+				}
+				if(nbCaseUse < MAXHERO && etat == 1){
+					if(joueur->argent >= hero1->prix){		
+						timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero1->cooldown));
+						nb_timer++;
+						tabHero->tab[nbCaseUse]->coordX = e.button.x;
+						tabHero->tab[nbCaseUse]->coordY = e.button.y;
+						tabHero->tab[nbCaseUse]->Hero = hero1;
+						joueur->argent -= hero1->prix;
+						SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero1->prix,joueur->argent);
+						caseHero = 0;
+
+						if(lesHeros[nbCaseUse] != NULL){
+						lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+						lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+						}
+						else if(lesHeros[nbCaseUse] == NULL){
+							lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
+							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+							lesHeros[nbCaseUse]->texture = textHero1;
+						}
+
+						nbCaseUse++;
+					}
+					else{
+						SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
+					}
+				}
+				else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
+				else if(nbCaseUse >= MAXHERO){
+					SDL_Log("Nombre de heros maximum atteins !");
+				}
+				break;
+						case 2:
+						if(lesHeros[nbCaseUse] != NULL){
+							lesHeros[nbCaseUse]->texture = textHero2;
+							for(int indice = 0 ; indice < nbCaseUse ; indice++){
+									if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
+										etat = 0;
+									}
+							}
+						}
+				if(nbCaseUse < MAXHERO && etat == 1){
+					if(joueur->argent >= hero2->prix){	
+						timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero2->cooldown));	
+						nb_timer++;
+						tabHero->tab[nbCaseUse]->coordX = e.button.x;
+						tabHero->tab[nbCaseUse]->coordY = e.button.y;
+						tabHero->tab[nbCaseUse]->Hero = hero2;
+						joueur->argent -= hero2->prix;
+						SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero2->prix,joueur->argent);
+						caseHero = 0;
+
+
+						if(lesHeros[nbCaseUse] != NULL){
+							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+						}
+						else if(lesHeros[nbCaseUse] == NULL){
+							lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
+							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+							lesHeros[nbCaseUse]->texture = textHero2;
+						}
+						nbCaseUse++;
+
+						}
+					else{
+					SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
+					}
+				}
+				else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
+				else if(nbCaseUse >= MAXHERO){
+					SDL_Log("Nombre de heros maximum atteins !");
+				}	
+				break;
+						case 3:
+						if(lesHeros[nbCaseUse]!=NULL){
+							lesHeros[nbCaseUse]->texture = textHero3;
+								for(int indice = 0 ; indice < nbCaseUse ; indice++){
 										if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
 											etat = 0;
 										}
-									}
-									if(nbCaseUse < MAXHERO && etat == 1){
-										if(joueur->argent >= hero1->prix){		
-											timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero1->cooldown));
-											nb_timer++;
-											tabHero->tab[nbCaseUse]->coordX = e.button.x;
-											tabHero->tab[nbCaseUse]->coordY = e.button.y;
-											tabHero->tab[nbCaseUse]->Hero = hero1;
-											joueur->argent -= hero1->prix;
-											SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero1->prix,joueur->argent);
-											caseHero = 0;
-											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-											nbCaseUse++;
-											SDL_Log("Le nombre de case utilisé : %d !",nbCaseUse);
-										}
-										else{
-											SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
-										}
-									}
-									else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
-									else if(nbCaseUse >= MAXHERO){
-										SDL_Log("Nombre de heros maximum atteins !");
-									}	
-									break;
-								case 2:
-									lesHeros[nbCaseUse]->texture = textHero2;
-									for(int indice = 0 ; indice < nbCaseUse ; indice++){
-											if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
-												etat = 0;
-											}
-										}
-									if(nbCaseUse < MAXHERO && etat == 1){
-										if(joueur->argent >= hero2->prix){		
-											timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero2->cooldown));
-											nb_timer++;
-											tabHero->tab[nbCaseUse]->coordX = e.button.x;
-											tabHero->tab[nbCaseUse]->coordY = e.button.y;
-											tabHero->tab[nbCaseUse]->Hero = hero2;
-											joueur->argent -= hero2->prix;
-											SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero1->prix,joueur->argent);
-											caseHero = 0;
-											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-											nbCaseUse++;
-											SDL_Log("Le nombre de case utilisé : %d !",nbCaseUse);
-											}
-										else{
-										SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
-										}
-									}
-									else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
-									else if(nbCaseUse >= MAXHERO){
-										SDL_Log("Nombre de heros maximum atteins !");
-									}	
-									break;
-								case 3:
-									lesHeros[nbCaseUse]->texture = textHero3;
-									for(int indice = 0 ; indice < nbCaseUse ; indice++){
-											if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
-												etat = 0;
-											}
-										}
-									if(nbCaseUse < MAXHERO && etat == 1){
-										if(joueur->argent >= hero3->prix){		
-											timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero3->cooldown));
-											SDL_Log("%d",hero3->cooldown);
-											nb_timer++;
-											tabHero->tab[nbCaseUse]->coordX = e.button.x;
-											tabHero->tab[nbCaseUse]->coordY = e.button.y;
-											tabHero->tab[nbCaseUse]->Hero = hero3;
-											joueur->argent -= hero3->prix;
-											SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero1->prix,joueur->argent);
-											caseHero = 0;
-											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-											nbCaseUse++;
-											SDL_Log("Le nombre de case utilisé : %d !",nbCaseUse);
-										}
-										else{
-											SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
-										}
-									}
-									else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
-									else if(nbCaseUse >= MAXHERO){
-										SDL_Log("Nombre de heros maximum atteins !");
-									}	
-									break;
-							}		
+								}
+						}
+				if(nbCaseUse < MAXHERO && etat == 1){
+					if(joueur->argent >= hero3->prix){		
+						timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero3->cooldown));
+						nb_timer++;
+						tabHero->tab[nbCaseUse]->coordX = e.button.x;
+						tabHero->tab[nbCaseUse]->coordY = e.button.y;
+						tabHero->tab[nbCaseUse]->Hero = hero3;
+						joueur->argent -= hero3->prix;
+						SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero3->prix,joueur->argent);
+						caseHero = 0;
+
+
+						if(lesHeros[nbCaseUse] != NULL){
+							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+						}
+						else if(lesHeros[nbCaseUse] == NULL){
+							lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
+							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+							lesHeros[nbCaseUse]->texture = textHero3;
+						}
+
+						nbCaseUse++;
+
+						}
+					else{
+					SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
+					}
+				}
+				else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
+				else if(nbCaseUse >= MAXHERO){
+					SDL_Log("Nombre de heros maximum atteins !");
+				}	
+				break;
+				case 4:
+				if(caseHero == 4){
+					vente = 1;
+					for(traverser = 0 ; traverser <= nbCaseUse ; traverser++){
+						if(tabHero->tab[traverser] != NULL){
+							if(lesHeros[traverser] != NULL){
+								if((e.button.x < tabHero->tab[traverser]->coordX + lesHeros[traverser]->rectHero.w && e.button.x > tabHero->tab[traverser]->coordX -lesHeros[traverser]->rectHero.w)&& (e.button.y < tabHero->tab[traverser]->coordY + lesHeros[traverser]->rectHero.h && e.button.y > tabHero->tab[traverser]->coordY - lesHeros[traverser]->rectHero.h)){
+										supprimer = 1;
+										indiceDestru = traverser;
+
+								}
+							}
+						}
+					}
+					if(supprimer == 1){
+						for(traverser = indiceDestru ; traverser < nbCaseUse ; traverser++){
+							if(tabHero->tab[traverser+1] != NULL){
+								if(vente == 1){
+									joueur->argent +=(tabHero->tab[traverser]->Hero->prix / 2);
+									vente = 0;
+								}
+								tabHero->tab[traverser] = tabHero->tab[traverser+1];
+								lesHeros[traverser] = lesHeros[traverser+1];
+								caseHero = 0;
+							}
+						}
+						if(nbCaseUse > 0){
+							lesHeros[nbCaseUse] = NULL;
+							SDL_RemoveTimer(timer[nb_timer-1]);
+							nb_timer--;
+
+							
+							free(lesHeros[nbCaseUse]);
+
+							
+
+							nbCaseUse--;
+						}
+						
+					}
+					if(caseHero == 4){
+						SDL_Log("Selectionnez un héro à supprimé ou selectionner une autre case d'actions");
+					}
+					
+
+				}	
+			}		
 						}
 						if((e.button.x >= imgDestRectCase1.x && e.button.x <= imgDestRectCase1.x + imgDestRectCase1.w) && (e.button.y >= imgDestRectCase1.y && e.button.y <= imgDestRectCase1.y + imgDestRectCase1.h)){
 							SDL_Log("Réussite ca clique sur la case 1");
@@ -635,6 +734,10 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 							SDL_Log("Réussite ca clique sur case 3");
 							SDL_Log("Hero 3 selectionner");
 							caseHero = 3;
+						}
+						if((e.button.x >= imgDestRectCase4.x && e.button.x <= imgDestRectCase4.x + imgDestRectCase4.w) && (e.button.y >= imgDestRectCase4.y && e.button.y <= imgDestRectCase4.y + imgDestRectCase4.h)){
+							SDL_Log("Selection de la suppression d'héros");
+							caseHero = 4;
 						}
 						if((e.button.x >= imgDestRectpause.x && e.button.x <= imgDestRectpause.x + imgDestRectpause.w) && (e.button.y >= imgDestRectpause.y && e.button.y <= imgDestRectpause.y + imgDestRectpause.h)){
 							SDL_Log("PAUSE");
@@ -682,6 +785,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_DestroyTexture(texte);
 	SDL_DestroyTexture(boule);
 	SDL_DestroyTexture(PV);
+	SDL_DestroyTexture(case4);
 
 	detruireHero(&hero1);
 	detruireHero(&hero2);
@@ -692,9 +796,8 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	int i=0;
 	for(i=0;i<MAXHERO;i++){
 		free(lesHeros[i]);
-		free(tabHero->tab[i]);
 	}
-	
+	free(&tabHero->tab);
 
     return 0;
 }
