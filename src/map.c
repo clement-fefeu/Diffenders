@@ -1,39 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <unistd.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_image.h>
-
-#define WIDTH 1600
-#define HEIGHT 900
-#define ABS 30
-#define ORD 15
-#define NB_ENTREE 1
-#define NB_TOUR 10
-
-
-
-/*structure de coordonnée pour obtenir un point précis dans le tableau*/
-typedef struct coord_s{
-  int x;
-  int y;
-} coord_t;
-
-/* structure de tableau de coordonné retournant un chemin que peuvent suivrent les ennemis*/
-typedef struct chemin_s{
-  coord_t chemin[(ABS)+(ORD)];
-} chemin_t;
-
-/*structure de definition des projectile*/
-typedef struct proj_s{
-  int damage;
-  int sensY;
-  SDL_Rect coor;
-  SDL_Texture * text;
-}proj_t;
-
+#include "../lib/base_struct.h"
+#include "../lib/fonc.h"
 
 
 /*retourne vrai si les deux entités sont rentrer en contact*/
@@ -627,8 +593,8 @@ chemin_t map(int tab[ABS][ORD]) {
   chemin_t pathfind[NB_ENTREE+1];
   chemin_t import[NB_ENTREE+1];
   chemin_t suite;
-  int a;
-  int b;
+  int a=0;
+  int b=0;
   int mat[NB_ENTREE][2];
   initialise(tab);
   init_chemin(pathfind);

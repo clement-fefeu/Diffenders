@@ -369,7 +369,7 @@ int menu()
     
 
     statut = EXIT_SUCCESS;
-Quit:
+    
     SDL_RenderClear(renderer);
     SDL_DestroyTexture(quit);
     SDL_DestroyTexture(play);

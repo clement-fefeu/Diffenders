@@ -40,11 +40,12 @@ void affiche_argent(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *
 
 	SDL_DestroyTexture(argent);
 }
+
 void affiche_PV(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *texte){
 	SDL_Rect position;
 
 	SDL_QueryTexture(texte, NULL, NULL,&(position.w),&(position.h));
-	position.x = position.x/2;
+	position.x = largeur/2;
 	position.y = 0;
 	SDL_RenderCopy(renderer, texte,NULL, &position);
 
@@ -54,9 +55,9 @@ Uint32 attendre(Uint32 interval,void* parametre){
 	*(int*)parametre=1;
 	return interval;
 }
-ennemie_t * avancerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
+ennemie_t * avancerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord,int largeur,int hauteur){
 		if(indice == 0){
-			if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) > ennemie[indice]->imgDestRectEnnemie.x){
+			if(((largeur/ABS)*coord[indiceChemin+1].x + (largeur/ABS)/4) > ennemie[indice]->imgDestRectEnnemie.x){
 				ennemie[indice]->imgDestRectEnnemie.x += 1;
 			}
 		}
@@ -69,10 +70,10 @@ ennemie_t * avancerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,in
 	return ennemie[indice];
 }
 
-ennemie_t * reculerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
+ennemie_t * reculerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord,int largeur,int hauteur){
 		if(indice == 0){
 			
-			if(((WIDTHSCREEN/ABS)*coord[indiceChemin+1].x + (WIDTHSCREEN/ABS)/4) < ennemie[indice]->imgDestRectEnnemie.x){
+			if(((largeur/ABS)*coord[indiceChemin+1].x + (largeur/ABS)/4) < ennemie[indice]->imgDestRectEnnemie.x){
 				ennemie[indice]->imgDestRectEnnemie.x -= 1;
 			}
 		}
@@ -85,9 +86,9 @@ ennemie_t * reculerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,in
 	return ennemie[indice];
 }
 
-ennemie_t * descendreVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
+ennemie_t * descendreVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord,int largeur,int hauteur){
 		if(indice == 0){
-			if((ennemie[indice]->imgDestRectEnnemie.y < ((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4)){
+			if((ennemie[indice]->imgDestRectEnnemie.y < ((hauteur-200)/ORD)*coord[indiceChemin+1].y + ((hauteur-200)/ORD)/4)){
 				ennemie[indice]->imgDestRectEnnemie.y += 1;
 			}
 		}
@@ -99,9 +100,9 @@ ennemie_t * descendreVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,in
 	return ennemie[indice];
 }
 
-ennemie_t * monterVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord){
+ennemie_t * monterVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord,int largeur,int hauteur){
 		if(indice == 0){
-			if((ennemie[indice]->imgDestRectEnnemie.y > ((HEIGHTSCREEN-200)/ORD)*coord[indiceChemin+1].y + ((HEIGHTSCREEN-200)/ORD)/4)){
+			if((ennemie[indice]->imgDestRectEnnemie.y > ((hauteur-200)/ORD)*coord[indiceChemin+1].y + ((hauteur-200)/ORD)/4)){
 				ennemie[indice]->imgDestRectEnnemie.y -= 1;
 			}
 		}
@@ -151,7 +152,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL,*textEnnemie=NULL;
 	SDL_Texture *boule=NULL,*PV=NULL;
   	int tab[ABS][ORD];
-	int largeur,hauteur;
+	int largeur=WIDTHSCREEN,hauteur=HEIGHTSCREEN;
 	int vague=0;
 	int map=0;
   	chemin_t suite;
@@ -237,10 +238,13 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		ennemie_t * tabEnnemie[nbEnnemie];
 		SDL_GetWindowSize(window,&largeur,&hauteur);
 		tabEnnemie[0] = malloc(sizeof(ennemie_t));
+		tabEnnemie[0]->nom = "Soldat";
 		tabEnnemie[0]->pv = 100+50*vague;
+		tabEnnemie[0]->palier = 0;
 		tabEnnemie[0]->texture = textEnnemie;
 		tabEnnemie[0]->imgDestRectEnnemie.x = (largeur/ABS)*suite.chemin[0].x + (largeur/ABS)/4;
 		tabEnnemie[0]->imgDestRectEnnemie.y = ((hauteur-200)/ORD)*suite.chemin[0].y + ((hauteur-200)/ORD)/4;
+		
 		
 		for(int i = nbEnnemie - (nbEnnemie -1); i < nbEnnemie ; i++){
 			tabEnnemie[i] = NULL;
@@ -249,6 +253,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		int palierX = 0;
 		while(running) { 
 			SDL_Event e;
+			SDL_RenderClear(renderer);
 			imgDestRect.x=0;
 			imgDestRect.y=0;
 			imgDestRect.h=hauteur-200;
@@ -281,7 +286,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 			imgDestRectpause.w = 30;
 			imgDestRectpause.h = 30;
 			SDL_RenderCopy(renderer, pause,NULL, &imgDestRectpause);
-			if(nbCaseUse - 1 >= 0){
+			if(nbCaseUse-1  >= 0){
 				SDL_QueryTexture(lesHeros[nbCaseUse-1]->texture,NULL, NULL,&(lesHeros[nbCaseUse-1]->rectHero.w),&(lesHeros[nbCaseUse-1]->rectHero.h));
 				int parcoursTab = 0;
 				SDL_RenderCopy(renderer, lesHeros[parcoursTab]->texture,NULL, &lesHeros[parcoursTab]->rectHero);
@@ -334,30 +339,34 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 			
 			for(indice = 0; indice < nbEnnemie ; indice++){
 				
-				if(tabEnnemie[indice+1]== NULL && indice < nbEnnemie-1){
+				if(tabEnnemie[indice+1]== NULL && indice+1 < nbEnnemie){
 					tabEnnemie[indice+1] = malloc(sizeof(ennemie_t)); 
 					tabEnnemie[indice+1]->texture = textEnnemie;
-					tabEnnemie[indice+1]->pv = 100+50*vague;
+					tabEnnemie[indice+1]->nom = "Soldat";
+					tabEnnemie[indice+1]->pv = 100;
 					tabEnnemie[indice+1]->palier = 0;
 					tabEnnemie[indice+1]->imgDestRectEnnemie.x = (largeur/ABS)*suite.chemin[0].x + (largeur/ABS)/4;
 					tabEnnemie[indice+1]->imgDestRectEnnemie.y = ((hauteur-200)/ORD)*suite.chemin[0].y + (((hauteur-200)/ORD)/4);
+					tabEnnemie[indice+1]->imgDestRectEnnemie.w = 32;
+					tabEnnemie[indice+1]->imgDestRectEnnemie.h = 32;
+					
 				}
 				/*SDL_Log(" %d ",indiceChemin);*/
 				if(tabEnnemie[indice] != NULL){	
 					//SDL_Log("L'indice du chemin est %d pour l'ennemie %d ", tabEnnemie[indice]->palier,indice);
-						if(tabEnnemie[indice]->imgDestRectEnnemie.x < (WIDTHSCREEN/ABS)*suite.chemin[(tabEnnemie[indice]->palier+1)].x + (WIDTHSCREEN/ABS)/4){
-							tabEnnemie[indice] = avancerHorizontal(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin);
-						}
-						else if(tabEnnemie[indice]->imgDestRectEnnemie.x > (WIDTHSCREEN/ABS)*suite.chemin[(tabEnnemie[indice]->palier+1)].x + (WIDTHSCREEN/ABS)/4){
-							tabEnnemie[indice] = reculerHorizontal(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin);
-						}
-						else if(tabEnnemie[indice]->imgDestRectEnnemie.y < (((HEIGHTSCREEN-200)/ORD))*suite.chemin[(tabEnnemie[indice]->palier+1)].y + (((HEIGHTSCREEN-200)/ORD)/4)){
-							tabEnnemie[indice] = descendreVertical(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin);
-						}
-						else if(tabEnnemie[indice]->imgDestRectEnnemie.y > (((HEIGHTSCREEN-200)/ORD))*suite.chemin[(tabEnnemie[indice]->palier+1)].y + (((HEIGHTSCREEN-200)/ORD)/4)){
-							tabEnnemie[indice] = monterVertical(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin);
-						}
-					if((tabEnnemie[indice]->imgDestRectEnnemie.x == (WIDTHSCREEN/ABS)*suite.chemin[tabEnnemie[indice]->palier+1].x + (WIDTHSCREEN/ABS)/4) && (tabEnnemie[indice]->imgDestRectEnnemie.y == (((HEIGHTSCREEN-200)/ORD))*suite.chemin[tabEnnemie[indice]->palier+1].y + (((HEIGHTSCREEN-200)/ORD)/4))){
+					if(tabEnnemie[indice]->imgDestRectEnnemie.x < (largeur/ABS)*suite.chemin[(tabEnnemie[indice]->palier+1)].x + (largeur/ABS)/4){
+						tabEnnemie[indice] = avancerHorizontal(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin,largeur,hauteur);
+					}
+					else if(tabEnnemie[indice]->imgDestRectEnnemie.x > (largeur/ABS)*suite.chemin[(tabEnnemie[indice]->palier+1)].x + (largeur/ABS)/4){
+						tabEnnemie[indice] = reculerHorizontal(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin, largeur, hauteur);
+					}
+					else if(tabEnnemie[indice]->imgDestRectEnnemie.y < (((hauteur-200)/ORD))*suite.chemin[(tabEnnemie[indice]->palier+1)].y + (((hauteur-200)/ORD)/4)){	
+						tabEnnemie[indice] = descendreVertical(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin, largeur, hauteur);
+					}
+					else if(tabEnnemie[indice]->imgDestRectEnnemie.y > (((hauteur-200)/ORD))*suite.chemin[(tabEnnemie[indice]->palier+1)].y + (((hauteur-200)/ORD)/4)){
+						tabEnnemie[indice] = monterVertical(tabEnnemie,nbEnnemie,indice,tabEnnemie[indice]->palier,suite.chemin, largeur, hauteur);
+					}
+					if((tabEnnemie[indice]->imgDestRectEnnemie.x == (largeur/ABS)*suite.chemin[tabEnnemie[indice]->palier+1].x + (largeur/ABS)/4) && (tabEnnemie[indice]->imgDestRectEnnemie.y == (((hauteur-200)/ORD))*suite.chemin[tabEnnemie[indice]->palier+1].y + (((hauteur-200)/ORD)/4))){
 						tabEnnemie[indice]->palier++;	
 					}
 				}
@@ -390,6 +399,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 						}
 					}
 				}
+
 				SDL_Delay(0.5);
 				if(tabEnnemie[indice] != NULL){
 					appelTextEnnemie(renderer,tabEnnemie[indice]->texture,&tabEnnemie[indice]->imgDestRectEnnemie,&tabEnnemie[indice]->imgDestRectEnnemie.w,&tabEnnemie[indice]->imgDestRectEnnemie.h);
@@ -437,11 +447,12 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 								SDL_Log("mort");
 							}
 
-							if(nbEnnemie==0){
+							
+						}
+						if(nbEnnemie==0){
 								running = 0; 
 								SDL_Log("Victoire");
 							}
-						}
 						if(hero3->cooldown==1 && tabHero->tab[i]->Hero==hero3){
 							tabEnnemie[0]->pv-=hero3->degat;
 							hero3->cooldown=0;
@@ -503,8 +514,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 								break;
 							}
 						}
-							break;
-						SDL_Log("-key");
+						if(e.key.keysym.sym == SDLK_1){ // La touche &
+							
+						}
 						break;
 					case SDL_MOUSEMOTION: // Déplacement de souris
 					//SDL_Log("Mouvement de souris (%d %d) (%d %d)", e.motion.x, e.motion.y, e.motion.xrel, e.motion.yrel);
@@ -627,7 +639,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 						if((e.button.x >= imgDestRectpause.x && e.button.x <= imgDestRectpause.x + imgDestRectpause.w) && (e.button.y >= imgDestRectpause.y && e.button.y <= imgDestRectpause.y + imgDestRectpause.h)){
 							SDL_Log("PAUSE");
 							switch(param(renderer,window,largeur,hauteur,background)){
-								case 0:running=SDL_FALSE;break;
+								case 0:running=SDL_FALSE;vague=MAX_Vague;break;
 								case 2:SDL_GetWindowSize(window,&largeur,&hauteur);break;
 								case 1:
 								largeur=WIDTHSCREEN;
@@ -669,6 +681,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_DestroyTexture(textHero3);
 	SDL_DestroyTexture(texte);
 	SDL_DestroyTexture(boule);
+	SDL_DestroyTexture(PV);
 
 	detruireHero(&hero1);
 	detruireHero(&hero2);

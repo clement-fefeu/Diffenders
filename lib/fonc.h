@@ -6,7 +6,6 @@
 #include <time.h>
 #include <unistd.h>
 
-
 extern DECLSPEC int SDLCALL TTF_Init(void);
 
 #define WIDTH 255
