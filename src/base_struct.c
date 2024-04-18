@@ -2,7 +2,7 @@
 #include "../lib/fonc.h"
 
 char * nomHero[3] = {"Skarn","Pof","Roy"};
-int degatHero[3] = {80,50,150};
+int degatHero[3] = {80,50,200};
 int typeHero[3] = {3,3,3};
 int prix[3] = {250,500,1000};
 int cooldown[3] = {1,0.5,1.5};
