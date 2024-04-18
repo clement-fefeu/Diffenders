@@ -230,5 +230,6 @@ SDL_Texture *load_text(SDL_Renderer *renderer,char *text,int taille_text){
         fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s", SDL_GetError());
         return NULL;
     }
+    TTF_CloseFont(police);
     return texture;
 }

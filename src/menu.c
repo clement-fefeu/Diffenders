@@ -266,7 +266,9 @@ int menu()
     SDL_Rect pos_quit,pos_play,pos_param;
     int statut = EXIT_FAILURE;
     /* Initialisation simple */
+    printf("\n1\n");
     init(&window,&renderer,WIDTHSCREEN,HEIGHTSCREEN);
+    printf("\n2\n");
     init_icon(window);
     int largeur=WIDTHSCREEN,hauteur=HEIGHTSCREEN;
 
@@ -368,6 +370,7 @@ int menu()
 
     statut = EXIT_SUCCESS;
 Quit:
+    SDL_RenderClear(renderer);
     SDL_DestroyTexture(quit);
     SDL_DestroyTexture(play);
     SDL_DestroyTexture(background);

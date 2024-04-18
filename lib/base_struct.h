@@ -40,8 +40,7 @@ struct typeHero_s{
 struct ennemie_s{
     char * nom;
     int pv;
-    int sensX;
-    int sensY;
+    int palier;
     SDL_Rect imgDestRectEnnemie;
     SDL_Texture *texture;
 
@@ -51,6 +50,7 @@ struct ennemie_s{
 struct hero_s{
     char * nom;
     int degat;
+    int cooldown;
     int prix;
     typeHero_t typehero;
 

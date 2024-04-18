@@ -1,10 +1,11 @@
 #include "../lib/base_struct.h"
 #include "../lib/fonc.h"
 
-char * nomHero[8] = {"Skarn","Pof","Roy","Erjar","Ranov","Xoras","Avban","Vzura"};
-int degatHero[8] = {100,100,150,300,250,400,800,50};
-int typeHero[8] = {3,3,3,3,3,3,3,3};
-char * nomTypeHero[8] = {"Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit","Direct Hit"};
+char * nomHero[3] = {"Skarn","Pof","Roy"};
+int degatHero[3] = {50,70,100};
+int typeHero[3] = {3,3,3};
+int prix[3] = {250,500,1000};
+char * nomTypeHero[3] = {"Direct Hit","Direct Hit","Direct Hit"};
 
 ennemie_t * initialise_enemie(){     //fonction qui créér un ennemie.
     ennemie_t * enemieTemp = malloc(sizeof(ennemie_t));
@@ -34,9 +35,10 @@ hero_t * initialise_hero(int nb){
 
     heroTemp->nom = nomHero[nb];
     heroTemp->degat = degatHero[nb];
+    heroTemp->cooldown = 1;
     heroTemp->typehero.idenType = typeHero[nb];
     heroTemp->typehero.nom = nomTypeHero[nb];
-    heroTemp->prix= 250;
+    heroTemp->prix= prix[nb];
     
     return heroTemp;
 }
@@ -208,7 +210,7 @@ int actualiseBase(base_t * base){
 player_t * initialise_joueur(){
     player_t * joueur = malloc(sizeof(player_t));
 
-    joueur->argent = 1000;
+    joueur->argent = 500;
     
     joueur->base = malloc(sizeof(base_t));
     return joueur;

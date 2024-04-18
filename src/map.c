@@ -140,6 +140,7 @@ void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) 
   SDL_DestroyTexture(texture2);
   SDL_DestroyTexture(texture3);
   SDL_FreeSurface(blanc);
+  SDL_FreeSurface(base);
 }
 
 /*initialisation de matrice de map a 0*/
@@ -269,31 +270,31 @@ void calc_bord(int a, int b, int tab[ABS][ORD], int *c, int *d) {
     x = 0;
     y = 0;
     if (a < ((ABS - 1) / 2)) {
-      x = (rand() % (ABS / 2)) + ((ABS - 1) / 2);
+      x = (rand() % (ABS / 2)+1) + ((ABS - 1) / 2);
       if (b < ((ORD - 1) / 2)) {
         if (x == ABS - 1) {
-          y = (rand() % (ORD / 2)) + ((ORD - 1) / 2);
+          y = (rand() % (ORD / 2)+1) + ((ORD - 1) / 2);
         } else {
           y = ORD - 1;
         }
       } else {
         if (x == 0) {
-          y = 1 + (rand() % ((ORD - 1) / 2));
+          y = 1 + (rand() % ((ORD - 1) / 2)+1);
         } else {
           y = 0;
         }
       }
     } else {
-      x = (rand() % ((ABS - 1) / 2));
+      x = (rand() % ((ABS - 1) / 2)+1);
       if (b < ((ORD - 1) / 2)) {
         if (x == 0) {
-          y = (rand() % (ORD / 2)) + ((ORD - 1) / 2);
+          y = (rand() % (ORD / 2)+1) + ((ORD - 1) / 2);
         } else {
           y = ORD - 1;
         }
       } else {
         if (x == 0) {
-          y = 1 + (rand() % ((ORD - 1) / 2));
+          y = 1 + (rand() % ((ORD - 1) / 2)+1);
         } else {
           y = 0;
         }

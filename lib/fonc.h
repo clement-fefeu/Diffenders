@@ -25,15 +25,7 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
 #define ORD 15
 #define NB_ENTREE 1
 
-
-/**
- * @brief Structure représentant un carré dans l'écran.
- */
-struct carre {
-   SDL_Rect rect; /**< Le rectangle du carré. */
-   Uint32 couleur; /**< La couleur du carré. */
-};
-
+#define MAX_Vague 5
 /**
  * @brief Structure représentant les entrées utilisateur.
  */
