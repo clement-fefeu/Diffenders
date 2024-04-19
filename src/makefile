@@ -14,12 +14,12 @@ PROG3=map.o
 MAIN=main.o
 BDD=base_struct.o
 TEST=jeu.o
-EXECUTABLE=../bin/test
+EXECUTABLE=../bin/Diffenders
 
-all: test
+all: Diffenders
 
-test: fonc.o menu.o main.o base_struct.o jeu.o map.o
-	${CC}  ${PROG1} ${PROG2} ${PROG3} ${MAIN} ${BDD} ${TEST} -o ../bin/test ${LIBS} ${INCLUDES}
+Diffenders: fonc.o menu.o main.o base_struct.o jeu.o map.o
+	${CC}  ${PROG1} ${PROG2} ${PROG3} ${MAIN} ${BDD} ${TEST} -o ../bin/Diffenders ${LIBS} ${INCLUDES}
 
 fonc.o: fonc.c
 	${CC} -c fonc.c ../lib/fonc.h
