@@ -1,35 +1,15 @@
 #include "../lib/fonc.h"
 
+//
+//  fonc.c
+//
+//  Created by Gabriel Dubois.
 /**
- * @brief Teste si un point est à l'intérieur d'un rectangle.
- * 
- * @param point Le point à tester.
- * @param rect Le rectangle dans lequel tester le point.
- * @return SDL_bool Retourne SDL_TRUE si le point est à l'intérieur du rectangle, sinon SDL_FALSE.
- */
-SDL_bool test(SDL_Point point, SDL_Rect rect){
-    if(point.x >= rect.x && point.x <= (rect.x + rect.w) &&
-        point.y >= rect.y && point.y <= (rect.y + rect.h))
-        return SDL_TRUE;
-    else
-        return SDL_FALSE;
-}
-
-/**
- * @brief Change la couleur de la fenêtre.
- * 
- * @param renderer Le renderer SDL.
- * @param color La couleur à appliquer.
- * @return int Retourne 0 en cas de réussite, -1 en cas d'échec.
- */
-int setWindowColor(SDL_Renderer *renderer, SDL_Color color)
-{
-    if(SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a) < 0)
-        return -1;
-    if(SDL_RenderClear(renderer) < 0)
-        return -1;
-    return 0;
-}
+ *  \file fonc.c
+ * \brief Programme principal
+ * \details Fichier qui contient toutes les fonction pour l'affichage.
+ * \author Gabriel Dubois
+*/
 
 /**
  * @brief Initialise la fenêtre et le renderer SDL.
@@ -77,48 +57,6 @@ void loadImage(const char path[], SDL_Renderer *renderer,SDL_Texture **texture)
         fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s", SDL_GetError());
     }
 }
-
-/**
- * @brief Crée une texture de dégradé pour le fond.
- * 
- * @param renderer Le renderer SDL.
- * @return SDL_Texture* La texture du dégradé.
- */
-SDL_Texture *degrade(SDL_Renderer *renderer)
-{
-    SDL_Texture *texture = NULL;
-    SDL_PixelFormat *format;
-
-    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC,
-                                1, 255); /* Il ne faudra pas oublier les vérifications */
-    Uint32 pixels[255] = {0};
-    size_t i;
-    format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
-    for(i = 0; i < 255; i++)
-        pixels[i] = SDL_MapRGBA(format, i, 0, 0, 255);
-    SDL_UpdateTexture(texture, NULL, pixels, sizeof(Uint32) * 1);
-    SDL_FreeFormat(format);
-    return texture;
-}
-
-/**
- * @brief Modifie un pixel dans une surface SDL.
- * 
- * @param surface La surface SDL.
- * @param r La composante rouge du pixel.
- * @param g La composante verte du pixel.
- * @param b La composante bleue du pixel.
- * @param a La composante alpha du pixel.
- * @param x La coordonnée en x du pixel.
- * @param y La coordonnée en y du pixel.
- */
-void setPixel(SDL_Surface *surface, Uint8 r, Uint8 g, Uint8 b, Uint8 a, size_t x, size_t y)
-{
-    Uint32 *pixels = surface->pixels; /* Nos pixels sont sur 32 bits */
-    Uint32 couleur = SDL_MapRGBA(surface->format, r, g, b, a);
-    pixels[y * surface->w + x] = couleur;
-}
-
 /**
  * @brief Crée une surface à partir d'une texture SDL.
  * 
@@ -152,42 +90,6 @@ SDL_Surface *createSurfaceFromTexture(SDL_Texture *texture)
 lock_texture_fail:
 query_texture_fail:
     return surface;
-}
-
-/**
- * @brief Met à jour les événements d'entrée utilisateur.
- * 
- * @param input Structure d'entrée utilisateur.
- */
-void updateEvent(struct Input *input)
-{
-    SDL_Event event;
-    while(SDL_PollEvent(&event))
-    {
-        if(event.type == SDL_QUIT)
-            input->quit = SDL_TRUE;
-        else if(event.type == SDL_KEYDOWN)
-            input->key[event.key.keysym.scancode] = SDL_TRUE;
-        else if(event.type == SDL_KEYUP)
-            input->key[event.key.keysym.scancode] = SDL_FALSE;
-        else if(event.type == SDL_MOUSEMOTION)
-        {
-            input->x = event.motion.x;
-            input->y = event.motion.y;
-            input->xrel = event.motion.xrel;
-            input->yrel = event.motion.yrel;
-        }
-        else if(event.type == SDL_MOUSEWHEEL)
-        {
-            input->xwheel = event.wheel.x;
-            input->ywheel = event.wheel.y;
-        }
-        else if(event.type == SDL_MOUSEBUTTONDOWN)
-              input->mouse[event.button.button] = SDL_TRUE;
-        else if(event.type == SDL_MOUSEBUTTONUP)
-            input->mouse[event.button.button] = SDL_FALSE;
-
-    }
 }
 
 /**
@@ -234,3 +136,208 @@ SDL_Texture *load_text(SDL_Renderer *renderer,char *text,int taille_text){
     return texture;
 }
 
+
+
+void accueil(SDL_Renderer *renderer,int gris,SDL_Texture *quit ,SDL_Texture *play ,SDL_Texture*background,SDL_Texture*quit_des,SDL_Texture*play_des,SDL_Texture*parametre,SDL_Texture*parametre_des,int largeur, int hauteur){
+    SDL_Rect pos_quit,pos_play,pos_param;;
+
+
+    switch(gris){
+        case 0:
+            SDL_RenderCopy(renderer, background, NULL, NULL );
+            SDL_QueryTexture(quit, NULL, NULL, &(pos_quit.w), &(pos_quit.h)); // Récupere la dimension de la texture
+            pos_quit.x = largeur /2 - pos_quit.w /2;
+            pos_quit.y = hauteur /2 - pos_quit.h /2;
+            SDL_RenderCopy(renderer, quit, NULL, &pos_quit);
+
+            SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
+            pos_play.x = largeur /2 - pos_play.w /2;
+            pos_play.y = pos_quit.y-140;
+            SDL_RenderCopy(renderer, play, NULL, &pos_play);
+
+            SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
+            pos_param.x = largeur /2 - pos_param.w /2;
+            pos_param.y = pos_quit.y-70;
+            SDL_RenderCopy(renderer, parametre, NULL, &pos_param);
+
+            SDL_RenderPresent(renderer);
+            break;
+        case 1:
+            SDL_RenderCopy(renderer, background, NULL, NULL );
+            SDL_QueryTexture(quit_des, NULL, NULL, &(pos_quit.w), &(pos_quit.h)); // Récupere la dimension de la texture
+            pos_quit.x = largeur /2 - pos_quit.w /2;
+            pos_quit.y = hauteur /2 - pos_quit.h /2;
+            SDL_RenderCopy(renderer, quit_des, NULL, &pos_quit);
+
+            SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
+            pos_play.x = largeur /2 - pos_play.w /2;
+            pos_play.y = pos_quit.y-140;
+            SDL_RenderCopy(renderer, play, NULL, &pos_play);
+
+            SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
+            pos_param.x = largeur /2 - pos_param.w /2;
+            pos_param.y = pos_quit.y-70;
+            SDL_RenderCopy(renderer, parametre, NULL, &pos_param);
+
+            SDL_RenderPresent(renderer);
+            break;
+        case 2:
+            SDL_RenderCopy(renderer, background, NULL, NULL );
+            SDL_QueryTexture(quit, NULL, NULL, &(pos_quit.w), &(pos_quit.h)); // Récupere la dimension de la texture
+            pos_quit.x = largeur /2 - pos_quit.w /2;
+            pos_quit.y = hauteur /2 - pos_quit.h /2;
+            SDL_RenderCopy(renderer, quit, NULL, &pos_quit);
+
+            SDL_QueryTexture(play_des, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
+            pos_play.x = largeur /2 - pos_play.w /2;
+            pos_play.y = pos_quit.y-140;
+            SDL_RenderCopy(renderer, play_des, NULL, &pos_play);
+
+            SDL_QueryTexture(parametre, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
+            pos_param.x = largeur /2 - pos_param.w /2;
+            pos_param.y = pos_quit.y-70;
+            SDL_RenderCopy(renderer, parametre, NULL, &pos_param);
+
+            SDL_RenderPresent(renderer);
+            break;
+        case 3:
+            SDL_RenderCopy(renderer, background, NULL, NULL );
+            SDL_QueryTexture(quit, NULL, NULL, &(pos_quit.w), &(pos_quit.h)); // Récupere la dimension de la texture
+            pos_quit.x = largeur /2 - pos_quit.w /2;
+            pos_quit.y = hauteur /2 - pos_quit.h /2;
+            SDL_RenderCopy(renderer, quit, NULL, &pos_quit);
+
+            SDL_QueryTexture(play, NULL, NULL, &(pos_play.w), &(pos_play.h)); // Récupere la dimension de la texture
+            pos_play.x = largeur /2 - pos_play.w /2;
+            pos_play.y = pos_quit.y-140;
+            SDL_RenderCopy(renderer, play, NULL, &pos_play);
+
+            SDL_QueryTexture(parametre_des, NULL, NULL, &(pos_param.w), &(pos_param.h)); // Récupere la dimension de la texture
+            pos_param.x = largeur /2 - pos_param.w /2;
+            pos_param.y = pos_quit.y-70;
+            SDL_RenderCopy(renderer, parametre_des, NULL, &pos_param);
+
+            SDL_RenderPresent(renderer);
+            break;
+
+    }
+        
+}
+
+int param(SDL_Renderer *renderer,SDL_Window *window,int largeur, int hauteur,SDL_Texture *background){
+	SDL_Event event;
+	SDL_bool isOpen=SDL_TRUE;
+	SDL_Texture *menu=NULL,*full = NULL,*retour = NULL,*quitter=NULL,*fenetrer=NULL;
+	SDL_Rect RectParam,position;
+    SDL_bool fullscreen=SDL_FALSE;
+    int grand=1;
+// load sample.png into image (fenetre de pause)
+	loadImage("../img/menu.png",renderer,&menu);
+// load sample.png into image (quitter)
+	loadImage("../img/retour_b.png",renderer,&retour);
+// load sample.png into image (retour)
+	loadImage("../img/quitter_b.png",renderer,&quitter);
+// load sample.png into image (plein ecran)
+	loadImage("../img/plein_ecran_b.png",renderer,&full);
+// load sample.png into image (fenetrer)
+	loadImage("../img/fenetrer_b.png",renderer,&fenetrer);
+
+
+    SDL_RenderClear(renderer);
+
+	SDL_RenderCopy(renderer, background,NULL, NULL);
+    SDL_QueryTexture(menu,NULL,NULL,&RectParam.w,&RectParam.h);
+	RectParam.x = largeur /2 - RectParam.w /2;
+	RectParam.y = hauteur /2 - RectParam.h /2;
+	SDL_RenderCopy(renderer, menu,NULL, &RectParam);
+	SDL_RenderPresent(renderer);
+	while(isOpen){
+
+		while(SDL_PollEvent(&event)){
+            SDL_GetWindowSize(window,&largeur,&hauteur);
+                switch (event.type){
+                case SDL_QUIT:
+                    isOpen = SDL_FALSE;
+                    break;
+                case SDL_MOUSEMOTION:
+                    SDL_RenderClear(renderer);
+                    SDL_RenderCopy(renderer, background,NULL, NULL);
+                    //mode retour en blanc
+                    if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+85 && event.button.y<=RectParam.y+128)){
+                        
+                        SDL_QueryTexture(retour,NULL,NULL,&RectParam.w,&RectParam.h);
+                        RectParam.x = largeur /2 - RectParam.w /2;
+                        RectParam.y = hauteur /2 - RectParam.h /2;
+                        SDL_RenderCopy(renderer, retour,NULL, &RectParam);
+                        SDL_RenderPresent(renderer);
+                    }
+                    //mode plein ecran en blanc
+                    else if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+185 && event.button.y<=RectParam.y+230)){
+
+                        SDL_QueryTexture(full,NULL,NULL,&RectParam.w,&RectParam.h);
+                        RectParam.x = largeur /2 - RectParam.w /2;
+                        RectParam.y = hauteur /2 - RectParam.h /2;
+                        SDL_RenderCopy(renderer, full,NULL, &RectParam);
+                        SDL_RenderPresent(renderer);
+                    }
+                    //mode fenetré en blanc
+                    else if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+285 && event.button.y<=RectParam.y+335)){
+
+                        SDL_QueryTexture(fenetrer,NULL,NULL,&RectParam.w,&RectParam.h);
+                        RectParam.x = largeur /2 - RectParam.w /2;
+                        RectParam.y = hauteur /2 - RectParam.h /2;
+                        SDL_RenderCopy(renderer, fenetrer,NULL, &RectParam);
+                        SDL_RenderPresent(renderer);
+                    }
+                    //mode quitter en blanc
+                    else if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+400 && event.button.y<=RectParam.y+440)){
+
+                        SDL_QueryTexture(quitter,NULL,NULL,&RectParam.w,&RectParam.h);
+                        RectParam.x = largeur /2 - RectParam.w /2;
+                        RectParam.y = hauteur /2 - RectParam.h /2;
+                        SDL_RenderCopy(renderer, quitter,NULL, &RectParam);
+                        SDL_RenderPresent(renderer);
+                    }
+                    else{
+
+                        SDL_QueryTexture(menu,NULL,NULL,&RectParam.w,&RectParam.h);
+                        RectParam.x = largeur /2 - RectParam.w /2;
+                        RectParam.y = hauteur /2 - RectParam.h /2;
+                        SDL_RenderCopy(renderer, menu,NULL, &RectParam);
+                        SDL_RenderPresent(renderer);
+                    }
+                    break;
+                case SDL_MOUSEBUTTONDOWN:
+                    
+                    if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+400 && event.button.y<=RectParam.y+440)){
+                        return 0;
+                    }
+                    else if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+85 && event.button.y<=RectParam.y+128)){
+                        
+                        SDL_RenderClear(renderer);
+                        isOpen = SDL_FALSE;
+                    }
+                    else if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+185 && event.button.y<=RectParam.y+230)){
+                        SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN);
+                        grand=2;
+                        SDL_RenderClear(renderer);
+                    }
+                    else if((event.button.x>=RectParam.x  && event.button.x<=RectParam.w+RectParam.x) && (event.button.y>=RectParam.y+285 && event.button.y<=RectParam.y+335)){
+                        SDL_SetWindowFullscreen(window,0);
+                        grand=1;
+                        SDL_RenderClear(renderer);
+                    }
+                    
+                    break;
+            }
+            
+        }
+		
+	}
+    SDL_DestroyTexture(full);
+    SDL_DestroyTexture(fenetrer);
+    SDL_DestroyTexture(quitter);
+    SDL_DestroyTexture(retour);
+    SDL_DestroyTexture(menu);
+	return grand;
+}

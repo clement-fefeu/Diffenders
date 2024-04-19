@@ -1,0 +1,137 @@
+\doxysection{Référence du fichier src/fonc.c}
+\hypertarget{fonc_8c}{}\label{fonc_8c}\index{src/fonc.c@{src/fonc.c}}
+
+
+Programme principal.  
+
+
+{\ttfamily \#include \"{}../lib/fonc.\+h\"{}}\newline
+\doxysubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{fonc_8c_ad74f4be46c39801c3c72ba51db2a1bbe}{init}} (SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}window, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}renderer, int w, int h)
+\begin{DoxyCompactList}\small\item\em Initialise la fenêtre et le renderer SDL. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{fonc_8c_adbb689e5e37cefc3b9d94ee813aac36d}{load\+Image}} (const char path\mbox{[}$\,$\mbox{]}, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}texture)
+\begin{DoxyCompactList}\small\item\em Charge une image dans une texture SDL. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Surface \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fonc_8c_a22884fdfda1408bbfad6d97f6073021e}{create\+Surface\+From\+Texture}} (SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texture)
+\begin{DoxyCompactList}\small\item\em Crée une surface à partir d\textquotesingle{}une texture SDL. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{fonc_8c_af6b37e5856c89e169cbacb0a6aef47e4}{init\+\_\+icon}} (SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}icône de la fenêtre. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fonc_8c_afb428c78ff46a28ac28a03c55e6a8351}{load\+\_\+text}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, char \texorpdfstring{$\ast$}{*}text, int taille\+\_\+text)
+\begin{DoxyCompactList}\small\item\em Charge un texte dans une texture SDL. \end{DoxyCompactList}\item 
+\Hypertarget{fonc_8c_a222b803b949900dda03435450581e157}\label{fonc_8c_a222b803b949900dda03435450581e157} 
+void {\bfseries accueil} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int gris, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}quit, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}play, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}background, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}quit\+\_\+des, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}play\+\_\+des, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}parametre, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}parametre\+\_\+des, int largeur, int hauteur)
+\item 
+\Hypertarget{fonc_8c_abd53c60e1da1294a823bf9aa2d127430}\label{fonc_8c_abd53c60e1da1294a823bf9aa2d127430} 
+int {\bfseries param} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}window, int largeur, int hauteur, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}background)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Programme principal. 
+
+Fichier qui contient toutes les fonction pour l\textquotesingle{}affichage. \begin{DoxyAuthor}{Auteur}
+Gabriel Dubois 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Documentation des fonctions}
+\Hypertarget{fonc_8c_a22884fdfda1408bbfad6d97f6073021e}\label{fonc_8c_a22884fdfda1408bbfad6d97f6073021e} 
+\index{fonc.c@{fonc.c}!createSurfaceFromTexture@{createSurfaceFromTexture}}
+\index{createSurfaceFromTexture@{createSurfaceFromTexture}!fonc.c@{fonc.c}}
+\doxysubsubsection{\texorpdfstring{createSurfaceFromTexture()}{createSurfaceFromTexture()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Surface \texorpdfstring{$\ast$}{*} create\+Surface\+From\+Texture (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{texture }\end{DoxyParamCaption})}
+
+
+
+Crée une surface à partir d\textquotesingle{}une texture SDL. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em texture} & La texture SDL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+SDL\+\_\+\+Surface\texorpdfstring{$\ast$}{*} La surface créée. 
+\end{DoxyReturn}
+\Hypertarget{fonc_8c_ad74f4be46c39801c3c72ba51db2a1bbe}\label{fonc_8c_ad74f4be46c39801c3c72ba51db2a1bbe} 
+\index{fonc.c@{fonc.c}!init@{init}}
+\index{init@{init}!fonc.c@{fonc.c}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily int init (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{window,  }\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{int}]{w,  }\item[{int}]{h }\end{DoxyParamCaption})}
+
+
+
+Initialise la fenêtre et le renderer SDL. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em window} & Pointeur vers la fenêtre SDL. \\
+\hline
+{\em renderer} & Pointeur vers le renderer SDL. \\
+\hline
+{\em w} & La largeur de la fenêtre. \\
+\hline
+{\em h} & La hauteur de la fenêtre. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Retourne 0 en cas de réussite, -\/1 en cas d\textquotesingle{}échec. 
+\end{DoxyReturn}
+\Hypertarget{fonc_8c_af6b37e5856c89e169cbacb0a6aef47e4}\label{fonc_8c_af6b37e5856c89e169cbacb0a6aef47e4} 
+\index{fonc.c@{fonc.c}!init\_icon@{init\_icon}}
+\index{init\_icon@{init\_icon}!fonc.c@{fonc.c}}
+\doxysubsubsection{\texorpdfstring{init\_icon()}{init\_icon()}}
+{\footnotesize\ttfamily void init\+\_\+icon (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+
+Initialise l\textquotesingle{}icône de la fenêtre. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em window} & La fenêtre SDL. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{fonc_8c_afb428c78ff46a28ac28a03c55e6a8351}\label{fonc_8c_afb428c78ff46a28ac28a03c55e6a8351} 
+\index{fonc.c@{fonc.c}!load\_text@{load\_text}}
+\index{load\_text@{load\_text}!fonc.c@{fonc.c}}
+\doxysubsubsection{\texorpdfstring{load\_text()}{load\_text()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} load\+\_\+text (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{char \texorpdfstring{$\ast$}{*}}]{text,  }\item[{int}]{taille\+\_\+text }\end{DoxyParamCaption})}
+
+
+
+Charge un texte dans une texture SDL. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em text} & Le texte à afficher. \\
+\hline
+{\em taille\+\_\+text} & La taille du texte. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} La texture du texte chargé. 
+\end{DoxyReturn}
+\Hypertarget{fonc_8c_adbb689e5e37cefc3b9d94ee813aac36d}\label{fonc_8c_adbb689e5e37cefc3b9d94ee813aac36d} 
+\index{fonc.c@{fonc.c}!loadImage@{loadImage}}
+\index{loadImage@{loadImage}!fonc.c@{fonc.c}}
+\doxysubsubsection{\texorpdfstring{loadImage()}{loadImage()}}
+{\footnotesize\ttfamily void load\+Image (\begin{DoxyParamCaption}\item[{const char}]{path\mbox{[}$\,$\mbox{]},  }\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{texture }\end{DoxyParamCaption})}
+
+
+
+Charge une image dans une texture SDL. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & Le chemin vers l\textquotesingle{}image à charger. \\
+\hline
+{\em renderer} & Le renderer SDL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} La texture de l\textquotesingle{}image chargée. 
+\end{DoxyReturn}

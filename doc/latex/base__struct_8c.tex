@@ -1,0 +1,59 @@
+\doxysection{Référence du fichier src/base\+\_\+struct.c}
+\hypertarget{base__struct_8c}{}\label{base__struct_8c}\index{src/base\_struct.c@{src/base\_struct.c}}
+
+
+Programme principal.  
+
+
+{\ttfamily \#include \"{}../lib/base\+\_\+struct.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/fonc.\+h\"{}}\newline
+\doxysubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{base__struct_8c_a6d72e3343b0f353a0de25d5ba84a2152}\label{base__struct_8c_a6d72e3343b0f353a0de25d5ba84a2152} 
+ennemie\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries initialise\+\_\+enemie} ()
+\item 
+\Hypertarget{base__struct_8c_af3aaac8090baed75a5abbfa30d43df2a}\label{base__struct_8c_af3aaac8090baed75a5abbfa30d43df2a} 
+int {\bfseries detruire\+Enem} (ennemie\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ennemie)
+\item 
+\Hypertarget{base__struct_8c_a4129c82549b98c1795eb4ab33ae4df1d}\label{base__struct_8c_a4129c82549b98c1795eb4ab33ae4df1d} 
+hero\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries initialise\+\_\+hero} (int nb)
+\item 
+\Hypertarget{base__struct_8c_a4c02ecdf644d98f9eb117f972437e1f4}\label{base__struct_8c_a4c02ecdf644d98f9eb117f972437e1f4} 
+void {\bfseries affiche\+Hero} (hero\+\_\+t \texorpdfstring{$\ast$}{*}hero)
+\item 
+\Hypertarget{base__struct_8c_a3bce30a17f18a56eca127ee4f187a43a}\label{base__struct_8c_a3bce30a17f18a56eca127ee4f187a43a} 
+int {\bfseries detruire\+Hero} (hero\+\_\+t \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}hero)
+\item 
+\Hypertarget{base__struct_8c_ab4bdf99042ff94232fee14c23f56beb4}\label{base__struct_8c_ab4bdf99042ff94232fee14c23f56beb4} 
+player\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries initialise\+\_\+joueur} ()
+\item 
+\Hypertarget{base__struct_8c_a1e985d932e253bc3bd173c177cc8144a}\label{base__struct_8c_a1e985d932e253bc3bd173c177cc8144a} 
+void {\bfseries detruire\+\_\+joueur} (player\+\_\+t \texorpdfstring{$\ast$}{*}joueur)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{base__struct_8c_a94bb85d12b30cf13d0fc14fc90ea51e1}\label{base__struct_8c_a94bb85d12b30cf13d0fc14fc90ea51e1} 
+char \texorpdfstring{$\ast$}{*} {\bfseries nom\+Hero} \mbox{[}3\mbox{]} = \{\"{}Skarn\"{}, \"{}Pof\"{}, \"{}Roy\"{}\}
+\begin{DoxyCompactList}\small\item\em Noms des héros. \end{DoxyCompactList}\item 
+\Hypertarget{base__struct_8c_a100b5bf3134e6ed1e25036ae91e3a9d8}\label{base__struct_8c_a100b5bf3134e6ed1e25036ae91e3a9d8} 
+int {\bfseries degat\+Hero} \mbox{[}3\mbox{]} = \{80, 50, 200\}
+\begin{DoxyCompactList}\small\item\em Dégâts des héros. \end{DoxyCompactList}\item 
+\Hypertarget{base__struct_8c_a822cf42de141c488fff96b6342266244}\label{base__struct_8c_a822cf42de141c488fff96b6342266244} 
+int {\bfseries type\+Hero} \mbox{[}3\mbox{]} = \{3, 3, 3\}
+\begin{DoxyCompactList}\small\item\em Types des héros. \end{DoxyCompactList}\item 
+\Hypertarget{base__struct_8c_a21ccc85d2a3698a44b2e812fbb81f25e}\label{base__struct_8c_a21ccc85d2a3698a44b2e812fbb81f25e} 
+int {\bfseries prix} \mbox{[}3\mbox{]} = \{250, 500, 1000\}
+\begin{DoxyCompactList}\small\item\em Prix des héros. \end{DoxyCompactList}\item 
+\Hypertarget{base__struct_8c_a94b4cffb0b4119611f3732b7be3b5c5f}\label{base__struct_8c_a94b4cffb0b4119611f3732b7be3b5c5f} 
+int {\bfseries cooldown} \mbox{[}3\mbox{]} = \{1000, 500, 1500\}
+\begin{DoxyCompactList}\small\item\em Temps de recharge des héros. \end{DoxyCompactList}\item 
+\Hypertarget{base__struct_8c_a667f7b24ba7819b90b53ee469aa314dc}\label{base__struct_8c_a667f7b24ba7819b90b53ee469aa314dc} 
+char \texorpdfstring{$\ast$}{*} {\bfseries nom\+Type\+Hero} \mbox{[}3\mbox{]} = \{\"{}Direct Hit\"{}, \"{}Direct Hit\"{}, \"{}Direct Hit\"{}\}
+\begin{DoxyCompactList}\small\item\em Noms des types de héros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Programme principal. 
+

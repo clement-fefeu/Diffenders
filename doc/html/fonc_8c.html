@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Diffenders: Référence du fichier src/fonc.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="tower_def.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">Diffenders<span id="projectnumber">&#160;0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier fonc.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Programme principal.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;../lib/fonc.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ad74f4be46c39801c3c72ba51db2a1bbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonc_8c.html#ad74f4be46c39801c3c72ba51db2a1bbe">init</a> (SDL_Window **window, SDL_Renderer **renderer, int w, int h)</td></tr>
+<tr class="memdesc:ad74f4be46c39801c3c72ba51db2a1bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise la fenêtre et le renderer SDL.  <br /></td></tr>
+<tr class="separator:ad74f4be46c39801c3c72ba51db2a1bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbb689e5e37cefc3b9d94ee813aac36d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonc_8c.html#adbb689e5e37cefc3b9d94ee813aac36d">loadImage</a> (const char path[], SDL_Renderer *renderer, SDL_Texture **texture)</td></tr>
+<tr class="memdesc:adbb689e5e37cefc3b9d94ee813aac36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charge une image dans une texture SDL.  <br /></td></tr>
+<tr class="separator:adbb689e5e37cefc3b9d94ee813aac36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22884fdfda1408bbfad6d97f6073021e"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonc_8c.html#a22884fdfda1408bbfad6d97f6073021e">createSurfaceFromTexture</a> (SDL_Texture *texture)</td></tr>
+<tr class="memdesc:a22884fdfda1408bbfad6d97f6073021e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée une surface à partir d'une texture SDL.  <br /></td></tr>
+<tr class="separator:a22884fdfda1408bbfad6d97f6073021e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6b37e5856c89e169cbacb0a6aef47e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonc_8c.html#af6b37e5856c89e169cbacb0a6aef47e4">init_icon</a> (SDL_Window *window)</td></tr>
+<tr class="memdesc:af6b37e5856c89e169cbacb0a6aef47e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise l'icône de la fenêtre.  <br /></td></tr>
+<tr class="separator:af6b37e5856c89e169cbacb0a6aef47e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb428c78ff46a28ac28a03c55e6a8351"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonc_8c.html#afb428c78ff46a28ac28a03c55e6a8351">load_text</a> (SDL_Renderer *renderer, char *text, int taille_text)</td></tr>
+<tr class="memdesc:afb428c78ff46a28ac28a03c55e6a8351"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charge un texte dans une texture SDL.  <br /></td></tr>
+<tr class="separator:afb428c78ff46a28ac28a03c55e6a8351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a222b803b949900dda03435450581e157"><td class="memItemLeft" align="right" valign="top"><a id="a222b803b949900dda03435450581e157" name="a222b803b949900dda03435450581e157"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>accueil</b> (SDL_Renderer *renderer, int gris, SDL_Texture *quit, SDL_Texture *play, SDL_Texture *background, SDL_Texture *quit_des, SDL_Texture *play_des, SDL_Texture *parametre, SDL_Texture *parametre_des, int largeur, int hauteur)</td></tr>
+<tr class="separator:a222b803b949900dda03435450581e157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd53c60e1da1294a823bf9aa2d127430"><td class="memItemLeft" align="right" valign="top"><a id="abd53c60e1da1294a823bf9aa2d127430" name="abd53c60e1da1294a823bf9aa2d127430"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>param</b> (SDL_Renderer *renderer, SDL_Window *window, int largeur, int hauteur, SDL_Texture *background)</td></tr>
+<tr class="separator:abd53c60e1da1294a823bf9aa2d127430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Programme principal. </p>
+<p>Fichier qui contient toutes les fonction pour l'affichage. </p><dl class="section author"><dt>Auteur</dt><dd>Gabriel Dubois </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a22884fdfda1408bbfad6d97f6073021e" name="a22884fdfda1408bbfad6d97f6073021e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22884fdfda1408bbfad6d97f6073021e">&#9670;&#160;</a></span>createSurfaceFromTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Surface * createSurfaceFromTexture </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Texture *&#160;</td>
+          <td class="paramname"><em>texture</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crée une surface à partir d'une texture SDL. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">texture</td><td>La texture SDL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>SDL_Surface* La surface créée. </dd></dl>
+
+</div>
+</div>
+<a id="ad74f4be46c39801c3c72ba51db2a1bbe" name="ad74f4be46c39801c3c72ba51db2a1bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74f4be46c39801c3c72ba51db2a1bbe">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int init </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window **&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer **&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise la fenêtre et le renderer SDL. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>Pointeur vers la fenêtre SDL. </td></tr>
+    <tr><td class="paramname">renderer</td><td>Pointeur vers le renderer SDL. </td></tr>
+    <tr><td class="paramname">w</td><td>La largeur de la fenêtre. </td></tr>
+    <tr><td class="paramname">h</td><td>La hauteur de la fenêtre. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int Retourne 0 en cas de réussite, -1 en cas d'échec. </dd></dl>
+
+</div>
+</div>
+<a id="af6b37e5856c89e169cbacb0a6aef47e4" name="af6b37e5856c89e169cbacb0a6aef47e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6b37e5856c89e169cbacb0a6aef47e4">&#9670;&#160;</a></span>init_icon()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_icon </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Window *&#160;</td>
+          <td class="paramname"><em>window</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise l'icône de la fenêtre. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">window</td><td>La fenêtre SDL. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afb428c78ff46a28ac28a03c55e6a8351" name="afb428c78ff46a28ac28a03c55e6a8351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb428c78ff46a28ac28a03c55e6a8351">&#9670;&#160;</a></span>load_text()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Texture * load_text </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>taille_text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Charge un texte dans une texture SDL. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Le renderer SDL. </td></tr>
+    <tr><td class="paramname">text</td><td>Le texte à afficher. </td></tr>
+    <tr><td class="paramname">taille_text</td><td>La taille du texte. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>SDL_Texture* La texture du texte chargé. </dd></dl>
+
+</div>
+</div>
+<a id="adbb689e5e37cefc3b9d94ee813aac36d" name="adbb689e5e37cefc3b9d94ee813aac36d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbb689e5e37cefc3b9d94ee813aac36d">&#9670;&#160;</a></span>loadImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loadImage </td>
+          <td>(</td>
+          <td class="paramtype">const char&#160;</td>
+          <td class="paramname"><em>path</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture **&#160;</td>
+          <td class="paramname"><em>texture</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Charge une image dans une texture SDL. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Le chemin vers l'image à charger. </td></tr>
+    <tr><td class="paramname">renderer</td><td>Le renderer SDL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>SDL_Texture* La texture de l'image chargée. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

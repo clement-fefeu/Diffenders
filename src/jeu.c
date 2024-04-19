@@ -1,24 +1,6 @@
 #include "../lib/base_struct.h"
 #include "../lib/fonc.h"
 
-
-/**
- * @struct heroText_s
- * @brief Structure représentant la texture et la position d'un héros.
- */
-typedef struct heroText_s {
-	SDL_Texture *texture; /**< La texture du héros. */
-	SDL_Rect rectHero;    /**< La position et la taille du héros. */
-} heroText_t;
-
-/**
- * @brief Affiche le montant d'argent et une texture donnée à l'écran.
- * 
- * @param renderer Le renderer SDL.
- * @param hauteur La hauteur de l'écran.
- * @param largeur La largeur de l'écran.
- * @param texte La texture à afficher.
- */
 void affiche_argent(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *texte){
 	SDL_Texture *argent;
 	SDL_Rect position;
@@ -67,6 +49,7 @@ Uint32 attendre(Uint32 interval,void* parametre){
 	*(int*)parametre=1;
 	return interval;
 }
+
 ennemie_t * avancerHorizontal(ennemie_t ** ennemie , int nbEnnemie,int indice,int indiceChemin,coord_t * coord,int largeur,int hauteur){
 		if(indice == 0){
 			if(((largeur/ABS)*coord[indiceChemin+1].x + (largeur/ABS)/4) > ennemie[indice]->imgDestRectEnnemie.x){
@@ -126,36 +109,12 @@ ennemie_t * monterVertical(ennemie_t ** ennemie , int nbEnnemie,int indice,int i
 	return ennemie[indice];
 }
 
-int detruireLesHeros(ennemie_t ** ennemie , int indice , int nbMax){
-		ennemie_t * temp;
-
-		temp = ennemie[indice];
-
-		
-		ennemie[nbMax-1] = temp;
-
-		for(int i = 0 ; i < nbMax-1 ; i++){
-			ennemie[i] = ennemie[i+1];
-		}
-		detruireEnem(&ennemie[nbMax-1]);
-		ennemie[nbMax-1] = NULL;
-
-		return nbMax;
-}
-
 
 int appelTextEnnemie(SDL_Renderer * renderer, SDL_Texture *texture , SDL_Rect * drect , int *w,int * h){
 	SDL_QueryTexture(texture,NULL, NULL,w,h);
 	SDL_RenderCopy(renderer, texture,NULL, drect);
 }
 
-/**
- * @brief La boucle principale du jeu.
- * 
- * @param renderer Le renderer SDL.
- * @param window La fenêtre SDL.
- * @return int Retourne 0 en cas de réussite.
- */
 int jeu(SDL_Renderer *renderer,SDL_Window *window)
 {
     //Le pointeur vers la fenetre
@@ -240,7 +199,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 // load lehero.png inti impage (HERO2)
 	loadImage("../img/sprite/Hero2.png",renderer,&textHero2);
 // load lehero.png inti impage (HERO3)
-	loadImage("../img/lehero.png",renderer,&textHero3);
+	loadImage("../img/sprite/hero3.png",renderer,&textHero3);
 	 
 	loadImage("../img/sprite/ennemie.png",renderer,&textEnnemie);
 
@@ -248,7 +207,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	loadImage("../img/boule.png",renderer,&boule);
 
 	int nbEnnemie ;
-	int base=500;
+	int base=1000;
 
 	
 	
@@ -262,7 +221,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		SDL_GetWindowSize(window,&largeur,&hauteur);
 		tabEnnemie[0] = malloc(sizeof(ennemie_t));
 		tabEnnemie[0]->nom = "Soldat";
-		tabEnnemie[0]->pv = 100+50*vague;
+		tabEnnemie[0]->pv = 100+25*vague;
 		tabEnnemie[0]->palier = 0;
 		tabEnnemie[0]->texture = textEnnemie;
 		tabEnnemie[0]->imgDestRectEnnemie.x = (largeur/ABS)*suite.chemin[0].x + (largeur/ABS)/4;
@@ -385,7 +344,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 					tabEnnemie[indice+1] = malloc(sizeof(ennemie_t)); 
 					tabEnnemie[indice+1]->texture = textEnnemie;
 					tabEnnemie[indice+1]->nom = "Soldat";
-					tabEnnemie[indice+1]->pv = 100+50*vague;
+					tabEnnemie[indice+1]->pv = 100+25*vague;
 					tabEnnemie[indice+1]->palier = 0;
 					tabEnnemie[indice+1]->imgDestRectEnnemie.x = (largeur/ABS)*suite.chemin[0].x + (largeur/ABS)/4;
 					tabEnnemie[indice+1]->imgDestRectEnnemie.y = ((hauteur-200)/ORD)*suite.chemin[0].y + (((hauteur-200)/ORD)/4);

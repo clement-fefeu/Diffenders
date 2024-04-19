@@ -2,10 +2,6 @@
 #include "../lib/fonc.h"
 
 
-/*retourne vrai si les deux entités sont rentrer en contact*/
-int contact(coord_t proj,coord_t target){
-  return ((proj.x==target.x)&&(proj.y==target.y));
-}
 
 /*affichage de la map grace a la sdl et calcul de projectiles*/
 void affiche_map_2(int tab[ABS][ORD],SDL_Renderer *renderer,SDL_Window *window) {
@@ -92,13 +88,6 @@ void init_chemin2(chemin_t * pathfind){
     pathfind->chemin[j].x=-1;
     pathfind->chemin[j].y=-1;
   }
-}
-
-void affiche_chemin2(chemin_t pathfind){
-  for(int j=0;pathfind.chemin[j].x!=-1;j++){
-    printf("|(%d : %d)|",(pathfind.chemin[j].x),(pathfind.chemin[j].y));
-  }
-  printf("\n");
 }
 
 
@@ -588,7 +577,7 @@ void rassemble(chemin_t import[NB_ENTREE+1],chemin_t * suite){
 }
 
 /*fonction principale qui rassemble toute celle au dessus et les appelle dans le bon ordre*/
-chemin_t map(int tab[ABS][ORD]) {
+chemin_t creation_map(SDL_Renderer *renderer,int tab[ABS][ORD]) {
   srand(time(NULL));  
   chemin_t pathfind[NB_ENTREE+1];
   chemin_t import[NB_ENTREE+1];
@@ -607,13 +596,5 @@ chemin_t map(int tab[ABS][ORD]) {
   repathing(pathfind,import);
   rassemble(import,&suite);
   tab[a][b] = 1;
-  affiche_chemin2(suite);
-  return suite;
-}
-
-/*main appellant la fonction principale*/
-chemin_t creation_map(SDL_Renderer *renderer,int tab[ABS][ORD]){
-  chemin_t suite;
-  suite=map(tab);
   return suite;
 }
