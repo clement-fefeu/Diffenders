@@ -10,7 +10,7 @@ Renou Alexis
 Diffenders
 
 ## C'est quoi notre projet ? 
-Le projet que nous faisons est un jeux de type tower defense. Le but du jeux sera de défendre une ville d'attaques extra-terrestre en plaçant des super-héros stratégiquement, les super-héros auront des capacité différentes et il existera plusieurs type d'extraterrestres. 
+Le projet que nous faisons est un jeux de type tower defense. Le but du jeux sera de défendre une ville d'attaques extra-terrestre en plaçant des super-héros stratégiquement, les super-héros auront des capacité différentes. 
 
 ## Date de creation projet : 
 23/01/2024
