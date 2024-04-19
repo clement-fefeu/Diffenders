@@ -24,7 +24,7 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
 #define ORD 15
 #define NB_ENTREE 1
 
-#define MAX_Vague 5
+#define MAX_Vague 15
 /**
  * @brief Structure représentant les entrées utilisateur.
  */

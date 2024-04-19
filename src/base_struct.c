@@ -5,7 +5,7 @@ char * nomHero[3] = {"Skarn","Pof","Roy"};
 int degatHero[3] = {80,50,200};
 int typeHero[3] = {3,3,3};
 int prix[3] = {250,500,1000};
-int cooldown[3] = {1,0.5,1.5};
+int cooldown[3] = {1000,500,1500};
 char * nomTypeHero[3] = {"Direct Hit","Direct Hit","Direct Hit"};
 
 ennemie_t * initialise_enemie(){     //fonction qui créér un ennemie.
@@ -36,9 +36,10 @@ hero_t * initialise_hero(int nb){
 
     heroTemp->nom = nomHero[nb];
     heroTemp->degat = degatHero[nb];
-    heroTemp->cooldown = 1;
+    heroTemp->cooldown = cooldown[nb];
     heroTemp->typehero.idenType = typeHero[nb];
     heroTemp->typehero.nom = nomTypeHero[nb];
+    heroTemp->etat = 0;
     heroTemp->prix= prix[nb];
     
     return heroTemp;

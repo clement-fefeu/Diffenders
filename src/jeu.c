@@ -51,6 +51,18 @@ void affiche_PV(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *text
 
 }
 
+
+void affiche_Prix(SDL_Renderer *renderer,int hauteur,int largeur,SDL_Texture *texte,int posX,int posY){
+	SDL_Rect position;
+
+	SDL_QueryTexture(texte, NULL, NULL,&(position.w),&(position.h));
+	position.x = posX;
+	position.y = posY;
+	SDL_RenderCopy(renderer, texte,NULL, &position);
+
+}
+
+
 Uint32 attendre(Uint32 interval,void* parametre){
 	*(int*)parametre=1;
 	return interval;
@@ -150,7 +162,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	//Le pointeur vers la surface incluse dans la fenetre
 	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause,position,imgDestRectCase4;
 	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL,*textEnnemie=NULL;
-	SDL_Texture *boule=NULL,*PV=NULL,*case4=NULL;
+	SDL_Texture *boule=NULL,*PV=NULL,*case4=NULL,*prix_case1=NULL,*prix_case2=NULL,*prix_case3=NULL;
   	int tab[ABS][ORD];
 	int largeur=WIDTHSCREEN,hauteur=HEIGHTSCREEN;
 	int vague=0;
@@ -354,6 +366,15 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 			SDL_itoa(base,pv_base,10);
 			texte=load_text(renderer,nb_argent,30);
 			PV=load_text(renderer,pv_base,30);
+			
+			prix_case1=load_text(renderer,"250",30);
+			prix_case2=load_text(renderer,"500",30);
+			prix_case3=load_text(renderer,"1000",30);
+			
+			affiche_Prix(renderer,hauteur,largeur,prix_case1,100,700);
+			affiche_Prix(renderer,hauteur,largeur,prix_case2,250,700);
+			affiche_Prix(renderer,hauteur,largeur,prix_case3,400,700);
+
 			affiche_argent(renderer,hauteur,largeur,texte);
 			affiche_PV(renderer,hauteur,largeur,PV);
 			/*SDL_Log("ICI 1 ");*/
@@ -427,9 +448,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 				}
 				if(nbCaseUse>=1){
 					for(int i=0;i<nbCaseUse;i++){
-						if(hero1->cooldown==1 && tabHero->tab[i]->Hero==hero1){
+						if(hero1->etat==1 && tabHero->tab[i]->Hero==hero1){
 							tabEnnemie[0]->pv-=hero1->degat;
-							hero1->cooldown=0;
+							hero1->etat=0;
 							imgDestRect2.x = tabEnnemie[0]->imgDestRectEnnemie.x;
 							imgDestRect2.y = tabEnnemie[0]->imgDestRectEnnemie.y;
 							imgDestRect2.w = tabEnnemie[0]->imgDestRectEnnemie.w;
@@ -446,9 +467,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 							}
 
 						}
-						if(hero2->cooldown==1 && tabHero->tab[i]->Hero==hero2){
+						if(hero2->etat==1 && tabHero->tab[i]->Hero==hero2){
 							tabEnnemie[0]->pv-=hero2->degat;
-							hero2->cooldown=0;
+							hero2->etat=0;
 							imgDestRect2.x = tabEnnemie[0]->imgDestRectEnnemie.x;
 							imgDestRect2.y = tabEnnemie[0]->imgDestRectEnnemie.y;
 							imgDestRect2.w = tabEnnemie[0]->imgDestRectEnnemie.w;
@@ -466,9 +487,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 
 							
 						}
-						if(hero3->cooldown==1 && tabHero->tab[i]->Hero==hero3){
+						if(hero3->etat==1 && tabHero->tab[i]->Hero==hero3){
 							tabEnnemie[0]->pv-=hero3->degat;
-							hero3->cooldown=0;
+							hero3->etat=0;
 							imgDestRect2.x = tabEnnemie[0]->imgDestRectEnnemie.x;
 							imgDestRect2.y = tabEnnemie[0]->imgDestRectEnnemie.y;
 							imgDestRect2.w = tabEnnemie[0]->imgDestRectEnnemie.w;
@@ -510,11 +531,11 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 						vague=MAX_Vague;
 						running = 0; 
 					break; 
-						
-							
-									
-				if (e.window.event == SDL_WINDOWEVENT_CLOSE)
-					running = SDL_FALSE;
+
+
+
+					if (e.window.event == SDL_WINDOWEVENT_CLOSE)
+						running = SDL_FALSE;
 					break;
 					case SDL_KEYDOWN:
 						SDL_Log("+key");
@@ -533,224 +554,222 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 							}
 						}
 						if(e.key.keysym.sym == SDLK_1){ // La touche &
-							
+
 						}
-						break;
-					case SDL_MOUSEMOTION: // Déplacement de souris
-					//SDL_Log("Mouvement de souris (%d %d) (%d %d)", e.motion.x, e.motion.y, e.motion.xrel, e.motion.yrel);
-						break;
+					break;
 					case SDL_MOUSEBUTTONDOWN: // Click de souris 
 						if(e.button.y < imgDestRect2.y || e.button.y > imgDestRect2.y + imgDestRect2.h){
 							etat =1;;
-							switch(caseHero){
-				case 1:
-				if(lesHeros[nbCaseUse] != NULL){
-				lesHeros[nbCaseUse]->texture = textHero1;
-				for(int indice = 0 ; indice < nbCaseUse ; indice++){
-						if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
-							etat = 0;
-						}
-					}
-				}
-				if(nbCaseUse < MAXHERO && etat == 1){
-					if(joueur->argent >= hero1->prix){		
-						timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero1->cooldown));
-						nb_timer++;
-						tabHero->tab[nbCaseUse]->coordX = e.button.x;
-						tabHero->tab[nbCaseUse]->coordY = e.button.y;
-						tabHero->tab[nbCaseUse]->Hero = hero1;
-						joueur->argent -= hero1->prix;
-						SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero1->prix,joueur->argent);
-						caseHero = 0;
-
-						if(lesHeros[nbCaseUse] != NULL){
-						lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-						lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-						}
-						else if(lesHeros[nbCaseUse] == NULL){
-							lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
-							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-							lesHeros[nbCaseUse]->texture = textHero1;
-						}
-
-						nbCaseUse++;
-					}
-					else{
-						SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
-					}
-				}
-				else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
-				else if(nbCaseUse >= MAXHERO){
-					SDL_Log("Nombre de heros maximum atteins !");
-				}
-				break;
-						case 2:
-						if(lesHeros[nbCaseUse] != NULL){
-							lesHeros[nbCaseUse]->texture = textHero2;
-							for(int indice = 0 ; indice < nbCaseUse ; indice++){
-									if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
-										etat = 0;
-									}
-							}
-						}
-				if(nbCaseUse < MAXHERO && etat == 1){
-					if(joueur->argent >= hero2->prix){	
-						timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero2->cooldown));	
-						nb_timer++;
-						tabHero->tab[nbCaseUse]->coordX = e.button.x;
-						tabHero->tab[nbCaseUse]->coordY = e.button.y;
-						tabHero->tab[nbCaseUse]->Hero = hero2;
-						joueur->argent -= hero2->prix;
-						SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero2->prix,joueur->argent);
-						caseHero = 0;
-
-
-						if(lesHeros[nbCaseUse] != NULL){
-							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-						}
-						else if(lesHeros[nbCaseUse] == NULL){
-							lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
-							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-							lesHeros[nbCaseUse]->texture = textHero2;
-						}
-						nbCaseUse++;
-
-						}
-					else{
-					SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
-					}
-				}
-				else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
-				else if(nbCaseUse >= MAXHERO){
-					SDL_Log("Nombre de heros maximum atteins !");
-				}	
-				break;
-						case 3:
-						if(lesHeros[nbCaseUse]!=NULL){
-							lesHeros[nbCaseUse]->texture = textHero3;
+						switch(caseHero){
+							case 1:
+								if(lesHeros[nbCaseUse] != NULL && nbCaseUse < MAXHERO-1){
+									lesHeros[nbCaseUse]->texture = textHero1;
 								for(int indice = 0 ; indice < nbCaseUse ; indice++){
 										if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
 											etat = 0;
 										}
+									}
 								}
-						}
-				if(nbCaseUse < MAXHERO && etat == 1){
-					if(joueur->argent >= hero3->prix){		
-						timer[nb_timer]=SDL_AddTimer(1000,attendre,&(hero3->cooldown));
-						nb_timer++;
-						tabHero->tab[nbCaseUse]->coordX = e.button.x;
-						tabHero->tab[nbCaseUse]->coordY = e.button.y;
-						tabHero->tab[nbCaseUse]->Hero = hero3;
-						joueur->argent -= hero3->prix;
-						SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero3->prix,joueur->argent);
-						caseHero = 0;
+								if(nbCaseUse < MAXHERO-1 && etat == 1){
+									if(joueur->argent >= hero1->prix){		
+										timer[nb_timer]=SDL_AddTimer(hero1->cooldown,attendre,&(hero1->etat));
+										SDL_Log("%d",hero1->etat);
+										SDL_Log("%d",hero1->cooldown);
+										nb_timer++;
+										tabHero->tab[nbCaseUse]->coordX = e.button.x;
+										tabHero->tab[nbCaseUse]->coordY = e.button.y;
+										tabHero->tab[nbCaseUse]->Hero = hero1;
+										joueur->argent -= hero1->prix;
+										SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero1->prix,joueur->argent);
+										caseHero = 0;
+
+										if(lesHeros[nbCaseUse] != NULL){
+										lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+										lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+										}
+										else if(lesHeros[nbCaseUse] == NULL){
+											lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
+											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+											lesHeros[nbCaseUse]->texture = textHero1;
+										}
+
+										nbCaseUse++;
+									}
+									else{
+										SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
+									}
+								}
+								else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
+								else if(nbCaseUse >= MAXHERO-1){
+									SDL_Log("Nombre de heros maximum atteins !");
+								}
+								break;
+							case 2:
+								if(lesHeros[nbCaseUse] != NULL && nbCaseUse < MAXHERO-1){
+									lesHeros[nbCaseUse]->texture = textHero2;
+									for(int indice = 0 ; indice < nbCaseUse ; indice++){
+											if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
+												etat = 0;
+											}
+									}
+								}
+								if(nbCaseUse < MAXHERO-1 && etat == 1){
+									if(joueur->argent >= hero2->prix){	
+										timer[nb_timer]=SDL_AddTimer((hero2->cooldown),attendre,&(hero2->etat));	
+										nb_timer++;
+										tabHero->tab[nbCaseUse]->coordX = e.button.x;
+										tabHero->tab[nbCaseUse]->coordY = e.button.y;
+										tabHero->tab[nbCaseUse]->Hero = hero2;
+										joueur->argent -= hero2->prix;
+										SDL_Log("Vous poser le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero2->prix,joueur->argent);
+										caseHero = 0;
 
 
-						if(lesHeros[nbCaseUse] != NULL){
-							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-						}
-						else if(lesHeros[nbCaseUse] == NULL){
-							lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
-							lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
-							lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
-							lesHeros[nbCaseUse]->texture = textHero3;
-						}
+										if(lesHeros[nbCaseUse] != NULL){
+											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+										}
+										else if(lesHeros[nbCaseUse] == NULL){
+											lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
+											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+											lesHeros[nbCaseUse]->texture = textHero2;
+										}
+										nbCaseUse++;
 
-						nbCaseUse++;
+										}
+									else{
+									SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
+									}
+								}
+								else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
+								else if(nbCaseUse >= MAXHERO-1){
+									SDL_Log("Nombre de heros maximum atteins !");
+								}	
+								break;
+							case 3:
+								if(lesHeros[nbCaseUse]!=NULL && nbCaseUse < MAXHERO-1){
+									lesHeros[nbCaseUse]->texture = textHero3;
+										for(int indice = 0 ; indice < nbCaseUse ; indice++){
+												if(((e.button.x > tabHero->tab[indice]->coordX - (lesHeros[indice]->rectHero.w))&&(e.button.x < tabHero->tab[indice]->coordX + (lesHeros[indice]->rectHero.w)))&&((e.button.y > tabHero->tab[indice]->coordY - (lesHeros[indice]->rectHero.h))&&(e.button.y < tabHero->tab[indice]->coordY + (lesHeros[indice]->rectHero.h)) )){
+													etat = 0;
+												}
+										}
+								}
+								if(nbCaseUse < MAXHERO-1 && etat == 1){
+									if(joueur->argent >= hero3->prix){		
+										timer[nb_timer]=SDL_AddTimer((hero3->cooldown),attendre,&(hero3->etat));
+										nb_timer++;
+										tabHero->tab[nbCaseUse]->coordX = e.button.x;
+										tabHero->tab[nbCaseUse]->coordY = e.button.y;
+										tabHero->tab[nbCaseUse]->Hero = hero3;
+										joueur->argent -= hero3->prix;
+										SDL_Log("Vous posez le héro %s en coordonnée %d , %d et il coute %d pièce il vous en reste donc %d ",tabHero->tab[nbCaseUse]->Hero->nom,e.button.x,e.button.y,hero3->prix,joueur->argent);
+										caseHero = 0;
 
-						}
-					else{
-					SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
+
+										if(lesHeros[nbCaseUse] != NULL){
+											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+										}
+										else if(lesHeros[nbCaseUse] == NULL){
+											lesHeros[nbCaseUse] = malloc(sizeof(heroText_t));
+											lesHeros[nbCaseUse]->rectHero.x = e.button.x - 32;
+											lesHeros[nbCaseUse]->rectHero.y = e.button.y - 30 ;
+											lesHeros[nbCaseUse]->texture = textHero3;
+										}
+
+										nbCaseUse++;
+
+										}
+									else{
+									SDL_Log("Vous n'avez pas assez d'argent pour acheter ce héros");
+									}
+								}
+								else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
+								else if(nbCaseUse >= MAXHERO-1){
+									SDL_Log("Nombre de heros maximum atteins !");
+								}	
+								break;
+							case 4:
+								if(caseHero == 4){
+									vente = 1;
+									for(traverser = 0 ; traverser <= nbCaseUse ; traverser++){
+										if(tabHero->tab[traverser] != NULL){
+											if(lesHeros[traverser] != NULL){
+												if((e.button.x < tabHero->tab[traverser]->coordX + lesHeros[traverser]->rectHero.w && e.button.x > tabHero->tab[traverser]->coordX -lesHeros[traverser]->rectHero.w)&& (e.button.y < tabHero->tab[traverser]->coordY + lesHeros[traverser]->rectHero.h && e.button.y > tabHero->tab[traverser]->coordY - lesHeros[traverser]->rectHero.h)){
+														supprimer = 1;
+														indiceDestru = traverser;
+
+												}
+											}
+										}
+									}
+									if(supprimer == 1 ){
+										for(traverser = indiceDestru ; traverser < nbCaseUse ; traverser++){
+											if(tabHero->tab[traverser+1] != NULL && traverser+1<MAXHERO-1){
+												if(vente == 1){
+													joueur->argent +=(tabHero->tab[traverser]->Hero->prix / 2);
+													vente = 0;
+												}
+												if(traverser<MAXHERO-1){
+													tabHero->tab[traverser] = tabHero->tab[traverser+1];
+													lesHeros[traverser] = lesHeros[traverser+1];
+													caseHero = 0;
+												}
+												
+												
+											}
+										}
+										if(nbCaseUse > 0 && nbCaseUse <= MAXHERO-1){
+											lesHeros[nbCaseUse] = NULL;
+											SDL_RemoveTimer(timer[nb_timer-1]);
+											nb_timer--;
+											free(lesHeros[nbCaseUse]);
+											nbCaseUse--;
+										}
+										
+									}
+									if(caseHero == 4){
+										SDL_Log("Selectionnez un héro à supprimé ou selectionner une autre case d'actions");
+									}
+									
+
+								}	
+						}		
 					}
-				}
-				else if(etat == 0)SDL_Log("Vous ne pouvez pas placer un héros sur un héros déjà existant ! ");
-				else if(nbCaseUse >= MAXHERO){
-					SDL_Log("Nombre de heros maximum atteins !");
-				}	
-				break;
-				case 4:
-				if(caseHero == 4){
-					vente = 1;
-					for(traverser = 0 ; traverser <= nbCaseUse ; traverser++){
-						if(tabHero->tab[traverser] != NULL){
-							if(lesHeros[traverser] != NULL){
-								if((e.button.x < tabHero->tab[traverser]->coordX + lesHeros[traverser]->rectHero.w && e.button.x > tabHero->tab[traverser]->coordX -lesHeros[traverser]->rectHero.w)&& (e.button.y < tabHero->tab[traverser]->coordY + lesHeros[traverser]->rectHero.h && e.button.y > tabHero->tab[traverser]->coordY - lesHeros[traverser]->rectHero.h)){
-										supprimer = 1;
-										indiceDestru = traverser;
-
-								}
-							}
-						}
+					if((e.button.x >= imgDestRectCase1.x && e.button.x <= imgDestRectCase1.x + imgDestRectCase1.w) && (e.button.y >= imgDestRectCase1.y && e.button.y <= imgDestRectCase1.y + imgDestRectCase1.h)){
+						SDL_Log("Réussite ca clique sur la case 1");
+						SDL_Log("Hero 1 selectionner");
+						caseHero = 1;
 					}
-					if(supprimer == 1){
-						for(traverser = indiceDestru ; traverser < nbCaseUse ; traverser++){
-							if(tabHero->tab[traverser+1] != NULL){
-								if(vente == 1){
-									joueur->argent +=(tabHero->tab[traverser]->Hero->prix / 2);
-									vente = 0;
-								}
-								tabHero->tab[traverser] = tabHero->tab[traverser+1];
-								lesHeros[traverser] = lesHeros[traverser+1];
-								caseHero = 0;
-							}
-						}
-						if(nbCaseUse > 0){
-							lesHeros[nbCaseUse] = NULL;
-							SDL_RemoveTimer(timer[nb_timer-1]);
-							nb_timer--;
-
-							
-							free(lesHeros[nbCaseUse]);
-
-							
-
-							nbCaseUse--;
+					if((e.button.x >= imgDestRectCase2.x && e.button.x <= imgDestRectCase2.x + imgDestRectCase2.w) && (e.button.y >= imgDestRectCase2.y && e.button.y <= imgDestRectCase2.y + imgDestRectCase2.h)){
+						SDL_Log("Réussite ca clique sur case 2");
+						SDL_Log("Hero 2 selectionner");
+						caseHero = 2;
+					}
+					if((e.button.x >= imgDestRectCase3.x && e.button.x <= imgDestRectCase3.x + imgDestRectCase3.w) && (e.button.y >= imgDestRectCase3.y && e.button.y <= imgDestRectCase3.y + imgDestRectCase3.h)){
+						SDL_Log("Réussite ca clique sur case 3");
+						SDL_Log("Hero 3 selectionner");
+						caseHero = 3;
+					}
+					if((e.button.x >= imgDestRectCase4.x && e.button.x <= imgDestRectCase4.x + imgDestRectCase4.w) && (e.button.y >= imgDestRectCase4.y && e.button.y <= imgDestRectCase4.y + imgDestRectCase4.h)){
+						SDL_Log("Selection de la suppression d'héros");
+						caseHero = 4;
+					}
+					if((e.button.x >= imgDestRectpause.x && e.button.x <= imgDestRectpause.x + imgDestRectpause.w) && (e.button.y >= imgDestRectpause.y && e.button.y <= imgDestRectpause.y + imgDestRectpause.h)){
+						SDL_Log("PAUSE");
+						switch(param(renderer,window,largeur,hauteur,background)){
+							case 0:running=SDL_FALSE;vague=MAX_Vague;break;
+							case 2:SDL_GetWindowSize(window,&largeur,&hauteur);break;
+							case 1:
+							largeur=WIDTHSCREEN;
+							hauteur=HEIGHTSCREEN;
+							break;
 						}
 						
 					}
-					if(caseHero == 4){
-						SDL_Log("Selectionnez un héro à supprimé ou selectionner une autre case d'actions");
-					}
-					
-
-				}	
-			}		
-						}
-						if((e.button.x >= imgDestRectCase1.x && e.button.x <= imgDestRectCase1.x + imgDestRectCase1.w) && (e.button.y >= imgDestRectCase1.y && e.button.y <= imgDestRectCase1.y + imgDestRectCase1.h)){
-							SDL_Log("Réussite ca clique sur la case 1");
-							SDL_Log("Hero 1 selectionner");
-							caseHero = 1;
-						}
-						if((e.button.x >= imgDestRectCase2.x && e.button.x <= imgDestRectCase2.x + imgDestRectCase2.w) && (e.button.y >= imgDestRectCase2.y && e.button.y <= imgDestRectCase2.y + imgDestRectCase2.h)){
-							SDL_Log("Réussite ca clique sur case 2");
-							SDL_Log("Hero 2 selectionner");
-							caseHero = 2;
-						}
-						if((e.button.x >= imgDestRectCase3.x && e.button.x <= imgDestRectCase3.x + imgDestRectCase3.w) && (e.button.y >= imgDestRectCase3.y && e.button.y <= imgDestRectCase3.y + imgDestRectCase3.h)){
-							SDL_Log("Réussite ca clique sur case 3");
-							SDL_Log("Hero 3 selectionner");
-							caseHero = 3;
-						}
-						if((e.button.x >= imgDestRectCase4.x && e.button.x <= imgDestRectCase4.x + imgDestRectCase4.w) && (e.button.y >= imgDestRectCase4.y && e.button.y <= imgDestRectCase4.y + imgDestRectCase4.h)){
-							SDL_Log("Selection de la suppression d'héros");
-							caseHero = 4;
-						}
-						if((e.button.x >= imgDestRectpause.x && e.button.x <= imgDestRectpause.x + imgDestRectpause.w) && (e.button.y >= imgDestRectpause.y && e.button.y <= imgDestRectpause.y + imgDestRectpause.h)){
-							SDL_Log("PAUSE");
-							switch(param(renderer,window,largeur,hauteur,background)){
-								case 0:running=SDL_FALSE;vague=MAX_Vague;break;
-								case 2:SDL_GetWindowSize(window,&largeur,&hauteur);break;
-								case 1:
-								largeur=WIDTHSCREEN;
-								hauteur=HEIGHTSCREEN;
-								break;
-							}
-							
-						}
 						
 						SDL_Log("Click de la souris en (%d) (%d)", e.button.x, e.button.y);// 
 						break;
@@ -794,7 +813,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	detruire_joueur(joueur);
 
 	int i=0;
-	for(i=0;i<MAXHERO;i++){
+	for(i=0;i<nbCaseUse;i++){
 		free(lesHeros[i]);
 	}
 	free(&tabHero->tab);

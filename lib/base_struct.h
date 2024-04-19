@@ -51,6 +51,7 @@ struct hero_s{
     char * nom;
     int degat;
     int cooldown;
+    int etat;
     int prix;
     typeHero_t typehero;
 
