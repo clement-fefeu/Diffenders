@@ -1,0 +1,53 @@
+\doxysection{fonc.\+h}
+\hypertarget{fonc_8h_source}{}\label{fonc_8h_source}\index{lib/fonc.h@{lib/fonc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{extern}\ DECLSPEC\ \textcolor{keywordtype}{int}\ SDLCALL\ TTF\_Init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ WIDTH\ 255}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ HEIGHT\ 255}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SDL\_BUTTON\_LEFT\ \ \ \ \ 1}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SDL\_BUTTON\_MIDDLE\ \ \ 2}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SDL\_BUTTON\_RIGHT\ \ \ \ 3}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ SDL\_BUTTON\_X1\ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ SDL\_BUTTON\_X2\ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ TTF\_GetError\ \ \ \ SDL\_GetError}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ WIDTHSCREEN\ 1600\ }}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ HEIGHTSCREEN\ 900\ }}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TOTAL\_POINTS\ 5000\ }}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00033\ SDL\_Texture\ *load\_text(SDL\_Renderer\ *renderer,\ \textcolor{keywordtype}{char}\ *text,\ \textcolor{keywordtype}{int}\ taille\_text);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{int}\ init(SDL\_Window\ **window,\ SDL\_Renderer\ **renderer,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ loadImage(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ path[],\ SDL\_Renderer\ *renderer,SDL\_Texture\ **texture);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ SDL\_Surface\ *createSurfaceFromTexture(SDL\_Texture\ *texture);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{void}\ init\_icon(SDL\_Window\ *window);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{int}\ menu();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{int}\ param(SDL\_Renderer\ *renderer,\ SDL\_Window\ *window,\ \textcolor{keywordtype}{int}\ largeur,\ \textcolor{keywordtype}{int}\ hauteur,\ SDL\_Texture\ *background);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00098\ \textcolor{keywordtype}{int}\ jeu(SDL\_Renderer\ *renderer,\ SDL\_Window\ *window);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{int}\ param(SDL\_Renderer\ *renderer,SDL\_Window\ *window,\textcolor{keywordtype}{int}\ largeur,\ \textcolor{keywordtype}{int}\ hauteur,SDL\_Texture\ *background);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ accueil(SDL\_Renderer\ *renderer,\textcolor{keywordtype}{int}\ gris,SDL\_Texture\ *quit\ ,SDL\_Texture\ *play\ ,SDL\_Texture*background,SDL\_Texture*quit\_des,SDL\_Texture*play\_des,SDL\_Texture*parametre,SDL\_Texture*parametre\_des,\textcolor{keywordtype}{int}\ largeur,\ \textcolor{keywordtype}{int}\ hauteur);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00140\ \textcolor{keywordtype}{int}\ menu();}
+
+\end{DoxyCode}

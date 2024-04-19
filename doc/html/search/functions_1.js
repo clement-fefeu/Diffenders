@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['init_0',['init',['../fonc_8c.html#ad74f4be46c39801c3c72ba51db2a1bbe',1,'fonc.c']]],
-  ['init_5ficon_1',['init_icon',['../fonc_8c.html#af6b37e5856c89e169cbacb0a6aef47e4',1,'fonc.c']]]
+  ['createsurfacefromtexture_0',['createSurfaceFromTexture',['../fonc_8c.html#a22884fdfda1408bbfad6d97f6073021e',1,'fonc.c']]]
 ];

@@ -14,12 +14,12 @@ PROG3=map.o
 MAIN=main.o
 BDD=base_struct.o
 TEST=jeu.o
-EXECUTABLE=test
+EXECUTABLE=../bin/test
 
 all: test
 
 test: fonc.o menu.o main.o base_struct.o jeu.o map.o
-	${CC}  ${PROG1} ${PROG2} ${PROG3} ${MAIN} ${BDD} ${TEST} -o test ${LIBS} ${INCLUDES}
+	${CC}  ${PROG1} ${PROG2} ${PROG3} ${MAIN} ${BDD} ${TEST} -o ../bin/test ${LIBS} ${INCLUDES}
 
 fonc.o: fonc.c
 	${CC} -c fonc.c ../lib/fonc.h

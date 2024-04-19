@@ -19,12 +19,10 @@ void \mbox{\hyperlink{fonc_8c_af6b37e5856c89e169cbacb0a6aef47e4}{init\+\_\+icon}
 \begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}icône de la fenêtre. \end{DoxyCompactList}\item 
 SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fonc_8c_afb428c78ff46a28ac28a03c55e6a8351}{load\+\_\+text}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, char \texorpdfstring{$\ast$}{*}text, int taille\+\_\+text)
 \begin{DoxyCompactList}\small\item\em Charge un texte dans une texture SDL. \end{DoxyCompactList}\item 
-\Hypertarget{fonc_8c_a222b803b949900dda03435450581e157}\label{fonc_8c_a222b803b949900dda03435450581e157} 
-void {\bfseries accueil} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int gris, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}quit, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}play, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}background, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}quit\+\_\+des, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}play\+\_\+des, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}parametre, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}parametre\+\_\+des, int largeur, int hauteur)
-\item 
-\Hypertarget{fonc_8c_abd53c60e1da1294a823bf9aa2d127430}\label{fonc_8c_abd53c60e1da1294a823bf9aa2d127430} 
-int {\bfseries param} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}window, int largeur, int hauteur, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}background)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{fonc_8c_a222b803b949900dda03435450581e157}{accueil}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int gris, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}quit, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}play, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}background, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}quit\+\_\+des, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}play\+\_\+des, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}parametre, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}parametre\+\_\+des, int largeur, int hauteur)
+\begin{DoxyCompactList}\small\item\em Affiche l\textquotesingle{}écran d\textquotesingle{}accueil avec les différents boutons. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{fonc_8c_abd53c60e1da1294a823bf9aa2d127430}{param}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}window, int largeur, int hauteur, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}background)
+\begin{DoxyCompactList}\small\item\em Affiche les paramètres du jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Description détaillée}
@@ -36,6 +34,43 @@ Gabriel Dubois
 
 
 \doxysubsection{Documentation des fonctions}
+\Hypertarget{fonc_8c_a222b803b949900dda03435450581e157}\label{fonc_8c_a222b803b949900dda03435450581e157} 
+\index{fonc.c@{fonc.c}!accueil@{accueil}}
+\index{accueil@{accueil}!fonc.c@{fonc.c}}
+\doxysubsubsection{\texorpdfstring{accueil()}{accueil()}}
+{\footnotesize\ttfamily void accueil (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{int}]{gris,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{quit,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{play,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{background,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{quit\+\_\+des,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{play\+\_\+des,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{parametre,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{parametre\+\_\+des,  }\item[{int}]{largeur,  }\item[{int}]{hauteur }\end{DoxyParamCaption})}
+
+
+
+Affiche l\textquotesingle{}écran d\textquotesingle{}accueil avec les différents boutons. 
+
+Affiche les boutons de jeu, de paramètres et de quitter sur l\textquotesingle{}écran d\textquotesingle{}accueil.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\texttt{ in}}  & {\em renderer} & Le renderer SDL pour afficher les textures. \\
+\hline
+\mbox{\texttt{ in}}  & {\em gris} & L\textquotesingle{}état des boutons \+: 0 pour normal, 1 pour grisés, 2 pour jouer en surbrillance, 3 pour paramètres en surbrillance. \\
+\hline
+\mbox{\texttt{ in}}  & {\em quit} & La texture du bouton quitter. \\
+\hline
+\mbox{\texttt{ in}}  & {\em play} & La texture du bouton jouer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em background} & La texture de l\textquotesingle{}arrière-\/plan. \\
+\hline
+\mbox{\texttt{ in}}  & {\em quit\+\_\+des} & La texture du bouton quitter en surbrillance. \\
+\hline
+\mbox{\texttt{ in}}  & {\em play\+\_\+des} & La texture du bouton jouer en surbrillance. \\
+\hline
+\mbox{\texttt{ in}}  & {\em parametre} & La texture du bouton paramètres. \\
+\hline
+\mbox{\texttt{ in}}  & {\em parametre\+\_\+des} & La texture du bouton paramètres en surbrillance. \\
+\hline
+\mbox{\texttt{ in}}  & {\em largeur} & La largeur de la fenêtre. \\
+\hline
+\mbox{\texttt{ in}}  & {\em hauteur} & La hauteur de la fenêtre. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{fonc_8c_a22884fdfda1408bbfad6d97f6073021e}\label{fonc_8c_a22884fdfda1408bbfad6d97f6073021e} 
 \index{fonc.c@{fonc.c}!createSurfaceFromTexture@{createSurfaceFromTexture}}
 \index{createSurfaceFromTexture@{createSurfaceFromTexture}!fonc.c@{fonc.c}}
@@ -134,4 +169,52 @@ Charge une image dans une texture SDL.
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} La texture de l\textquotesingle{}image chargée. 
+\end{DoxyReturn}
+\Hypertarget{fonc_8c_abd53c60e1da1294a823bf9aa2d127430}\label{fonc_8c_abd53c60e1da1294a823bf9aa2d127430} 
+\index{fonc.c@{fonc.c}!param@{param}}
+\index{param@{param}!fonc.c@{fonc.c}}
+\doxysubsubsection{\texorpdfstring{param()}{param()}}
+{\footnotesize\ttfamily int param (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}}]{window,  }\item[{int}]{largeur,  }\item[{int}]{hauteur,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{background }\end{DoxyParamCaption})}
+
+
+
+Affiche les paramètres du jeu. 
+
+Affiche le menu des paramètres.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em window} & La fenêtre SDL. \\
+\hline
+{\em largeur} & La largeur de l\textquotesingle{}écran. \\
+\hline
+{\em hauteur} & La hauteur de l\textquotesingle{}écran. \\
+\hline
+{\em background} & La texture du fond d\textquotesingle{}écran. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Retourne l\textquotesingle{}option sélectionnée dans les paramètres.
+\end{DoxyReturn}
+
+
+Affiche les options de paramètres comme le plein écran, la fenêtre et le retour.
+
+
+\begin{DoxyParams}[1]{Paramètres}
+\mbox{\texttt{ in}}  & {\em renderer} & Le renderer SDL pour afficher les textures. \\
+\hline
+\mbox{\texttt{ in}}  & {\em window} & La fenêtre SDL pour les modifications de fenêtre. \\
+\hline
+\mbox{\texttt{ in}}  & {\em largeur} & La largeur de la fenêtre. \\
+\hline
+\mbox{\texttt{ in}}  & {\em hauteur} & La hauteur de la fenêtre. \\
+\hline
+\mbox{\texttt{ in}}  & {\em background} & La texture de l\textquotesingle{}arrière-\/plan. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+1 pour fenêtré, 2 pour plein écran, 0 pour quitter. 
 \end{DoxyReturn}

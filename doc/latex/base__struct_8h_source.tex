@@ -1,0 +1,170 @@
+\doxysection{base\+\_\+struct.\+h}
+\hypertarget{base__struct_8h_source}{}\label{base__struct_8h_source}\index{lib/base\_struct.h@{lib/base\_struct.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_ttf.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_image.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ MAXHERO\ 10}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ N\ 6}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TailleMap\ 30}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ MAXENNEMIE\ 30}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structennemie__s}{ennemie\_s}}\ \mbox{\hyperlink{structennemie__s}{ennemie\_t}};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhero__s}{hero\_s}}\ \mbox{\hyperlink{structhero__t}{hero\_t}};}
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtypeEnemie__s}{typeEnemie\_s}}\ \mbox{\hyperlink{structtypeEnemie__t}{typeEnemie\_t}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtypeHero__s}{typeHero\_s}}\ \mbox{\hyperlink{structtypeHero__t}{typeHero\_t}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcaseHero__s}{caseHero\_s}}\ \mbox{\hyperlink{structcaseHero__t}{caseHero\_t}};}
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtabCase__s}{tabCase\_s}}\ \mbox{\hyperlink{structtabCase__t}{tabCase\_t}};}
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayer__s}{player\_s}}\ \mbox{\hyperlink{structplayer__t}{player\_t}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ABS\ 30}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ORD\ 15}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ NB\_ENTREE\ 1}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ MAX\_Vague\ 15}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcoord__s}{coord\_s}}\{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{int}\ x;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{int}\ y;}
+\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{structcoord__t}{coord\_t}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structchemin__s}{chemin\_s}}\{}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{structcoord__s}{coord\_t}}\ chemin[(ABS)+(ORD)];}
+\DoxyCodeLine{00046\ \}\ \mbox{\hyperlink{structchemin__t}{chemin\_t}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structheroText__s}{heroText\_s}}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structheroText__s_a859b8efbf9abe8e82757ee5c75a0c97c}{texture}};\ }
+\DoxyCodeLine{00055\ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structheroText__s_a42e8c46b6def9e33a8681c3255d9a6d0}{rectHero}};\ \ \ \ }
+\DoxyCodeLine{00056\ \}\ \mbox{\hyperlink{structheroText__s}{heroText\_t}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtypeEnemie__s}{typeEnemie\_s}}\{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ nom;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{int}\ idenType;}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtypeHero__s}{typeHero\_s}}\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ nom;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{int}\ idenType;}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structennemie__s}{ennemie\_s}}\{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ nom;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ pv;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ palier;}
+\DoxyCodeLine{00084\ \ \ \ \ SDL\_Rect\ imgDestRectEnnemie;}
+\DoxyCodeLine{00085\ \ \ \ \ SDL\_Texture\ *texture;}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhero__s}{hero\_s}}\{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ nom;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{int}\ degat;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{int}\ cooldown;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ etat;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ prix;}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{structtypeHero__s}{typeHero\_t}}\ typehero;}
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcaseHero__s}{caseHero\_s}}\{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{int}\ coordX;}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{int}\ coordY;}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{structhero__s}{hero\_t}}\ *\ Hero;}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtabCase__s}{tabCase\_s}}\{}
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{structcaseHero__s}{caseHero\_t}}\ *\ tab[MAXHERO];}
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structplayer__s}{player\_s}}\{}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{int}\ argent;}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00135\ \textcolor{keywordtype}{void}\ affiche\_map\_2(\textcolor{keywordtype}{int}\ tab[ABS][ORD],\ SDL\_Renderer\ *renderer,\ SDL\_Window\ *window);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00143\ \mbox{\hyperlink{structchemin__t}{chemin\_t}}\ creation\_map(SDL\_Renderer\ *renderer,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00149\ \mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ *\ initialise\_enemie();\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Fonction\ pour\ la\ structure\ enemie\_t}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00156\ \textcolor{keywordtype}{int}\ detruireEnem(\mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ **\ \ ennemie);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00163\ \mbox{\hyperlink{structhero__t}{hero\_t}}\ *\ initialise\_hero(\textcolor{keywordtype}{int}\ nb);\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Fonctions\ pour\ la\ structure\ hero\_t}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00169\ \textcolor{keywordtype}{void}\ afficheHero(\mbox{\hyperlink{structhero__t}{hero\_t}}\ *\ hero);}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{int}\ detruireHero(\mbox{\hyperlink{structhero__t}{hero\_t}}\ **\ \ hero);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00183\ \mbox{\hyperlink{structplayer__t}{player\_t}}\ *\ initialise\_joueur();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{void}\ detruire\_joueur(\mbox{\hyperlink{structplayer__t}{player\_t}}\ *joueur);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00199\ \textcolor{keywordtype}{void}\ affiche\_argent(SDL\_Renderer\ *renderer,\textcolor{keywordtype}{int}\ hauteur,\textcolor{keywordtype}{int}\ largeur,SDL\_Texture\ *texte);}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ affiche\_PV(SDL\_Renderer\ *renderer,\textcolor{keywordtype}{int}\ hauteur,\textcolor{keywordtype}{int}\ largeur,SDL\_Texture\ *texte);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00221\ \textcolor{keywordtype}{void}\ affiche\_Prix(SDL\_Renderer\ *renderer,\textcolor{keywordtype}{int}\ hauteur,\textcolor{keywordtype}{int}\ largeur,SDL\_Texture\ *texte,\textcolor{keywordtype}{int}\ posX,\textcolor{keywordtype}{int}\ posY);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00229\ Uint32\ attendre(Uint32\ interval,\textcolor{keywordtype}{void}*\ parametre);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00242\ \mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ *\ avancerHorizontal(\mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ **\ ennemie\ ,\ \textcolor{keywordtype}{int}\ nbEnnemie,\textcolor{keywordtype}{int}\ indice,\textcolor{keywordtype}{int}\ indiceChemin,\mbox{\hyperlink{structcoord__t}{coord\_t}}\ *\ coord,\textcolor{keywordtype}{int}\ largeur,\textcolor{keywordtype}{int}\ hauteur);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00255\ \mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ *\ reculerHorizontal(\mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ **\ ennemie\ ,\ \textcolor{keywordtype}{int}\ nbEnnemie,\textcolor{keywordtype}{int}\ indice,\textcolor{keywordtype}{int}\ indiceChemin,\mbox{\hyperlink{structcoord__t}{coord\_t}}\ *\ coord,\textcolor{keywordtype}{int}\ largeur,\textcolor{keywordtype}{int}\ hauteur);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00268\ \mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ *\ descendreVertical(\mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ **\ ennemie\ ,\ \textcolor{keywordtype}{int}\ nbEnnemie,\textcolor{keywordtype}{int}\ indice,\textcolor{keywordtype}{int}\ indiceChemin,\mbox{\hyperlink{structcoord__t}{coord\_t}}\ *\ coord,\textcolor{keywordtype}{int}\ largeur,\textcolor{keywordtype}{int}\ hauteur);}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00281\ \mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ *\ monterVertical(\mbox{\hyperlink{structennemie__s}{ennemie\_t}}\ **\ ennemie\ ,\ \textcolor{keywordtype}{int}\ nbEnnemie,\textcolor{keywordtype}{int}\ indice,\textcolor{keywordtype}{int}\ indiceChemin,\mbox{\hyperlink{structcoord__t}{coord\_t}}\ *\ coord,\textcolor{keywordtype}{int}\ largeur,\textcolor{keywordtype}{int}\ hauteur);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00292\ \textcolor{keywordtype}{int}\ appelTextEnnemie(SDL\_Renderer\ *\ renderer,\ SDL\_Texture\ *texture\ ,\ SDL\_Rect\ *\ drect\ ,\ \textcolor{keywordtype}{int}\ *w,\textcolor{keywordtype}{int}\ *\ h);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00301\ \textcolor{keywordtype}{int}\ jeu(SDL\_Renderer\ *renderer,SDL\_Window\ *window);}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00308\ \textcolor{keywordtype}{void}\ initialise(\textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00315\ \textcolor{keywordtype}{void}\ init\_chemin(\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ pathfind[NB\_ENTREE+1]);}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00322\ \textcolor{keywordtype}{void}\ init\_chemin2(\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ *\ pathfind);}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00331\ \textcolor{keywordtype}{void}\ genere\_base(\textcolor{keywordtype}{int}\ *a,\ \textcolor{keywordtype}{int}\ *b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00341\ \textcolor{keywordtype}{int}\ vide(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00351\ \textcolor{keywordtype}{int}\ adjacent(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00361\ \textcolor{keywordtype}{int}\ devant(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00371\ \textcolor{keywordtype}{int}\ test\_bord(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00382\ \textcolor{keywordtype}{void}\ calc\_bord(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD],\ \textcolor{keywordtype}{int}\ *c,\ \textcolor{keywordtype}{int}\ *d);}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00392\ \textcolor{keywordtype}{void}\ mat\_bord(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD],\ \textcolor{keywordtype}{int}\ mat[NB\_ENTREE][2]);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00402\ \textcolor{keywordtype}{int}\ appartient(\textcolor{keywordtype}{int}\ x,\textcolor{keywordtype}{int}\ y,\ \mbox{\hyperlink{structchemin__t}{chemin\_t}}\ pathfind[NB\_ENTREE+1]);}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00411\ \textcolor{keywordtype}{void}\ re\_initialise(\textcolor{keywordtype}{int}\ tab[ABS][ORD],\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ pathfind[NB\_ENTREE+1],\textcolor{keywordtype}{int}\ mat[NB\_ENTREE][2]);}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00422\ \textcolor{keywordtype}{void}\ chemin(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ tab[ABS][ORD],\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00433\ \textcolor{keywordtype}{void}\ pathfinding(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \mbox{\hyperlink{structchemin__t}{chemin\_t}}\ *\ pathfind,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00446\ \textcolor{keywordtype}{int}\ pathfinding\_base(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \mbox{\hyperlink{structchemin__t}{chemin\_t}}\ *\ pathfind,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00458\ \textcolor{keywordtype}{void}\ chemin\_base(\textcolor{keywordtype}{int}\ x,\textcolor{keywordtype}{int}\ y,\textcolor{keywordtype}{int}\ tab[ABS][ORD],\textcolor{keywordtype}{int}\ a,\textcolor{keywordtype}{int}\ b,\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ *\ pathfind);}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00469\ \textcolor{keywordtype}{void}\ croisee(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b,\ \textcolor{keywordtype}{int}\ mat[NB\_ENTREE][2],\ \textcolor{keywordtype}{int}\ tab[ABS][ORD],\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ pathfind[NB\_ENTREE+1]);}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00477\ \textcolor{keywordtype}{void}\ repathing(\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ path[NB\_ENTREE+1],\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ repath[NB\_ENTREE+1]);}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00485\ \textcolor{keywordtype}{void}\ rassemble(\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ \textcolor{keyword}{import}[NB\_ENTREE+1],\mbox{\hyperlink{structchemin__t}{chemin\_t}}\ *\ suite);}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00494\ \mbox{\hyperlink{structchemin__t}{chemin\_t}}\ creation\_map(SDL\_Renderer\ *renderer,\textcolor{keywordtype}{int}\ tab[ABS][ORD]);}
+
+\end{DoxyCode}
