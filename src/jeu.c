@@ -805,6 +805,9 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_DestroyTexture(boule);
 	SDL_DestroyTexture(PV);
 	SDL_DestroyTexture(case4);
+	SDL_DestroyTexture(prix_case1);
+	SDL_DestroyTexture(prix_case2);
+	SDL_DestroyTexture(prix_case3);
 
 	detruireHero(&hero1);
 	detruireHero(&hero2);
