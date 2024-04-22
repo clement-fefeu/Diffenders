@@ -1,0 +1,1132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Diffenders: Référence du fichier src/map.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="tower_def.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">Diffenders<span id="projectnumber">&#160;0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier map.c</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Programme qui contient les fonctions pour la génération de la map.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;../lib/base_struct.h&quot;</code><br />
+<code>#include &quot;../lib/fonc.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a948130145cee752595e68ea91db0c421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a948130145cee752595e68ea91db0c421">affiche_map_2</a> (int tab[ABS][ORD], SDL_Renderer *renderer, SDL_Window *window)</td></tr>
+<tr class="memdesc:a948130145cee752595e68ea91db0c421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la carte du jeu.  <br /></td></tr>
+<tr class="separator:a948130145cee752595e68ea91db0c421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7e89b3b0350c54ff03d5d7121794dcc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#af7e89b3b0350c54ff03d5d7121794dcc">initialise</a> (int tab[ABS][ORD])</td></tr>
+<tr class="memdesc:af7e89b3b0350c54ff03d5d7121794dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialisation de matrice de map a 0  <br /></td></tr>
+<tr class="separator:af7e89b3b0350c54ff03d5d7121794dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8fec7e75b4dbb2f5c5c6162fab6e79e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#aa8fec7e75b4dbb2f5c5c6162fab6e79e">init_chemin</a> (<a class="el" href="structchemin__t.html">chemin_t</a> pathfind[NB_ENTREE+1])</td></tr>
+<tr class="memdesc:aa8fec7e75b4dbb2f5c5c6162fab6e79e"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise la matrice de chemin a -1  <br /></td></tr>
+<tr class="separator:aa8fec7e75b4dbb2f5c5c6162fab6e79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c9de73b14892f9fb355c1ada19dc23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#ab2c9de73b14892f9fb355c1ada19dc23">init_chemin2</a> (<a class="el" href="structchemin__t.html">chemin_t</a> *pathfind)</td></tr>
+<tr class="memdesc:ab2c9de73b14892f9fb355c1ada19dc23"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise la matrice de chemin a -1  <br /></td></tr>
+<tr class="separator:ab2c9de73b14892f9fb355c1ada19dc23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0508516994b293775071a706271c885"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#af0508516994b293775071a706271c885">genere_base</a> (int *a, int *b, int tab[ABS][ORD])</td></tr>
+<tr class="memdesc:af0508516994b293775071a706271c885"><td class="mdescLeft">&#160;</td><td class="mdescRight">pose la base aléatoirement sur la carte  <br /></td></tr>
+<tr class="separator:af0508516994b293775071a706271c885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf1b70308fc7bdf82bf215562fa45877"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#acf1b70308fc7bdf82bf215562fa45877">vide</a> (int a, int b, int tab[ABS][ORD])</td></tr>
+<tr class="memdesc:acf1b70308fc7bdf82bf215562fa45877"><td class="mdescLeft">&#160;</td><td class="mdescRight">verifie qu'une case est vide  <br /></td></tr>
+<tr class="separator:acf1b70308fc7bdf82bf215562fa45877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1686d70e54315c17fe35fad2e806315f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a1686d70e54315c17fe35fad2e806315f">adjacent</a> (int a, int b, int tab[ABS][ORD])</td></tr>
+<tr class="memdesc:a1686d70e54315c17fe35fad2e806315f"><td class="mdescLeft">&#160;</td><td class="mdescRight">verifie si une case du bord donnée en parametre n'est pas a coté d'une autre  <br /></td></tr>
+<tr class="separator:a1686d70e54315c17fe35fad2e806315f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5c81f0e4492e92a6f8735baf82ba53f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#af5c81f0e4492e92a6f8735baf82ba53f">devant</a> (int a, int b, int tab[ABS][ORD])</td></tr>
+<tr class="memdesc:af5c81f0e4492e92a6f8735baf82ba53f"><td class="mdescLeft">&#160;</td><td class="mdescRight">verifie que la case du bord n'est pas en face ou diagonal d'une case non-vide  <br /></td></tr>
+<tr class="separator:af5c81f0e4492e92a6f8735baf82ba53f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb9f04b0fab6c6b5e0090bb705bd7c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a5cb9f04b0fab6c6b5e0090bb705bd7c6">test_bord</a> (int a, int b, int tab[ABS][ORD])</td></tr>
+<tr class="memdesc:a5cb9f04b0fab6c6b5e0090bb705bd7c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">retourne le resultat du calcul de fonction pour savoir si l'entree est acceptable  <br /></td></tr>
+<tr class="separator:a5cb9f04b0fab6c6b5e0090bb705bd7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a91cb01da4fc2eed7ec1867d6d65dae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a7a91cb01da4fc2eed7ec1867d6d65dae">calc_bord</a> (int a, int b, int tab[ABS][ORD], int *c, int *d)</td></tr>
+<tr class="memdesc:a7a91cb01da4fc2eed7ec1867d6d65dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction de calculs des entree des ennemis retourne en parametre les coordonné  <br /></td></tr>
+<tr class="separator:a7a91cb01da4fc2eed7ec1867d6d65dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af11d3cfe57dd7f220c64cb2a7fa11d13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#af11d3cfe57dd7f220c64cb2a7fa11d13">mat_bord</a> (int a, int b, int tab[ABS][ORD], int mat[NB_ENTREE][2])</td></tr>
+<tr class="memdesc:af11d3cfe57dd7f220c64cb2a7fa11d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">calcul les bord et met dans la matrice les coordonnees de ceux ci  <br /></td></tr>
+<tr class="separator:af11d3cfe57dd7f220c64cb2a7fa11d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac98c196578c6fb4b92699ed66249b1d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#ac98c196578c6fb4b92699ed66249b1d2">appartient</a> (int x, int y, <a class="el" href="structchemin__t.html">chemin_t</a> pathfind[NB_ENTREE+1])</td></tr>
+<tr class="memdesc:ac98c196578c6fb4b92699ed66249b1d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">retourne 1 si les coordonnees en parametre sont dans les chemins  <br /></td></tr>
+<tr class="separator:ac98c196578c6fb4b92699ed66249b1d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7b08c0b0c2587b8276538fc62ad0ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a7c7b08c0b0c2587b8276538fc62ad0ba">re_initialise</a> (int tab[ABS][ORD], <a class="el" href="structchemin__t.html">chemin_t</a> pathfind[NB_ENTREE+1], int mat[NB_ENTREE][2])</td></tr>
+<tr class="memdesc:a7c7b08c0b0c2587b8276538fc62ad0ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">remplace toute case n'etant ni base ni chemin ni entree par des 0  <br /></td></tr>
+<tr class="separator:a7c7b08c0b0c2587b8276538fc62ad0ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa930def5ec8fffc90b52b307b7f85910"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#aa930def5ec8fffc90b52b307b7f85910">chemin</a> (int a, int b, int tab[ABS][ORD], int x, int y)</td></tr>
+<tr class="memdesc:aa930def5ec8fffc90b52b307b7f85910"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction d'ecriture d'un chemin dans le tableau  <br /></td></tr>
+<tr class="separator:aa930def5ec8fffc90b52b307b7f85910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c8d3664dd78b84f10458f0bcb27929"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a40c8d3664dd78b84f10458f0bcb27929">pathfinding</a> (int a, int b, <a class="el" href="structchemin__t.html">chemin_t</a> *pathfind, int x, int y)</td></tr>
+<tr class="memdesc:a40c8d3664dd78b84f10458f0bcb27929"><td class="mdescLeft">&#160;</td><td class="mdescRight">ecriture de tout les chemin dans le tableau d'affichage des coordonnee de tout les chemins  <br /></td></tr>
+<tr class="separator:a40c8d3664dd78b84f10458f0bcb27929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c607e182aff8ad4dd13121547771a8d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a6c607e182aff8ad4dd13121547771a8d">pathfinding_base</a> (int a, int b, <a class="el" href="structchemin__t.html">chemin_t</a> *pathfind, int x, int y, int i)</td></tr>
+<tr class="memdesc:a6c607e182aff8ad4dd13121547771a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ecriture du chemin entre le point central et la base dans le tableua d'affichage de coordonnee  <br /></td></tr>
+<tr class="separator:a6c607e182aff8ad4dd13121547771a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7525bcdf1ff6eebf8f6485a7c6a8b819"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a7525bcdf1ff6eebf8f6485a7c6a8b819">chemin_base</a> (int x, int y, int tab[ABS][ORD], int a, int b, <a class="el" href="structchemin__t.html">chemin_t</a> *pathfind)</td></tr>
+<tr class="memdesc:a7525bcdf1ff6eebf8f6485a7c6a8b819"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction de creation de chemin du point de rencontre des chemins jusqu'a la base  <br /></td></tr>
+<tr class="separator:a7525bcdf1ff6eebf8f6485a7c6a8b819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b937c529d54fdc1efbe87e42e71256a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a8b937c529d54fdc1efbe87e42e71256a">croisee</a> (int a, int b, int mat[NB_ENTREE][2], int tab[ABS][ORD], <a class="el" href="structchemin__t.html">chemin_t</a> pathfind[NB_ENTREE+1])</td></tr>
+<tr class="memdesc:a8b937c529d54fdc1efbe87e42e71256a"><td class="mdescLeft">&#160;</td><td class="mdescRight">fonction de creation  <br /></td></tr>
+<tr class="separator:a8b937c529d54fdc1efbe87e42e71256a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a511addc23734a3941c167d3ab29540f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a511addc23734a3941c167d3ab29540f2">repathing</a> (<a class="el" href="structchemin__t.html">chemin_t</a> path[NB_ENTREE+1], <a class="el" href="structchemin__t.html">chemin_t</a> repath[NB_ENTREE+1])</td></tr>
+<tr class="memdesc:a511addc23734a3941c167d3ab29540f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">calcul des point important de chemin  <br /></td></tr>
+<tr class="separator:a511addc23734a3941c167d3ab29540f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f5b4d95eb4d3109635a8ed7f7e98b88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a9f5b4d95eb4d3109635a8ed7f7e98b88">rassemble</a> (<a class="el" href="structchemin__t.html">chemin_t</a> import[NB_ENTREE+1], <a class="el" href="structchemin__t.html">chemin_t</a> *suite)</td></tr>
+<tr class="memdesc:a9f5b4d95eb4d3109635a8ed7f7e98b88"><td class="mdescLeft">&#160;</td><td class="mdescRight">rassemble tout les point en un tab  <br /></td></tr>
+<tr class="separator:a9f5b4d95eb4d3109635a8ed7f7e98b88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20bb5b2864835b3e79e830e34880cc66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="map_8c.html#a20bb5b2864835b3e79e830e34880cc66">creation_map</a> (SDL_Renderer *renderer, int tab[ABS][ORD])</td></tr>
+<tr class="memdesc:a20bb5b2864835b3e79e830e34880cc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée la carte du jeu.  <br /></td></tr>
+<tr class="separator:a20bb5b2864835b3e79e830e34880cc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Programme qui contient les fonctions pour la génération de la map. </p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a1686d70e54315c17fe35fad2e806315f" name="a1686d70e54315c17fe35fad2e806315f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1686d70e54315c17fe35fad2e806315f">&#9670;&#160;</a></span>adjacent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int adjacent </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>verifie si une case du bord donnée en parametre n'est pas a coté d'une autre </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a948130145cee752595e68ea91db0c421" name="a948130145cee752595e68ea91db0c421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a948130145cee752595e68ea91db0c421">&#9670;&#160;</a></span>affiche_map_2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void affiche_map_2 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Window *&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affiche la carte du jeu. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tab</td><td>Tableau représentant la carte. </td></tr>
+    <tr><td class="paramname">renderer</td><td>Le renderer SDL. </td></tr>
+    <tr><td class="paramname">window</td><td>La fenêtre SDL. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac98c196578c6fb4b92699ed66249b1d2" name="ac98c196578c6fb4b92699ed66249b1d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98c196578c6fb4b92699ed66249b1d2">&#9670;&#160;</a></span>appartient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int appartient </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td>
+          <td class="paramname"><em>pathfind</em>[NB_ENTREE+1]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>retourne 1 si les coordonnees en parametre sont dans les chemins </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a7a91cb01da4fc2eed7ec1867d6d65dae" name="a7a91cb01da4fc2eed7ec1867d6d65dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a91cb01da4fc2eed7ec1867d6d65dae">&#9670;&#160;</a></span>calc_bord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void calc_bord </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction de calculs des entree des ennemis retourne en parametre les coordonné </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+    <tr><td class="paramname">c</td><td></td></tr>
+    <tr><td class="paramname">d</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa930def5ec8fffc90b52b307b7f85910" name="aa930def5ec8fffc90b52b307b7f85910"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa930def5ec8fffc90b52b307b7f85910">&#9670;&#160;</a></span>chemin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chemin </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction d'ecriture d'un chemin dans le tableau </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7525bcdf1ff6eebf8f6485a7c6a8b819" name="a7525bcdf1ff6eebf8f6485a7c6a8b819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7525bcdf1ff6eebf8f6485a7c6a8b819">&#9670;&#160;</a></span>chemin_base()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chemin_base </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a> *&#160;</td>
+          <td class="paramname"><em>pathfind</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction de creation de chemin du point de rencontre des chemins jusqu'a la base </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a20bb5b2864835b3e79e830e34880cc66" name="a20bb5b2864835b3e79e830e34880cc66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20bb5b2864835b3e79e830e34880cc66">&#9670;&#160;</a></span>creation_map()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structchemin__t.html">chemin_t</a> creation_map </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crée la carte du jeu. </p>
+<p>fonction principale qui rassemble toute celle au dessus et les appelle dans le bon ordre</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td>Le renderer SDL. </td></tr>
+    <tr><td class="paramname">tab</td><td>Tableau représentant la carte.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd><a class="el" href="structchemin__t.html" title="structure de tableau de coordonné retournant un chemin que peuvent suivrent les ennemis.">chemin_t</a> </dd></dl>
+
+</div>
+</div>
+<a id="a8b937c529d54fdc1efbe87e42e71256a" name="a8b937c529d54fdc1efbe87e42e71256a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b937c529d54fdc1efbe87e42e71256a">&#9670;&#160;</a></span>croisee()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void croisee </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mat</em>[NB_ENTREE][2], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td>
+          <td class="paramname"><em>pathfind</em>[NB_ENTREE+1]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fonction de creation </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">mat</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af5c81f0e4492e92a6f8735baf82ba53f" name="af5c81f0e4492e92a6f8735baf82ba53f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5c81f0e4492e92a6f8735baf82ba53f">&#9670;&#160;</a></span>devant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int devant </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>verifie que la case du bord n'est pas en face ou diagonal d'une case non-vide </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="af0508516994b293775071a706271c885" name="af0508516994b293775071a706271c885"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0508516994b293775071a706271c885">&#9670;&#160;</a></span>genere_base()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void genere_base </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>pose la base aléatoirement sur la carte </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa8fec7e75b4dbb2f5c5c6162fab6e79e" name="aa8fec7e75b4dbb2f5c5c6162fab6e79e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8fec7e75b4dbb2f5c5c6162fab6e79e">&#9670;&#160;</a></span>init_chemin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_chemin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td>
+          <td class="paramname"><em>pathfind</em>[NB_ENTREE+1]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialise la matrice de chemin a -1 </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2c9de73b14892f9fb355c1ada19dc23" name="ab2c9de73b14892f9fb355c1ada19dc23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2c9de73b14892f9fb355c1ada19dc23">&#9670;&#160;</a></span>init_chemin2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_chemin2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a> *&#160;</td>
+          <td class="paramname"><em>pathfind</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialise la matrice de chemin a -1 </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af7e89b3b0350c54ff03d5d7121794dcc" name="af7e89b3b0350c54ff03d5d7121794dcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e89b3b0350c54ff03d5d7121794dcc">&#9670;&#160;</a></span>initialise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initialise </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>initialisation de matrice de map a 0 </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af11d3cfe57dd7f220c64cb2a7fa11d13" name="af11d3cfe57dd7f220c64cb2a7fa11d13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af11d3cfe57dd7f220c64cb2a7fa11d13">&#9670;&#160;</a></span>mat_bord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mat_bord </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mat</em>[NB_ENTREE][2]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calcul les bord et met dans la matrice les coordonnees de ceux ci </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+    <tr><td class="paramname">mat</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a40c8d3664dd78b84f10458f0bcb27929" name="a40c8d3664dd78b84f10458f0bcb27929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c8d3664dd78b84f10458f0bcb27929">&#9670;&#160;</a></span>pathfinding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pathfinding </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a> *&#160;</td>
+          <td class="paramname"><em>pathfind</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ecriture de tout les chemin dans le tableau d'affichage des coordonnee de tout les chemins </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6c607e182aff8ad4dd13121547771a8d" name="a6c607e182aff8ad4dd13121547771a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c607e182aff8ad4dd13121547771a8d">&#9670;&#160;</a></span>pathfinding_base()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int pathfinding_base </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a> *&#160;</td>
+          <td class="paramname"><em>pathfind</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ecriture du chemin entre le point central et la base dans le tableua d'affichage de coordonnee </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+    <tr><td class="paramname">i</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a9f5b4d95eb4d3109635a8ed7f7e98b88" name="a9f5b4d95eb4d3109635a8ed7f7e98b88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f5b4d95eb4d3109635a8ed7f7e98b88">&#9670;&#160;</a></span>rassemble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rassemble </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td>
+          <td class="paramname"><em>import</em>[NB_ENTREE+1], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a> *&#160;</td>
+          <td class="paramname"><em>suite</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>rassemble tout les point en un tab </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">import</td><td></td></tr>
+    <tr><td class="paramname">suite</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7c7b08c0b0c2587b8276538fc62ad0ba" name="a7c7b08c0b0c2587b8276538fc62ad0ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c7b08c0b0c2587b8276538fc62ad0ba">&#9670;&#160;</a></span>re_initialise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void re_initialise </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td>
+          <td class="paramname"><em>pathfind</em>[NB_ENTREE+1], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mat</em>[NB_ENTREE][2]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remplace toute case n'etant ni base ni chemin ni entree par des 0 </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tab</td><td></td></tr>
+    <tr><td class="paramname">pathfind</td><td></td></tr>
+    <tr><td class="paramname">mat</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a511addc23734a3941c167d3ab29540f2" name="a511addc23734a3941c167d3ab29540f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511addc23734a3941c167d3ab29540f2">&#9670;&#160;</a></span>repathing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void repathing </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td>
+          <td class="paramname"><em>path</em>[NB_ENTREE+1], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structchemin__t.html">chemin_t</a>&#160;</td>
+          <td class="paramname"><em>repath</em>[NB_ENTREE+1]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>calcul des point important de chemin </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td></td></tr>
+    <tr><td class="paramname">repath</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5cb9f04b0fab6c6b5e0090bb705bd7c6" name="a5cb9f04b0fab6c6b5e0090bb705bd7c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cb9f04b0fab6c6b5e0090bb705bd7c6">&#9670;&#160;</a></span>test_bord()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int test_bord </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>retourne le resultat du calcul de fonction pour savoir si l'entree est acceptable </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="acf1b70308fc7bdf82bf215562fa45877" name="acf1b70308fc7bdf82bf215562fa45877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf1b70308fc7bdf82bf215562fa45877">&#9670;&#160;</a></span>vide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int vide </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tab</em>[ABS][ORD]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>verifie qu'une case est vide </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+    <tr><td class="paramname">tab</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

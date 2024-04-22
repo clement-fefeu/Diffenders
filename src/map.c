@@ -1,6 +1,9 @@
 #include "../lib/base_struct.h"
 #include "../lib/fonc.h"
-
+/**
+ * @file   map.c
+ * @brief  Programme qui contient les fonctions pour la génération de la map
+ */
 
 
 /*affichage de la map grace a la sdl et calcul de projectiles*/

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['nomhero_0',['nomHero',['../base__struct_8c.html#a94bb85d12b30cf13d0fc14fc90ea51e1',1,'base_struct.c']]],
-  ['nomtypehero_1',['nomTypeHero',['../base__struct_8c.html#a667f7b24ba7819b90b53ee469aa314dc',1,'base_struct.c']]]
+  ['load_5ftext_0',['load_text',['../fonc_8c.html#afb428c78ff46a28ac28a03c55e6a8351',1,'fonc.c']]],
+  ['loadimage_1',['loadImage',['../fonc_8c.html#adbb689e5e37cefc3b9d94ee813aac36d',1,'fonc.c']]]
 ];

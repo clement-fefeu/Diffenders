@@ -1,6 +1,6 @@
 /**
  * @file   base_struct.c
- * @brief  Programme principal
+ * @brief  Programme qui contient les fonctions et les structures du jeu
  */
 
 #include "../lib/base_struct.h"

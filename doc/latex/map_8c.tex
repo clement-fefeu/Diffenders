@@ -1,0 +1,505 @@
+\doxysection{Référence du fichier src/map.c}
+\hypertarget{map_8c}{}\label{map_8c}\index{src/map.c@{src/map.c}}
+
+
+Programme qui contient les fonctions pour la génération de la map.  
+
+
+{\ttfamily \#include \"{}../lib/base\+\_\+struct.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/fonc.\+h\"{}}\newline
+\doxysubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{map_8c_a948130145cee752595e68ea91db0c421}{affiche\+\_\+map\+\_\+2}} (int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]}, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Affiche la carte du jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_af7e89b3b0350c54ff03d5d7121794dcc}{initialise}} (int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]})
+\begin{DoxyCompactList}\small\item\em initialisation de matrice de map a 0 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_aa8fec7e75b4dbb2f5c5c6162fab6e79e}{init\+\_\+chemin}} (\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} pathfind\mbox{[}NB\+\_\+\+ENTREE+1\mbox{]})
+\begin{DoxyCompactList}\small\item\em initialise la matrice de chemin a -\/1 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_ab2c9de73b14892f9fb355c1ada19dc23}{init\+\_\+chemin2}} (\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}pathfind)
+\begin{DoxyCompactList}\small\item\em initialise la matrice de chemin a -\/1 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_af0508516994b293775071a706271c885}{genere\+\_\+base}} (int \texorpdfstring{$\ast$}{*}a, int \texorpdfstring{$\ast$}{*}b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]})
+\begin{DoxyCompactList}\small\item\em pose la base aléatoirement sur la carte \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{map_8c_acf1b70308fc7bdf82bf215562fa45877}{vide}} (int a, int b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]})
+\begin{DoxyCompactList}\small\item\em verifie qu\textquotesingle{}une case est vide \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{map_8c_a1686d70e54315c17fe35fad2e806315f}{adjacent}} (int a, int b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]})
+\begin{DoxyCompactList}\small\item\em verifie si une case du bord donnée en parametre n\textquotesingle{}est pas a coté d\textquotesingle{}une autre \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{map_8c_af5c81f0e4492e92a6f8735baf82ba53f}{devant}} (int a, int b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]})
+\begin{DoxyCompactList}\small\item\em verifie que la case du bord n\textquotesingle{}est pas en face ou diagonal d\textquotesingle{}une case non-\/vide \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{map_8c_a5cb9f04b0fab6c6b5e0090bb705bd7c6}{test\+\_\+bord}} (int a, int b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]})
+\begin{DoxyCompactList}\small\item\em retourne le resultat du calcul de fonction pour savoir si l\textquotesingle{}entree est acceptable \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_a7a91cb01da4fc2eed7ec1867d6d65dae}{calc\+\_\+bord}} (int a, int b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]}, int \texorpdfstring{$\ast$}{*}c, int \texorpdfstring{$\ast$}{*}d)
+\begin{DoxyCompactList}\small\item\em fonction de calculs des entree des ennemis retourne en parametre les coordonné \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_af11d3cfe57dd7f220c64cb2a7fa11d13}{mat\+\_\+bord}} (int a, int b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]}, int mat\mbox{[}NB\+\_\+\+ENTREE\mbox{]}\mbox{[}2\mbox{]})
+\begin{DoxyCompactList}\small\item\em calcul les bord et met dans la matrice les coordonnees de ceux ci \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{map_8c_ac98c196578c6fb4b92699ed66249b1d2}{appartient}} (int x, int y, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} pathfind\mbox{[}NB\+\_\+\+ENTREE+1\mbox{]})
+\begin{DoxyCompactList}\small\item\em retourne 1 si les coordonnees en parametre sont dans les chemins \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_a7c7b08c0b0c2587b8276538fc62ad0ba}{re\+\_\+initialise}} (int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]}, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} pathfind\mbox{[}NB\+\_\+\+ENTREE+1\mbox{]}, int mat\mbox{[}NB\+\_\+\+ENTREE\mbox{]}\mbox{[}2\mbox{]})
+\begin{DoxyCompactList}\small\item\em remplace toute case n\textquotesingle{}etant ni base ni chemin ni entree par des 0 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_aa930def5ec8fffc90b52b307b7f85910}{chemin}} (int a, int b, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]}, int x, int y)
+\begin{DoxyCompactList}\small\item\em fonction d\textquotesingle{}ecriture d\textquotesingle{}un chemin dans le tableau \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_a40c8d3664dd78b84f10458f0bcb27929}{pathfinding}} (int a, int b, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}pathfind, int x, int y)
+\begin{DoxyCompactList}\small\item\em ecriture de tout les chemin dans le tableau d\textquotesingle{}affichage des coordonnee de tout les chemins \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{map_8c_a6c607e182aff8ad4dd13121547771a8d}{pathfinding\+\_\+base}} (int a, int b, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}pathfind, int x, int y, int i)
+\begin{DoxyCompactList}\small\item\em ecriture du chemin entre le point central et la base dans le tableua d\textquotesingle{}affichage de coordonnee \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_a7525bcdf1ff6eebf8f6485a7c6a8b819}{chemin\+\_\+base}} (int x, int y, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]}, int a, int b, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}pathfind)
+\begin{DoxyCompactList}\small\item\em fonction de creation de chemin du point de rencontre des chemins jusqu\textquotesingle{}a la base \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_a8b937c529d54fdc1efbe87e42e71256a}{croisee}} (int a, int b, int mat\mbox{[}NB\+\_\+\+ENTREE\mbox{]}\mbox{[}2\mbox{]}, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]}, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} pathfind\mbox{[}NB\+\_\+\+ENTREE+1\mbox{]})
+\begin{DoxyCompactList}\small\item\em fonction de creation \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_a511addc23734a3941c167d3ab29540f2}{repathing}} (\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} path\mbox{[}NB\+\_\+\+ENTREE+1\mbox{]}, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} repath\mbox{[}NB\+\_\+\+ENTREE+1\mbox{]})
+\begin{DoxyCompactList}\small\item\em calcul des point important de chemin \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{map_8c_a9f5b4d95eb4d3109635a8ed7f7e98b88}{rassemble}} (\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} import\mbox{[}NB\+\_\+\+ENTREE+1\mbox{]}, \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}suite)
+\begin{DoxyCompactList}\small\item\em rassemble tout les point en un tab \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \mbox{\hyperlink{map_8c_a20bb5b2864835b3e79e830e34880cc66}{creation\+\_\+map}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int tab\mbox{[}ABS\mbox{]}\mbox{[}ORD\mbox{]})
+\begin{DoxyCompactList}\small\item\em Crée la carte du jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Programme qui contient les fonctions pour la génération de la map. 
+
+
+
+\doxysubsection{Documentation des fonctions}
+\Hypertarget{map_8c_a1686d70e54315c17fe35fad2e806315f}\label{map_8c_a1686d70e54315c17fe35fad2e806315f} 
+\index{map.c@{map.c}!adjacent@{adjacent}}
+\index{adjacent@{adjacent}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{adjacent()}{adjacent()}}
+{\footnotesize\ttfamily int adjacent (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+verifie si une case du bord donnée en parametre n\textquotesingle{}est pas a coté d\textquotesingle{}une autre 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{map_8c_a948130145cee752595e68ea91db0c421}\label{map_8c_a948130145cee752595e68ea91db0c421} 
+\index{map.c@{map.c}!affiche\_map\_2@{affiche\_map\_2}}
+\index{affiche\_map\_2@{affiche\_map\_2}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{affiche\_map\_2()}{affiche\_map\_2()}}
+{\footnotesize\ttfamily void affiche\+\_\+map\+\_\+2 (\begin{DoxyParamCaption}\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]},  }\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+
+Affiche la carte du jeu. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab} & Tableau représentant la carte. \\
+\hline
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em window} & La fenêtre SDL. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_ac98c196578c6fb4b92699ed66249b1d2}\label{map_8c_ac98c196578c6fb4b92699ed66249b1d2} 
+\index{map.c@{map.c}!appartient@{appartient}}
+\index{appartient@{appartient}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{appartient()}{appartient()}}
+{\footnotesize\ttfamily int appartient (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}}}]{pathfind\mbox{[}\+NB\+\_\+\+ENTREE+1\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+retourne 1 si les coordonnees en parametre sont dans les chemins 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em pathfind} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{map_8c_a7a91cb01da4fc2eed7ec1867d6d65dae}\label{map_8c_a7a91cb01da4fc2eed7ec1867d6d65dae} 
+\index{map.c@{map.c}!calc\_bord@{calc\_bord}}
+\index{calc\_bord@{calc\_bord}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{calc\_bord()}{calc\_bord()}}
+{\footnotesize\ttfamily void calc\+\_\+bord (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]},  }\item[{int \texorpdfstring{$\ast$}{*}}]{c,  }\item[{int \texorpdfstring{$\ast$}{*}}]{d }\end{DoxyParamCaption})}
+
+
+
+fonction de calculs des entree des ennemis retourne en parametre les coordonné 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+{\em c} & \\
+\hline
+{\em d} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_aa930def5ec8fffc90b52b307b7f85910}\label{map_8c_aa930def5ec8fffc90b52b307b7f85910} 
+\index{map.c@{map.c}!chemin@{chemin}}
+\index{chemin@{chemin}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{chemin()}{chemin()}}
+{\footnotesize\ttfamily void chemin (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+fonction d\textquotesingle{}ecriture d\textquotesingle{}un chemin dans le tableau 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_a7525bcdf1ff6eebf8f6485a7c6a8b819}\label{map_8c_a7525bcdf1ff6eebf8f6485a7c6a8b819} 
+\index{map.c@{map.c}!chemin\_base@{chemin\_base}}
+\index{chemin\_base@{chemin\_base}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{chemin\_base()}{chemin\_base()}}
+{\footnotesize\ttfamily void chemin\+\_\+base (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]},  }\item[{int}]{a,  }\item[{int}]{b,  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pathfind }\end{DoxyParamCaption})}
+
+
+
+fonction de creation de chemin du point de rencontre des chemins jusqu\textquotesingle{}a la base 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em tab} & \\
+\hline
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em pathfind} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_a20bb5b2864835b3e79e830e34880cc66}\label{map_8c_a20bb5b2864835b3e79e830e34880cc66} 
+\index{map.c@{map.c}!creation\_map@{creation\_map}}
+\index{creation\_map@{creation\_map}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{creation\_map()}{creation\_map()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} creation\+\_\+map (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Crée la carte du jeu. 
+
+fonction principale qui rassemble toute celle au dessus et les appelle dans le bon ordre
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em tab} & Tableau représentant la carte.\\
+\hline
+\end{DoxyParams}
+
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & \\
+\hline
+{\em tab} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+\doxylink{structchemin__t}{chemin\+\_\+t} 
+\end{DoxyReturn}
+\Hypertarget{map_8c_a8b937c529d54fdc1efbe87e42e71256a}\label{map_8c_a8b937c529d54fdc1efbe87e42e71256a} 
+\index{map.c@{map.c}!croisee@{croisee}}
+\index{croisee@{croisee}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{croisee()}{croisee()}}
+{\footnotesize\ttfamily void croisee (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{mat\mbox{[}\+NB\+\_\+\+ENTREE\mbox{]}\mbox{[}2\mbox{]},  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]},  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}}}]{pathfind\mbox{[}\+NB\+\_\+\+ENTREE+1\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+fonction de creation 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em mat} & \\
+\hline
+{\em tab} & \\
+\hline
+{\em pathfind} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_af5c81f0e4492e92a6f8735baf82ba53f}\label{map_8c_af5c81f0e4492e92a6f8735baf82ba53f} 
+\index{map.c@{map.c}!devant@{devant}}
+\index{devant@{devant}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{devant()}{devant()}}
+{\footnotesize\ttfamily int devant (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+verifie que la case du bord n\textquotesingle{}est pas en face ou diagonal d\textquotesingle{}une case non-\/vide 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{map_8c_af0508516994b293775071a706271c885}\label{map_8c_af0508516994b293775071a706271c885} 
+\index{map.c@{map.c}!genere\_base@{genere\_base}}
+\index{genere\_base@{genere\_base}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{genere\_base()}{genere\_base()}}
+{\footnotesize\ttfamily void genere\+\_\+base (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{a,  }\item[{int \texorpdfstring{$\ast$}{*}}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+pose la base aléatoirement sur la carte 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_aa8fec7e75b4dbb2f5c5c6162fab6e79e}\label{map_8c_aa8fec7e75b4dbb2f5c5c6162fab6e79e} 
+\index{map.c@{map.c}!init\_chemin@{init\_chemin}}
+\index{init\_chemin@{init\_chemin}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{init\_chemin()}{init\_chemin()}}
+{\footnotesize\ttfamily void init\+\_\+chemin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}}}]{pathfind\mbox{[}\+NB\+\_\+\+ENTREE+1\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+initialise la matrice de chemin a -\/1 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pathfind} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_ab2c9de73b14892f9fb355c1ada19dc23}\label{map_8c_ab2c9de73b14892f9fb355c1ada19dc23} 
+\index{map.c@{map.c}!init\_chemin2@{init\_chemin2}}
+\index{init\_chemin2@{init\_chemin2}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{init\_chemin2()}{init\_chemin2()}}
+{\footnotesize\ttfamily void init\+\_\+chemin2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pathfind }\end{DoxyParamCaption})}
+
+
+
+initialise la matrice de chemin a -\/1 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em pathfind} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_af7e89b3b0350c54ff03d5d7121794dcc}\label{map_8c_af7e89b3b0350c54ff03d5d7121794dcc} 
+\index{map.c@{map.c}!initialise@{initialise}}
+\index{initialise@{initialise}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{initialise()}{initialise()}}
+{\footnotesize\ttfamily void initialise (\begin{DoxyParamCaption}\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+initialisation de matrice de map a 0 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_af11d3cfe57dd7f220c64cb2a7fa11d13}\label{map_8c_af11d3cfe57dd7f220c64cb2a7fa11d13} 
+\index{map.c@{map.c}!mat\_bord@{mat\_bord}}
+\index{mat\_bord@{mat\_bord}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{mat\_bord()}{mat\_bord()}}
+{\footnotesize\ttfamily void mat\+\_\+bord (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]},  }\item[{int}]{mat\mbox{[}\+NB\+\_\+\+ENTREE\mbox{]}\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+calcul les bord et met dans la matrice les coordonnees de ceux ci 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+{\em mat} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_a40c8d3664dd78b84f10458f0bcb27929}\label{map_8c_a40c8d3664dd78b84f10458f0bcb27929} 
+\index{map.c@{map.c}!pathfinding@{pathfinding}}
+\index{pathfinding@{pathfinding}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{pathfinding()}{pathfinding()}}
+{\footnotesize\ttfamily void pathfinding (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pathfind,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+ecriture de tout les chemin dans le tableau d\textquotesingle{}affichage des coordonnee de tout les chemins 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em pathfind} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_a6c607e182aff8ad4dd13121547771a8d}\label{map_8c_a6c607e182aff8ad4dd13121547771a8d} 
+\index{map.c@{map.c}!pathfinding\_base@{pathfinding\_base}}
+\index{pathfinding\_base@{pathfinding\_base}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{pathfinding\_base()}{pathfinding\_base()}}
+{\footnotesize\ttfamily int pathfinding\+\_\+base (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pathfind,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+ecriture du chemin entre le point central et la base dans le tableua d\textquotesingle{}affichage de coordonnee 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em pathfind} & \\
+\hline
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{map_8c_a9f5b4d95eb4d3109635a8ed7f7e98b88}\label{map_8c_a9f5b4d95eb4d3109635a8ed7f7e98b88} 
+\index{map.c@{map.c}!rassemble@{rassemble}}
+\index{rassemble@{rassemble}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{rassemble()}{rassemble()}}
+{\footnotesize\ttfamily void rassemble (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}}}]{import\mbox{[}\+NB\+\_\+\+ENTREE+1\mbox{]},  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{suite }\end{DoxyParamCaption})}
+
+
+
+rassemble tout les point en un tab 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em import} & \\
+\hline
+{\em suite} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_a7c7b08c0b0c2587b8276538fc62ad0ba}\label{map_8c_a7c7b08c0b0c2587b8276538fc62ad0ba} 
+\index{map.c@{map.c}!re\_initialise@{re\_initialise}}
+\index{re\_initialise@{re\_initialise}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{re\_initialise()}{re\_initialise()}}
+{\footnotesize\ttfamily void re\+\_\+initialise (\begin{DoxyParamCaption}\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]},  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}}}]{pathfind\mbox{[}\+NB\+\_\+\+ENTREE+1\mbox{]},  }\item[{int}]{mat\mbox{[}\+NB\+\_\+\+ENTREE\mbox{]}\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+remplace toute case n\textquotesingle{}etant ni base ni chemin ni entree par des 0 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em tab} & \\
+\hline
+{\em pathfind} & \\
+\hline
+{\em mat} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_a511addc23734a3941c167d3ab29540f2}\label{map_8c_a511addc23734a3941c167d3ab29540f2} 
+\index{map.c@{map.c}!repathing@{repathing}}
+\index{repathing@{repathing}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{repathing()}{repathing()}}
+{\footnotesize\ttfamily void repathing (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}}}]{path\mbox{[}\+NB\+\_\+\+ENTREE+1\mbox{]},  }\item[{\mbox{\hyperlink{structchemin__t}{chemin\+\_\+t}}}]{repath\mbox{[}\+NB\+\_\+\+ENTREE+1\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+calcul des point important de chemin 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em path} & \\
+\hline
+{\em repath} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{map_8c_a5cb9f04b0fab6c6b5e0090bb705bd7c6}\label{map_8c_a5cb9f04b0fab6c6b5e0090bb705bd7c6} 
+\index{map.c@{map.c}!test\_bord@{test\_bord}}
+\index{test\_bord@{test\_bord}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{test\_bord()}{test\_bord()}}
+{\footnotesize\ttfamily int test\+\_\+bord (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+retourne le resultat du calcul de fonction pour savoir si l\textquotesingle{}entree est acceptable 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\Hypertarget{map_8c_acf1b70308fc7bdf82bf215562fa45877}\label{map_8c_acf1b70308fc7bdf82bf215562fa45877} 
+\index{map.c@{map.c}!vide@{vide}}
+\index{vide@{vide}!map.c@{map.c}}
+\doxysubsubsection{\texorpdfstring{vide()}{vide()}}
+{\footnotesize\ttfamily int vide (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int}]{tab\mbox{[}\+ABS\mbox{]}\mbox{[}\+ORD\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+verifie qu\textquotesingle{}une case est vide 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+{\em tab} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}

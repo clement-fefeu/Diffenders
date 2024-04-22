@@ -1,3 +1,8 @@
+/**
+ * @file   jeu.c
+ * @brief  Programme principal du jeu
+ */
+
 #include "../lib/base_struct.h"
 #include "../lib/fonc.h"
 
@@ -767,6 +772,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_DestroyTexture(prix_case1);
 	SDL_DestroyTexture(prix_case2);
 	SDL_DestroyTexture(prix_case3);
+	SDL_DestroyTexture(textEnnemie);
 
 	detruireHero(&hero1);
 	detruireHero(&hero2);

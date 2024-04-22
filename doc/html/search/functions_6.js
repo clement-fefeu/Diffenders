@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['param_0',['param',['../fonc_8c.html#abd53c60e1da1294a823bf9aa2d127430',1,'fonc.c']]]
+  ['load_5ftext_0',['load_text',['../fonc_8c.html#afb428c78ff46a28ac28a03c55e6a8351',1,'fonc.c']]],
+  ['loadimage_1',['loadImage',['../fonc_8c.html#adbb689e5e37cefc3b9d94ee813aac36d',1,'fonc.c']]]
 ];

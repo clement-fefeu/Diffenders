@@ -1,0 +1,277 @@
+\doxysection{Référence du fichier src/jeu.c}
+\hypertarget{jeu_8c}{}\label{jeu_8c}\index{src/jeu.c@{src/jeu.c}}
+
+
+Programme principal du jeu.  
+
+
+{\ttfamily \#include \"{}../lib/base\+\_\+struct.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/fonc.\+h\"{}}\newline
+\doxysubsubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{jeu_8c_a395e60292e039a2ae73323ce08584355}{affiche\+\_\+argent}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int hauteur, int largeur, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texte)
+\begin{DoxyCompactList}\small\item\em Affiche le montant d\textquotesingle{}argent et une texture donnée à l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{jeu_8c_a1a5693b8319e8d968484268bd8e70e3c}{affiche\+\_\+\+PV}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int hauteur, int largeur, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texte)
+\begin{DoxyCompactList}\small\item\em Affiche le montant de point de vie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{jeu_8c_a93aad822c1206773eaed63769586ec8c}{affiche\+\_\+\+Prix}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int hauteur, int largeur, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texte, int posX, int posY)
+\begin{DoxyCompactList}\small\item\em Affiche le prix des heros. \end{DoxyCompactList}\item 
+Uint32 \mbox{\hyperlink{jeu_8c_a56a3fe29dc6d1bf13384a87a5bc192d2}{attendre}} (Uint32 interval, void \texorpdfstring{$\ast$}{*}parametre)
+\begin{DoxyCompactList}\small\item\em Attend un certain temps avant de faire une action. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{jeu_8c_a3511e47fb48ae6e9edbcb27ba2b2e575}{avancer\+Horizontal}} (\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ennemie, int nb\+Ennemie, int indice, int indice\+Chemin, \mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}coord, int largeur, int hauteur)
+\begin{DoxyCompactList}\small\item\em Avance de droite à gauche la texture de l\textquotesingle{}ennemi. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{jeu_8c_ab30e763597a0d820596d4dc6f784fbce}{reculer\+Horizontal}} (\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ennemie, int nb\+Ennemie, int indice, int indice\+Chemin, \mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}coord, int largeur, int hauteur)
+\begin{DoxyCompactList}\small\item\em Avance de gauche à droite la texture de l\textquotesingle{}ennemi. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{jeu_8c_adfec330be4b29e3c64888b8f3c48ccbf}{descendre\+Vertical}} (\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ennemie, int nb\+Ennemie, int indice, int indice\+Chemin, \mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}coord, int largeur, int hauteur)
+\begin{DoxyCompactList}\small\item\em Avance de haut en bas la texture de l\textquotesingle{}ennemi. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{jeu_8c_a91d24cc305cd0b3f211cd12b812f3673}{monter\+Vertical}} (\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}ennemie, int nb\+Ennemie, int indice, int indice\+Chemin, \mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}coord, int largeur, int hauteur)
+\begin{DoxyCompactList}\small\item\em Avance de bas en haut la texture de l\textquotesingle{}ennemi. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{jeu_8c_a67e6d21038868bf01be0a153f4b4f770}{appel\+Text\+Ennemie}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}texture, SDL\+\_\+\+Rect \texorpdfstring{$\ast$}{*}drect, int \texorpdfstring{$\ast$}{*}w, int \texorpdfstring{$\ast$}{*}h)
+\begin{DoxyCompactList}\small\item\em Affiche l\textquotesingle{}ennemi actuel. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{jeu_8c_af4cd41e10cc8bd2fd787c342f0a5e260}{jeu}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em La boucle principale du jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Description détaillée}
+Programme principal du jeu. 
+
+
+
+\doxysubsection{Documentation des fonctions}
+\Hypertarget{jeu_8c_a395e60292e039a2ae73323ce08584355}\label{jeu_8c_a395e60292e039a2ae73323ce08584355} 
+\index{jeu.c@{jeu.c}!affiche\_argent@{affiche\_argent}}
+\index{affiche\_argent@{affiche\_argent}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{affiche\_argent()}{affiche\_argent()}}
+{\footnotesize\ttfamily void affiche\+\_\+argent (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{int}]{hauteur,  }\item[{int}]{largeur,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{texte }\end{DoxyParamCaption})}
+
+
+
+Affiche le montant d\textquotesingle{}argent et une texture donnée à l\textquotesingle{}écran. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em hauteur} & La hauteur de l\textquotesingle{}écran. \\
+\hline
+{\em largeur} & La largeur de l\textquotesingle{}écran. \\
+\hline
+{\em texte} & La texture à afficher. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_a93aad822c1206773eaed63769586ec8c}\label{jeu_8c_a93aad822c1206773eaed63769586ec8c} 
+\index{jeu.c@{jeu.c}!affiche\_Prix@{affiche\_Prix}}
+\index{affiche\_Prix@{affiche\_Prix}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{affiche\_Prix()}{affiche\_Prix()}}
+{\footnotesize\ttfamily void affiche\+\_\+\+Prix (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{int}]{hauteur,  }\item[{int}]{largeur,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{texte,  }\item[{int}]{posX,  }\item[{int}]{posY }\end{DoxyParamCaption})}
+
+
+
+Affiche le prix des heros. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em hauteur} & La hauteur de l\textquotesingle{}écran. \\
+\hline
+{\em largeur} & La largeur de l\textquotesingle{}écran. \\
+\hline
+{\em texte} & La texture à afficher. \\
+\hline
+{\em posX} & La largeur de l\textquotesingle{}écran. \\
+\hline
+{\em posY} & La texture à afficher. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_a1a5693b8319e8d968484268bd8e70e3c}\label{jeu_8c_a1a5693b8319e8d968484268bd8e70e3c} 
+\index{jeu.c@{jeu.c}!affiche\_PV@{affiche\_PV}}
+\index{affiche\_PV@{affiche\_PV}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{affiche\_PV()}{affiche\_PV()}}
+{\footnotesize\ttfamily void affiche\+\_\+\+PV (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{int}]{hauteur,  }\item[{int}]{largeur,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{texte }\end{DoxyParamCaption})}
+
+
+
+Affiche le montant de point de vie. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em hauteur} & La hauteur de l\textquotesingle{}écran. \\
+\hline
+{\em largeur} & La largeur de l\textquotesingle{}écran. \\
+\hline
+{\em texte} & La texture à afficher. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_a67e6d21038868bf01be0a153f4b4f770}\label{jeu_8c_a67e6d21038868bf01be0a153f4b4f770} 
+\index{jeu.c@{jeu.c}!appelTextEnnemie@{appelTextEnnemie}}
+\index{appelTextEnnemie@{appelTextEnnemie}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{appelTextEnnemie()}{appelTextEnnemie()}}
+{\footnotesize\ttfamily int appel\+Text\+Ennemie (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{texture,  }\item[{SDL\+\_\+\+Rect \texorpdfstring{$\ast$}{*}}]{drect,  }\item[{int \texorpdfstring{$\ast$}{*}}]{w,  }\item[{int \texorpdfstring{$\ast$}{*}}]{h }\end{DoxyParamCaption})}
+
+
+
+Affiche l\textquotesingle{}ennemi actuel. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em texture} & La texture a afficher. \\
+\hline
+{\em drect} & La position de la texture. \\
+\hline
+{\em w} & La largeur de l\textquotesingle{}écran. \\
+\hline
+{\em h} & La texture à afficher. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_a56a3fe29dc6d1bf13384a87a5bc192d2}\label{jeu_8c_a56a3fe29dc6d1bf13384a87a5bc192d2} 
+\index{jeu.c@{jeu.c}!attendre@{attendre}}
+\index{attendre@{attendre}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{attendre()}{attendre()}}
+{\footnotesize\ttfamily Uint32 attendre (\begin{DoxyParamCaption}\item[{Uint32}]{interval,  }\item[{void \texorpdfstring{$\ast$}{*}}]{parametre }\end{DoxyParamCaption})}
+
+
+
+Attend un certain temps avant de faire une action. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em interval} & Le temps à attendre. \\
+\hline
+{\em parametre} & La valeur à modifier. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_a3511e47fb48ae6e9edbcb27ba2b2e575}\label{jeu_8c_a3511e47fb48ae6e9edbcb27ba2b2e575} 
+\index{jeu.c@{jeu.c}!avancerHorizontal@{avancerHorizontal}}
+\index{avancerHorizontal@{avancerHorizontal}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{avancerHorizontal()}{avancerHorizontal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} avancer\+Horizontal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ennemie,  }\item[{int}]{nb\+Ennemie,  }\item[{int}]{indice,  }\item[{int}]{indice\+Chemin,  }\item[{\mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{coord,  }\item[{int}]{largeur,  }\item[{int}]{hauteur }\end{DoxyParamCaption})}
+
+
+
+Avance de droite à gauche la texture de l\textquotesingle{}ennemi. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em ennemie} & L\textquotesingle{}ennemie a faire avancer. \\
+\hline
+{\em nb\+Ennemie} & Le nombre d\textquotesingle{}ennemi. \\
+\hline
+{\em indice} & L\textquotesingle{}indice de l\textquotesingle{}ennemi actuel. \\
+\hline
+{\em indice\+Chemin} & L\textquotesingle{}indice de la position du chemin. \\
+\hline
+{\em coord} & Coordonnées. \\
+\hline
+{\em largeur} & Largeur de l\textquotesingle{}écran. \\
+\hline
+{\em hauteur} & Hauteur de l\textquotesingle{}écran. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_adfec330be4b29e3c64888b8f3c48ccbf}\label{jeu_8c_adfec330be4b29e3c64888b8f3c48ccbf} 
+\index{jeu.c@{jeu.c}!descendreVertical@{descendreVertical}}
+\index{descendreVertical@{descendreVertical}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{descendreVertical()}{descendreVertical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} descendre\+Vertical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ennemie,  }\item[{int}]{nb\+Ennemie,  }\item[{int}]{indice,  }\item[{int}]{indice\+Chemin,  }\item[{\mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{coord,  }\item[{int}]{largeur,  }\item[{int}]{hauteur }\end{DoxyParamCaption})}
+
+
+
+Avance de haut en bas la texture de l\textquotesingle{}ennemi. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em ennemie} & L\textquotesingle{}ennemie a faire avancer. \\
+\hline
+{\em nb\+Ennemie} & Le nombre d\textquotesingle{}ennemi. \\
+\hline
+{\em indice} & L\textquotesingle{}indice de l\textquotesingle{}ennemi actuel. \\
+\hline
+{\em indice\+Chemin} & L\textquotesingle{}indice de la position du chemin. \\
+\hline
+{\em coord} & Coordonnées. \\
+\hline
+{\em largeur} & Largeur de l\textquotesingle{}écran. \\
+\hline
+{\em hauteur} & Hauteur de l\textquotesingle{}écran. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_af4cd41e10cc8bd2fd787c342f0a5e260}\label{jeu_8c_af4cd41e10cc8bd2fd787c342f0a5e260} 
+\index{jeu.c@{jeu.c}!jeu@{jeu}}
+\index{jeu@{jeu}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{jeu()}{jeu()}}
+{\footnotesize\ttfamily int jeu (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+
+La boucle principale du jeu. 
+
+La fonction principale du jeu.
+
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & Le renderer SDL. \\
+\hline
+{\em window} & La fenêtre SDL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int Retourne 0 en cas de réussite. 
+\end{DoxyReturn}
+\Hypertarget{jeu_8c_a91d24cc305cd0b3f211cd12b812f3673}\label{jeu_8c_a91d24cc305cd0b3f211cd12b812f3673} 
+\index{jeu.c@{jeu.c}!monterVertical@{monterVertical}}
+\index{monterVertical@{monterVertical}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{monterVertical()}{monterVertical()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} monter\+Vertical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ennemie,  }\item[{int}]{nb\+Ennemie,  }\item[{int}]{indice,  }\item[{int}]{indice\+Chemin,  }\item[{\mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{coord,  }\item[{int}]{largeur,  }\item[{int}]{hauteur }\end{DoxyParamCaption})}
+
+
+
+Avance de bas en haut la texture de l\textquotesingle{}ennemi. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em ennemie} & L\textquotesingle{}ennemie a faire avancer. \\
+\hline
+{\em nb\+Ennemie} & Le nombre d\textquotesingle{}ennemi. \\
+\hline
+{\em indice} & L\textquotesingle{}indice de l\textquotesingle{}ennemi actuel. \\
+\hline
+{\em indice\+Chemin} & L\textquotesingle{}indice de la position du chemin. \\
+\hline
+{\em coord} & Coordonnées. \\
+\hline
+{\em largeur} & Largeur de l\textquotesingle{}écran. \\
+\hline
+{\em hauteur} & Hauteur de l\textquotesingle{}écran. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{jeu_8c_ab30e763597a0d820596d4dc6f784fbce}\label{jeu_8c_ab30e763597a0d820596d4dc6f784fbce} 
+\index{jeu.c@{jeu.c}!reculerHorizontal@{reculerHorizontal}}
+\index{reculerHorizontal@{reculerHorizontal}!jeu.c@{jeu.c}}
+\doxysubsubsection{\texorpdfstring{reculerHorizontal()}{reculerHorizontal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*} reculer\+Horizontal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structennemie__s}{ennemie\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{ennemie,  }\item[{int}]{nb\+Ennemie,  }\item[{int}]{indice,  }\item[{int}]{indice\+Chemin,  }\item[{\mbox{\hyperlink{structcoord__t}{coord\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{coord,  }\item[{int}]{largeur,  }\item[{int}]{hauteur }\end{DoxyParamCaption})}
+
+
+
+Avance de gauche à droite la texture de l\textquotesingle{}ennemi. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em ennemie} & L\textquotesingle{}ennemie a faire avancer. \\
+\hline
+{\em nb\+Ennemie} & Le nombre d\textquotesingle{}ennemi. \\
+\hline
+{\em indice} & L\textquotesingle{}indice de l\textquotesingle{}ennemi actuel. \\
+\hline
+{\em indice\+Chemin} & L\textquotesingle{}indice de la position du chemin. \\
+\hline
+{\em coord} & Coordonnées. \\
+\hline
+{\em largeur} & Largeur de l\textquotesingle{}écran. \\
+\hline
+{\em hauteur} & Hauteur de l\textquotesingle{}écran. \\
+\hline
+\end{DoxyParams}
