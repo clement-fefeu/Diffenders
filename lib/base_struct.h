@@ -26,7 +26,7 @@ typedef struct player_s player_t;
 #define ORD 15
 #define NB_ENTREE 1
 
-#define MAX_Vague 5
+#define MAX_Vague 15
 
 /**
  * @struct coord_t
