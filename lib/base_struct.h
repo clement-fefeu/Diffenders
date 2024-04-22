@@ -8,7 +8,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
-#define MAXHERO 10
+#define MAXHERO 11
 #define N 6
 #define TailleMap 30
 
@@ -26,7 +26,7 @@ typedef struct player_s player_t;
 #define ORD 15
 #define NB_ENTREE 1
 
-#define MAX_Vague 15
+#define MAX_Vague 5
 
 /**
  * @struct coord_t

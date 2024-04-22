@@ -63,7 +63,7 @@ int detruireHero(hero_t **hero) {
 player_t * initialise_joueur(){
     player_t * joueur = malloc(sizeof(player_t));
 
-    joueur->argent = 500;
+    joueur->argent = 10000000;
     
     return joueur;
 }

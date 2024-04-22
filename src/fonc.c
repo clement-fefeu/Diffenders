@@ -111,10 +111,9 @@ void init_icon(SDL_Window *window){
  * @param taille_text La taille du texte.
  * @return SDL_Texture* La texture du texte chargé.
  */
-SDL_Texture *load_text(SDL_Renderer *renderer,char *text,int taille_text){
+SDL_Texture *load_text(SDL_Renderer *renderer,char *text,int taille_text,SDL_Color textColor){
     SDL_Texture *texture = NULL;
 
-	SDL_Color textColor = { 0, 0, 0 };
 	if( TTF_Init() == -1 ) { 
 		return 0; 
 	}

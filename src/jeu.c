@@ -127,10 +127,12 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause,position,imgDestRectCase4;
 	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL,*textEnnemie=NULL;
 	SDL_Texture *boule=NULL,*PV=NULL,*case4=NULL,*prix_case1=NULL,*prix_case2=NULL,*prix_case3=NULL;
+	SDL_Color noir = { 0, 0, 0 },blanc={ 250, 250, 250 };
   	int tab[ABS][ORD];
 	int largeur=WIDTHSCREEN,hauteur=HEIGHTSCREEN;
 	int vague=0;
 	int map=0;
+	int defaite=0;
   	chemin_t suite;
 	char nb_argent[20],pv_base[20];
 	int nb_timer=0;
@@ -328,16 +330,16 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 			}
 			SDL_itoa(joueur->argent,nb_argent,10);
 			SDL_itoa(base,pv_base,10);
-			texte=load_text(renderer,nb_argent,30);
-			PV=load_text(renderer,pv_base,30);
+			texte=load_text(renderer,nb_argent,30,noir);
+			PV=load_text(renderer,pv_base,30,noir);
 			
-			prix_case1=load_text(renderer,"250",30);
-			prix_case2=load_text(renderer,"500",30);
-			prix_case3=load_text(renderer,"1000",30);
+			prix_case1=load_text(renderer,"250",30,noir);
+			prix_case2=load_text(renderer,"500",30,noir);
+			prix_case3=load_text(renderer,"1000",30,noir);
 			
-			affiche_Prix(renderer,hauteur,largeur,prix_case1,100,700);
-			affiche_Prix(renderer,hauteur,largeur,prix_case2,250,700);
-			affiche_Prix(renderer,hauteur,largeur,prix_case3,400,700);
+			affiche_Prix(renderer,hauteur,largeur,prix_case1,imgDestRectCase1.x+imgDestRectCase1.w/2,imgDestRectCase1.y-imgDestRectCase1.h/3);
+			affiche_Prix(renderer,hauteur,largeur,prix_case2,imgDestRectCase2.x+imgDestRectCase2.w/2,imgDestRectCase2.y-imgDestRectCase2.h/3);
+			affiche_Prix(renderer,hauteur,largeur,prix_case3,imgDestRectCase3.x+imgDestRectCase3.w/2,imgDestRectCase3.y-imgDestRectCase3.h/3);
 
 			affiche_argent(renderer,hauteur,largeur,texte);
 			affiche_PV(renderer,hauteur,largeur,PV);
@@ -397,8 +399,20 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 						SDL_Log("mort");
 						if(base<=0){
 							running = 0; 
+							defaite=1;
 							SDL_Log("Defaite");
 							vague=MAX_Vague;
+							SDL_RenderClear(renderer);
+							texte=load_text(renderer,"YOU DED",30,blanc);
+							
+							SDL_QueryTexture(texte,NULL, NULL,&(position.w),&(position.h));
+							position.x = largeur/2 -position.w;
+							position.y = hauteur/2-position.h;
+							SDL_RenderCopy(renderer, texte,NULL, &position);
+
+							SDL_RenderPresent(renderer);
+							sleep(5);
+							
 						}
 						if(nbEnnemie==0){
 							running=0;
@@ -406,7 +420,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 					}
 				}
 
-				SDL_Delay(1);
+				SDL_Delay(0);
 				if(tabEnnemie[indice] != NULL){
 					appelTextEnnemie(renderer,tabEnnemie[indice]->texture,&tabEnnemie[indice]->imgDestRectEnnemie,&tabEnnemie[indice]->imgDestRectEnnemie.w,&tabEnnemie[indice]->imgDestRectEnnemie.h);
 				}
@@ -472,11 +486,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 							
 						}
 
-						if(nbEnnemie==0 && vague==MAX_Vague){
-							running = 0; 
-							vague=MAX_Vague;
-							SDL_Log("Victoire");
-						}else if(nbEnnemie==0){
+						if(nbEnnemie==0){
 							running = 0; 
 						}
 
@@ -749,6 +759,19 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 		}
 
 		vague++;
+	}
+	if(vague==MAX_Vague && defaite==0){
+		vague=MAX_Vague;
+		SDL_Log("Victoire");
+		SDL_RenderClear(renderer);
+		texte=load_text(renderer,"VICTOIRE",30,blanc);
+		
+		SDL_QueryTexture(texte,NULL, NULL,&(position.w),&(position.h));
+		position.x = largeur/2 -position.w;
+		position.y = hauteur/2 - position.h;
+		SDL_RenderCopy(renderer, texte,NULL, &position);
+		SDL_RenderPresent(renderer);
+		sleep(5); 
 	}
 	
 

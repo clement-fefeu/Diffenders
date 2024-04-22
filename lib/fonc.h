@@ -28,9 +28,10 @@ extern DECLSPEC int SDLCALL TTF_Init(void);
  * @param renderer Le renderer SDL.
  * @param text Le texte à afficher.
  * @param taille_text La taille du texte.
+ * @param textColor La couleur du texte.
  * @return SDL_Texture* La texture du texte chargé.
  */
-SDL_Texture *load_text(SDL_Renderer *renderer, char *text, int taille_text);
+SDL_Texture *load_text(SDL_Renderer *renderer, char *text, int taille_text,SDL_Color textColor);
 
 /**
  * @brief Initialise la fenêtre et le renderer SDL.
