@@ -7,7 +7,7 @@
 #include "../lib/fonc.h"
 
 /** @brief Noms des héros */
-char *nomHero[3] = {"Skarn", "Pof", "Roy"};
+char *nomHero[3] = {"Skarn", "Pof", "René"};
 
 /** @brief Dégâts des héros */
 int degatHero[3] = {80, 50, 200};

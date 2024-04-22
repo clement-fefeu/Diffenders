@@ -126,7 +126,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	//Le pointeur vers la surface incluse dans la fenetre
 	SDL_Rect txtDestRect,imgDestRect,imgDestRect2,imgDestRectCase1,imgDestRectCase2,imgDestRectCase3,imgDestRectpause,position,imgDestRectCase4;
 	SDL_Texture *background = NULL,*hud=NULL,*texte=NULL ,*case1=NULL,*case2=NULL,*case3=NULL,*pause=NULL,*textHero1=NULL,*textHero2=NULL,*textHero3=NULL,*textEnnemie=NULL;
-	SDL_Texture *boule=NULL,*PV=NULL,*case4=NULL,*prix_case1=NULL,*prix_case2=NULL,*prix_case3=NULL;
+	SDL_Texture *boule=NULL,*PV=NULL,*case4=NULL,*prix_case1=NULL,*prix_case2=NULL,*prix_case3=NULL,*NB_Vague=NULL;
 	SDL_Color noir = { 0, 0, 0 },blanc={ 250, 250, 250 };
   	int tab[ABS][ORD];
 	int largeur=WIDTHSCREEN,hauteur=HEIGHTSCREEN;
@@ -134,7 +134,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 	int map=0;
 	int defaite=0;
   	chemin_t suite;
-	char nb_argent[20],pv_base[20];
+	char nb_argent[20],pv_base[20],vague_actuel[20];
 	int nb_timer=0;
 	SDL_TimerID timer[MAXHERO];
 	if(map==0){
@@ -329,6 +329,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 					
 			}
 			SDL_itoa(joueur->argent,nb_argent,10);
+			SDL_itoa(vague,vague_actuel,10);
 			SDL_itoa(base,pv_base,10);
 			texte=load_text(renderer,nb_argent,30,noir);
 			PV=load_text(renderer,pv_base,30,noir);
@@ -336,10 +337,12 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 			prix_case1=load_text(renderer,"250",30,noir);
 			prix_case2=load_text(renderer,"500",30,noir);
 			prix_case3=load_text(renderer,"1000",30,noir);
-			
+			NB_Vague=load_text(renderer,vague_actuel,30,noir);
+
 			affiche_Prix(renderer,hauteur,largeur,prix_case1,imgDestRectCase1.x+imgDestRectCase1.w/2,imgDestRectCase1.y-imgDestRectCase1.h/3);
 			affiche_Prix(renderer,hauteur,largeur,prix_case2,imgDestRectCase2.x+imgDestRectCase2.w/2,imgDestRectCase2.y-imgDestRectCase2.h/3);
 			affiche_Prix(renderer,hauteur,largeur,prix_case3,imgDestRectCase3.x+imgDestRectCase3.w/2,imgDestRectCase3.y-imgDestRectCase3.h/3);
+			affiche_Prix(renderer,hauteur,largeur,NB_Vague,largeur-100,hauteur-100);
 
 			affiche_argent(renderer,hauteur,largeur,texte);
 			affiche_PV(renderer,hauteur,largeur,PV);
