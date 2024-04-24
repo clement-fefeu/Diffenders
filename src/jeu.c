@@ -329,7 +329,7 @@ int jeu(SDL_Renderer *renderer,SDL_Window *window)
 					
 			}
 			SDL_itoa(joueur->argent,nb_argent,10);
-			SDL_itoa(vague,vague_actuel,10);
+			SDL_itoa(vague+1,vague_actuel,10);
 			SDL_itoa(base,pv_base,10);
 			texte=load_text(renderer,nb_argent,30,noir);
 			PV=load_text(renderer,pv_base,30,noir);
